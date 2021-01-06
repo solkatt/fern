@@ -1,0 +1,23 @@
+.modal{
+    position: absolute;
+
+    background: rgba(0, 0, 0, 0.5);
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+
+    .join-modal {
+        position: absolute;
+        background: hotpink;
+        width: 400px;
+        height: 500px;
+
+    }
+}

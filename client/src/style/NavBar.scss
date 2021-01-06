@@ -3,9 +3,31 @@ body {
 
 
 
-    nav {
-        background: green;
-        width: 100%;
-     
+    nav {   
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: teal;
+        height: 3rem;
+        padding: 0 1rem;
+
+        .nav-menu {
+            display: flex;
+            background: green;
+            
+
+
+            .log-in {
+                background: orange;
+                margin: 0 1rem;
+            }
+
+            .join {
+                background: hotpink;
+                margin: 0 1rem;
+            }
+        }
+
     }
 }

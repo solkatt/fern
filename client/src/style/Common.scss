@@ -1,0 +1,31 @@
+.center {
+    justify-content: center;
+}
+
+.sml-pad {
+    padding: 0 1rem;
+}
+
+.green{
+    background: green;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+    visibility: hidden;
+
+}
+
+.show {
+    display: block;
+}
+
+.close {
+    position: absolute;
+    margin: .5rem;
+    right: 0;
+}

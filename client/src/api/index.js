@@ -11,7 +11,7 @@ export const deleteMovieById = id => api.delete(`/movie/${id}`)
 export const getMovieById = id => api.get(`/movie/${id}`)
 
 /////////////////////////////////////////
-export const createUser = payload => api.post('/user', payload)
+export const registerUser = payload => api.post('/user', payload)
 
 const apis = {
     insertMovie,
@@ -19,7 +19,7 @@ const apis = {
     updateMovieById,
     deleteMovieById,
     getMovieById,
-    createUser
+    registerUser
 }
 
 export default apis

@@ -66,7 +66,7 @@ class JoinModal extends Component {
             password: password,
         }
 
-        await api.createUser(payload).then((res) => {
+        await api.registerUser(payload).then((res) => {
             console.log(res);
         }, (err) => {
             console.log(err)

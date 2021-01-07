@@ -1,37 +1,72 @@
+const bcrypt = require('bcrypt')
+
 const User = require('../models/user-model')
 
-createUser = (req, res) => {
-    const body = req.body
+// registerUser = (req, res) => {
+//     const body = req.body
 
-    if (!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a user details',
-        })
-    }
+//     if (!body) {
+//         return res.status(400).json({
+//             success: false,
+//             error: 'You must provide a user details',
+//         })
+//     }
 
-    const user = new User(body)
+//     const user = new User(body)
 
-    if (!user) {
-        return res.status(400).json({ success: false, error: err })
-    }
+//     if (!user) {
+//         return res.status(400).json({ success: false, error: err })
+//     }
 
-    user
-        .save()
-        .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: user._id,
-                message: 'User created!',
-            })
-        })
-        .catch(error => {
-            return res.status(400).json({
-                error,
-                message: 'User not created!',
-            })
-        })
+//     user
+//         .save()
+//         .then(() => {
+//             return res.status(201).json({
+//                 success: true,
+//                 id: user._id,
+//                 message: 'User created!',
+//             })
+//         })
+//         .catch(error => {
+//             return res.status(400).json({
+//                 error,
+//                 message: 'User not created!',
+//             })
+//         })
+// }
+
+//Mosh approach
+registerUser = async (req, res) => {
+    // const { error } = validate(req.body)
+    // if (error) return res.status(400).send(error.details[0].message)
+
+
+    let user = await User.findOne({email: req.body.email})
+    if (user) return res.status(400).send('User already registered')
+
+    user = new User(req.body)
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt)
+
+    await user.save()
+    res.send({
+        name:user.name,
+        email: user.email,
+        id: user._id
+    })
 }
+
+
+
+
+
+
+
+
+
+
+
 
 // updateMovie = async (req, res) => {
 //     const body = req.body
@@ -117,7 +152,7 @@ createUser = (req, res) => {
 // }
 
 module.exports = {
-    createUser
+    registerUser
     // updateMovie,
     // deleteMovie,
     // getMovies,

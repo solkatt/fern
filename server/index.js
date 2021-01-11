@@ -1,3 +1,4 @@
+const config = require('config')
 const express = require('express');
 const cors = require('cors');
 
@@ -10,6 +11,10 @@ const app = express();
 const PORT = 3000;
 const { urlencoded } = require('express');
 
+if (!config.get('jwtPrivateKey')) {
+    console.error('FATAL ERROR: jwtPrivateKey is not defined')
+    process.exit(1)
+}
 
 app.use(urlencoded({extended: true})); // 
 app.use(express.json());

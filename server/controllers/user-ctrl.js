@@ -1,3 +1,7 @@
+const jwt = require('jsonwebtoken')
+const config = require('config')
+
+
 const bcrypt = require('bcrypt')
 
 const User = require('../models/user-model')
@@ -36,6 +40,30 @@ const User = require('../models/user-model')
 // }
 
 //Mosh approach
+// registerUser = async (req, res) => {
+//     // const { error } = validate(req.body)
+//     // if (error) return res.status(400).send(error.details[0].message)
+
+
+//     let user = await User.findOne({email: req.body.email})
+//     if (user) return res.status(400).send('User already registered')
+
+//     user = new User(req.body)
+
+//     const salt = await bcrypt.genSalt(10);
+//     user.password = await bcrypt.hash(user.password, salt)
+
+//     await user.save()
+//     res.send({
+//         name:user.name,
+//         email: user.email,
+//         id: user._id
+//     })
+// }
+
+
+//moshHeaderSignUpToken
+//response Headers
 registerUser = async (req, res) => {
     // const { error } = validate(req.body)
     // if (error) return res.status(400).send(error.details[0].message)
@@ -48,14 +76,33 @@ registerUser = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt)
-
+    
     await user.save()
-    res.send({
+   
+    // const payload = {
+    //     _id: user._id
+    // }
+    
+    // const token = jwt.sign(payload, config.get('jwtPrivateKey'))
+
+    const token = user.generateAuthToken()
+    res.header('x-auth-token', token).send({
         name:user.name,
         email: user.email,
         id: user._id
     })
+
+}    
+
+
+
+
+getCurrentUser = async (req, res) => {
+const user = await User.findById(req.user._id).select('-password')
+res.send(user)
 }
+
+
 
 
 
@@ -152,7 +199,8 @@ registerUser = async (req, res) => {
 // }
 
 module.exports = {
-    registerUser
+    registerUser,
+    getCurrentUser
     // updateMovie,
     // deleteMovie,
     // getMovies,

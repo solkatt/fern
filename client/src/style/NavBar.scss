@@ -1,33 +1,29 @@
-body {
-    background: rgb(54, 54, 54);
+nav {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: teal;
+    height: 3rem;
+    width: 100%;
+    
+   
 
-
-
-    nav {   
-        position: relative;
+    .nav-menu {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: teal;
-        height: 3rem;
-        padding: 0 1rem;
-
-        .nav-menu {
-            display: flex;
-            background: green;
-            
+        background: green;
+         padding: 0 2rem;
 
 
-            .log-in {
-                background: orange;
-                margin: 0 1rem;
-            }
 
-            .join {
-                background: hotpink;
-                margin: 0 1rem;
-            }
+        .log-in {
+            background: orange;
+            margin: 0 1rem;
         }
 
+        .join {
+            background: hotpink;
+            margin: 0 1rem;
+        }
     }
 }

@@ -2,8 +2,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import { NavBar, Links, Logo } from '../components'
-import { MoviesList, MoviesInsert, MoviesUpdate } from '../pages';
+import { NavBar} from '../components'
+import { MoviesList, MoviesInsert, MoviesUpdate, Landing } from '../pages';
 import '../style/App.scss'
 
 function App() {
@@ -11,6 +11,11 @@ function App() {
     <Router>
     <NavBar />
     <Switch>
+        <Route path="/" exact component={Landing} />
+
+
+
+
         <Route path="/movies/list" exact component={MoviesList} />
         <Route path="/movies/create" exact component={MoviesInsert} />
         <Route

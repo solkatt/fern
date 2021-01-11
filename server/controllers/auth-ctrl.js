@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 const Joi = require('joi')
-const jwt = require('jsonwebtoken')
+
 
 const User = require('../models/user-model')
 
@@ -21,13 +21,7 @@ auth = async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password)
     if (!validPassword) return res.status(400).send('Invalid email or password')
 
-    const payload = {
-        _id: user._id
-    }
-
-    const token = jwt.sign(payload, 'jwtPrivateKey')
-
-
+    const token = user.generateAuthToken()
     res.send(token)
 }
 
@@ -52,6 +46,7 @@ function validate(req) {
 
 // const validation = schema.validate(req.body);
 // res.send(validation);
+
 
 
 module.exports = {

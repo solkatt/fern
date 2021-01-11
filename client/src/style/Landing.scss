@@ -1,0 +1,21 @@
+@import './Variables.scss';
+
+
+.landing-page {
+    width: 100%;
+    height: 100%;
+    background: $fern-green;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-family: $title-font;
+        font-size: $jumbo;
+        color: $fern-yellow;
+    }
+
+
+}

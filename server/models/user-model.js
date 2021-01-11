@@ -1,5 +1,8 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const jwt = require('jsonwebtoken')
+const config = require('config')
+const { boolean } = require('joi')
 
 const User = new Schema({
     name: {
@@ -21,13 +24,19 @@ const User = new Schema({
         minlength: 5,
         maxlength: 1024
     },
-    time: {
-        type: [String],
-        required: true
-    },
+    isAdmin: Boolean,
 }, {
     timestamps: true
 }, )
+
+User.methods.generateAuthToken = function() {
+    const payload = {
+        _id: this._id,
+        isAdmin: this.isAdmin
+    }
+    const token = jwt.sign(payload, config.get('jwtPrivateKey'))
+    return token
+}
 
 
 // INSTALL JOI / BALIDATE

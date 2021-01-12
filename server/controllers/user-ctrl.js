@@ -98,7 +98,8 @@ registerUser = async (req, res) => {
 
 
 getCurrentUser = async (req, res) => {
-const user = await User.findById(req.user._id).select('-password')
+    const user = await User.findById(req.user._id).select('-password')
+    console.log(user)
 res.send(user)
 }
 

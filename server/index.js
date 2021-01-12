@@ -6,6 +6,8 @@ const db = require('./db');
 const movieRouter = require('./routes/movie-router')
 const userRouter = require('./routes/user-router')
 const auth = require('./routes/auth')
+const storeRouter = require('./routes/store-router')
+const productRouter = require('./routes/product-router')
 
 const app = express();
 const PORT = 3000;
@@ -30,6 +32,8 @@ app.get('/', (req, res) => {
 app.use('/api', movieRouter);
 app.use('/api', userRouter);
 app.use('/api', auth);
+app.use('/api', storeRouter);
+app.use('/api', productRouter);
 
 app.listen(PORT, () => {
     console.log(`Server up and running on port: ${PORT}`)

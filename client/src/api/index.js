@@ -13,6 +13,25 @@ export const getMovieById = id => api.get(`/movie/${id}`)
 ////////////////    USER    /////////////////////////
 export const registerUser = payload => api.post('/user', payload)
 export const loginUser = payload => api.post('auth', payload)
+export const getCurrentUser = payload => api.get('/me', payload)
+
+
+////////////////    STORE   /////////////////////////
+
+
+
+////////////////    PRODUCT    /////////////////////////
+
+
+
+
+
+////////////////    CUSTOMER    /////////////////////////
+
+
+
+export const getAllProducts = () => api.get(`/products`)
+
 
 
 const apis = {
@@ -22,7 +41,9 @@ const apis = {
     deleteMovieById,
     getMovieById,
     registerUser,
-    loginUser
+    loginUser,
+    getCurrentUser,
+    getAllProducts
 }
 
 export default apis

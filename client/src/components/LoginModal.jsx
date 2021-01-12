@@ -4,10 +4,13 @@ import '../style/LoginModal.scss'
 import '../style/Common.scss'
 
 import { FaWindowClose} from 'react-icons/fa';
+import UserContext from '../context/UserContext';
 
 
 
 class LoginModal extends Component {
+    static contextType = UserContext;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -58,9 +61,13 @@ class LoginModal extends Component {
             localStorage.setItem('storage-object', JSON.stringify({token: res.data}))
 
             console.log(res.data);
+
         }, (err) => {
             console.log(err)
         })
+
+        this.context.getUserData()
+        this.onCloseModal()
     }
 
     inputValidation = () => {

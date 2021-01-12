@@ -51,8 +51,5 @@ function validate(req) {
 
 module.exports = {
     auth
-    // updateMovie,
-    // deleteMovie,
-    // getMovies,
-    // getMovieById,
+
 }

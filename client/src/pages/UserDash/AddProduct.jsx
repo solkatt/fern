@@ -39,6 +39,7 @@ class AddProduct extends Component {
 
 
 
+
     }
 
 
@@ -49,6 +50,8 @@ class AddProduct extends Component {
         this.setState({
             [field]: value
         })
+
+
     }
 
 
@@ -71,7 +74,7 @@ class AddProduct extends Component {
             categories: categories,
             price: price,
             stock_quantity: stock_quantity,
-            storeID: storeID
+            storeID: storeID,
 
         }
 

@@ -93,6 +93,13 @@ deleteProduct = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+
+
+
+
+
+
+
 getProductById = async (req, res) => {
     await Product.findOne({ _id: req.params.id }, (err, product) => {
         if (err) {

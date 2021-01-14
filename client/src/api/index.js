@@ -26,7 +26,7 @@ export const deleteProductById = id => api.delete(`/product/${id}`)
 export const getAllProducts = () => api.get(`/products`)
 export const getProductById = id => api.get(`/product/${id}`)
 
-export const updateProduct = id => api.put(`/product/${id}`)
+export const updateProduct = (id, payload) => api.put(`/product/${id}`, payload)
 
 
 

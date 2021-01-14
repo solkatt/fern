@@ -11,6 +11,7 @@ class Products extends Component {
             products: [],
             columns: [],
             isLoading: false,
+
         }
 
 
@@ -41,7 +42,7 @@ class Products extends Component {
     }
 
     onEdit = () => {
-       // Send props to Page
+        // Send props to Page
     }
 
 
@@ -57,18 +58,24 @@ class Products extends Component {
         // })
         // console.log('Loading...')
 
-        await api.deleteProductById(productID).then((res) => {
+        // console.log(productID)
 
-            console.log(res.data);
+       await api.deleteProductById(productID).then((res) => {
 
+            console.log(res.data)
 
             
             
         }, (err) => {
-            return console.log(err)
+            console.log(productID)
+            
+            return console.log(err.data)
         })
         
+        
         this.loadProducts()
+ 
+        
     }
 
 
@@ -92,16 +99,16 @@ class Products extends Component {
 
 
                                 <div className="btns">
-                                
 
 
 
-                                    <button><Link to={`/products/edit/${product._id}` }>
-                    Edit
+
+                                    <button><Link to={`/products/edit/${product._id}`}>
+                                        Edit
                             </Link></button>
-                                   
-                                   
-                                   
+
+
+
                                     {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
                                     <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
                                     <button onClick={() => this.showProduct(product._id)}>Show this ID</button>

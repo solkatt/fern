@@ -78,10 +78,8 @@ class NavBar extends Component {
                         <>
                             <UserDashboard class="links" />
     
-                            <h2>UserState Name: {this.context.username}</h2>
                             <h2>isLoggedIn {this.context.isLoggedIn.toString()}</h2>
 
-                            <h2>Logged in</h2>
                             <div className="join pointer" onClick={this.context.onSignOut}>
                            
                                 <Link to="/">Logout</Link>

@@ -21,7 +21,12 @@ export const getCurrentUser = payload => api.get('/me', payload)
 
 
 ////////////////    PRODUCT    /////////////////////////
+export const addProduct = payload => api.post(`/product`, payload)
+export const deleteProductById = id => api.delete(`/product/${id}`)
+export const getAllProducts = () => api.get(`/products`)
+export const getProductById = id => api.get(`/product/${id}`)
 
+export const updateProduct = id => api.put(`/product/${id}`)
 
 
 
@@ -30,7 +35,6 @@ export const getCurrentUser = payload => api.get('/me', payload)
 
 
 
-export const getAllProducts = () => api.get(`/products`)
 
 
 
@@ -40,10 +44,17 @@ const apis = {
     updateMovieById,
     deleteMovieById,
     getMovieById,
+    /// USER ///
     registerUser,
     loginUser,
     getCurrentUser,
-    getAllProducts
+    /// PRODUCTS ///
+    getAllProducts,
+    getProductById,
+    addProduct,
+    deleteProductById,
+    updateProduct
+    /// STORE ///
 }
 
 export default apis

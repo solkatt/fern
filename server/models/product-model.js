@@ -30,7 +30,7 @@ const Product = new Schema({
         type: Number,
         required: true,
     },
-    store: {
+    storeID: {
         type: String,
         required: true,
     }, 

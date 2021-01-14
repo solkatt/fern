@@ -10,13 +10,27 @@ class UserDashboard extends Component {
                     Home
                 </Link>
 
-                <Link to="/movies/list" className="nav-link">
-                    List Movies
+
+                <Link to="/store/" className="nav-link">
+                    Store
                             </Link>
 
-                <Link to="/products/create" className="nav-link">
-                    Create Product
+                <Link to="/products/all" className="nav-link">
+                    All Your Products
                             </Link>
+
+                <Link to="/products/add" className="nav-link">
+                    Add New Product
+                            </Link>
+             
+
+             {/* TODO */}
+                <Link to="/store/orders" className="nav-link">
+                    Orders
+                            </Link>
+                            
+        
+
 
             </React.Fragment>
         )

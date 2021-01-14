@@ -1,0 +1,18 @@
+@import '../Variables.scss';
+
+
+.product-grid {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .product-card {
+        width: 10rem;
+        height: 10rem;
+        border: 1px solid $fern-yellow;
+        background: $fern-green;
+    }
+
+}

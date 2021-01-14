@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import api from '../../api'
-import '../../style/pages/AddProduct.scss'
+import '../../style/pages/EditProduct.scss'
 import '../../style/pages/PageLayout.scss'
-import { Link } from 'react-router-dom'
 
-class Products extends Component {
+
+class EditProduct extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            products: [],
+            product: {},
             columns: [],
             isLoading: false,
         }
@@ -16,32 +16,33 @@ class Products extends Component {
 
         this.showProduct = this.showProduct.bind(this)
         this.onDeleteProduct = this.onDeleteProduct.bind(this)
-        this.loadProducts = this.loadProducts.bind(this)
-        this.onEdit = this.onEdit.bind(this)
+        this.loadProduct = this.loadProduct.bind(this)
     }
 
     componentDidMount = () => {
-        this.loadProducts()
+
+        const { id } = this.props.match.params
+
+        // console.log(id)
+
+        this.loadProduct(id)
     }
 
-    loadProducts = async () => {
+    loadProduct = async (id) => {
         this.setState({ isLoading: true })
 
-        await api.getAllProducts().then(products => {
+        await api.getProductById(id).then(product => {
             this.setState({
-                products: products.data.data,
+                product: product.data.data,
                 isLoading: false,
             })
+            console.log(this.state.product)
         })
     }
 
 
     showProduct = (props) => {
         alert(props)
-    }
-
-    onEdit = () => {
-       // Send props to Page
     }
 
 
@@ -68,47 +69,42 @@ class Products extends Component {
             return console.log(err)
         })
         
-        this.loadProducts()
+        this.loadProduct()
     }
 
 
 
 
     render() {
-        const { products } = this.state
+        const { product } = this.state
 
         return (
 
             <div className="page-layout">
                 <div className="page-content">
-                    <div className="product-grid">
 
-                        {products.map(product =>
+
+                    <div className="product-grid">
+                    {/* <h1>{product}</h1> */}
+
+                
                             <div key={product._id} className="product-card">
 
                                 <h3>{product.name}</h3>
                                 <p>{product.description}</p>
                                 <h5>{product.price}</h5>
+                                <h5>{product.stock_quantity}</h5>
+                                <h5>{product.categories}</h5>
+                                <h5>{product.image}</h5>
 
 
                                 <div className="btns">
-                                
-
-
-
-                                    <button><Link to={`/products/edit/${product._id}` }>
-                    Edit
-                            </Link></button>
-                                   
-                                   
-                                   
-                                    {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
                                     <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
                                     <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
 
                                 </div>
                             </div>
-                        )}
+                 
 
                     </div>
 
@@ -126,6 +122,6 @@ class Products extends Component {
     }
 }
 
-export default Products
+export default EditProduct
 
 

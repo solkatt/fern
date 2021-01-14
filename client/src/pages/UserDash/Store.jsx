@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import api from '../../api'
-import '../../style/pages/AddProduct.scss'
+import '../../style/pages/Store.scss'
 import '../../style/pages/PageLayout.scss'
-import { Link } from 'react-router-dom'
 
-class Products extends Component {
+
+class Store extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -17,7 +17,6 @@ class Products extends Component {
         this.showProduct = this.showProduct.bind(this)
         this.onDeleteProduct = this.onDeleteProduct.bind(this)
         this.loadProducts = this.loadProducts.bind(this)
-        this.onEdit = this.onEdit.bind(this)
     }
 
     componentDidMount = () => {
@@ -38,10 +37,6 @@ class Products extends Component {
 
     showProduct = (props) => {
         alert(props)
-    }
-
-    onEdit = () => {
-       // Send props to Page
     }
 
 
@@ -92,17 +87,7 @@ class Products extends Component {
 
 
                                 <div className="btns">
-                                
-
-
-
-                                    <button><Link to={`/products/edit/${product._id}` }>
-                    Edit
-                            </Link></button>
-                                   
-                                   
-                                   
-                                    {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
+                                    <button>Edit</button>
                                     <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
                                     <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
 
@@ -126,6 +111,6 @@ class Products extends Component {
     }
 }
 
-export default Products
+export default Store
 
 

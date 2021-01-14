@@ -22,6 +22,7 @@ export class UserProvider extends React.Component {
       isLoading: true,
       //   token: "",
       redirect: false,
+      storeID: '',
 
       //   onSignIn: this.onSignIn,
       onSignOut: this.onSignOut,
@@ -65,7 +66,7 @@ export class UserProvider extends React.Component {
       await api.getCurrentUser(payload)
         .then((res) => {
           if (res.data) {
-            const { name, _id, isAdmin, email } = res.data
+            const { name, _id, isAdmin, email, store_id } = res.data
 
             this.setState({
               username: name,
@@ -74,6 +75,7 @@ export class UserProvider extends React.Component {
               email: email,
               isLoading: false,
               isLoggedIn: true,
+              storeID: store_id,
             })
           } else {
             this.setState({

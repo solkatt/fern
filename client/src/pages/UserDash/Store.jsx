@@ -2,13 +2,18 @@ import React, { Component } from 'react'
 import api from '../../api'
 import '../../style/pages/Store.scss'
 import '../../style/pages/PageLayout.scss'
+import UserContext from '../../context/UserContext';
+
 
 
 class Store extends Component {
+
+    static contextType = UserContext;
+
     constructor(props) {
         super(props)
         this.state = {
-            products: [],
+            store: [],
             columns: [],
             isLoading: false,
         }
@@ -16,22 +21,34 @@ class Store extends Component {
 
         this.showProduct = this.showProduct.bind(this)
         this.onDeleteProduct = this.onDeleteProduct.bind(this)
-        this.loadProducts = this.loadProducts.bind(this)
+        this.loadStore = this.loadStore.bind(this)
     }
 
-    componentDidMount = () => {
-        this.loadProducts()
+    componentDidMount = async () => {
+
+        await this.context.getUserData().then((user) => {
+            console.log(user)
+            this.loadStore()
+        })
+
+
+
     }
 
-    loadProducts = async () => {
+
+
+    loadStore = async () => {
         this.setState({ isLoading: true })
 
-        await api.getAllProducts().then(products => {
+        const storeID = this.context.storeID
+
+        await api.getStoreById(storeID).then(store => {
             this.setState({
-                products: products.data.data,
+                store: store.data.data,
                 isLoading: false,
             })
         })
+
     }
 
 
@@ -57,12 +74,12 @@ class Store extends Component {
             console.log(res.data);
 
 
-            
-            
+
+
         }, (err) => {
             return console.log(err)
         })
-        
+
         this.loadProducts()
     }
 
@@ -70,31 +87,26 @@ class Store extends Component {
 
 
     render() {
-        const { products } = this.state
+        const { store } = this.state
 
         return (
 
             <div className="page-layout">
+
+                <h1>STORE</h1>
                 <div className="page-content">
                     <div className="product-grid">
 
-                        {products.map(product =>
-                            <div key={product._id} className="product-card">
+                        {/* Todo: Store Layout / CSS */}
+                        <div className="store-layout">
 
-                                <h3>{product.name}</h3>
-                                <p>{product.description}</p>
-                                <h5>{product.price}</h5>
+                            <h2>{store.name}</h2>
+                            <h3>{store.description}</h3>
+                            <h3>Store contact mail / Optional</h3>
+                            <h3>Store Adress / Optional</h3>
+                        </div>
 
-
-                                <div className="btns">
-                                    <button>Edit</button>
-                                    <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
-                                    <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
-
-                                </div>
-                            </div>
-                        )}
-
+                        <button>Edit Store Information</button>
                     </div>
 
 

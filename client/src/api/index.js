@@ -17,7 +17,7 @@ export const getCurrentUser = payload => api.get('/me', payload)
 
 
 ////////////////    STORE   /////////////////////////
-
+export const getStoreById = id => api.get(`/store/${id}`)
 
 
 ////////////////    PRODUCT    /////////////////////////
@@ -49,12 +49,14 @@ const apis = {
     loginUser,
     getCurrentUser,
     /// PRODUCTS ///
+    ////Should Be getAllProductsByStore and another one all for all products
     getAllProducts,
     getProductById,
     addProduct,
     deleteProductById,
-    updateProduct
+    updateProduct,
     /// STORE ///
+    getStoreById,
 }
 
 export default apis

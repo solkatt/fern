@@ -91,6 +91,10 @@ updateStore = async (req, res) => {
 // }
 
 getStoreById = async (req, res) => {
+
+    // console.log('Req Body', req.body)
+    // console.log('Req Params', req.params)
+
     await Store.findOne({ _id: req.params.id }, (err, store) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })

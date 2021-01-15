@@ -8,4 +8,6 @@ import Products from './UserDash/Products'
 import AddProduct from './UserDash/AddProduct'
 import EditProduct from './UserDash/EditProduct'
 
-export { MoviesList, MoviesInsert, MoviesUpdate, Landing, Products, AddProduct, EditProduct }
+import Store from './UserDash/Store'
+
+export { MoviesList, MoviesInsert, MoviesUpdate, Landing, Products, AddProduct, EditProduct, Store }

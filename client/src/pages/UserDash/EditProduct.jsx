@@ -94,6 +94,8 @@ class EditProduct extends Component {
 
         }, (err) => {
             return console.log(err)
+
+            
         })
 
 

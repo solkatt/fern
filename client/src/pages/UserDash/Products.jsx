@@ -5,6 +5,7 @@ import '../../style/pages/PageLayout.scss'
 import { Link } from 'react-router-dom'
 
 class Products extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -21,8 +22,15 @@ class Products extends Component {
         this.onEdit = this.onEdit.bind(this)
     }
 
-    componentDidMount = () => {
-        this.loadProducts()
+    componentDidMount = async () => {
+
+
+        
+            this.loadProducts()
+        
+
+
+
     }
 
     loadProducts = async () => {
@@ -69,11 +77,11 @@ class Products extends Component {
         }, (err) => {
             console.log(productID)
             
-            return console.log(err.data)
+            return console.log(err)
         })
         
         
-        this.loadProducts()
+       this.loadProducts()
  
         
     }

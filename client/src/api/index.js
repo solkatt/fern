@@ -22,6 +22,7 @@ export const getStoreById = id => api.get(`/store/${id}`)
 
 ////////////////    PRODUCT    /////////////////////////
 export const addProduct = payload => api.post(`/product`, payload)
+export const uploadProductImage = payload => api.post(`/product/uploadImage`, payload)
 export const deleteProductById = id => api.delete(`/product/${id}`)
 export const getAllProducts = () => api.get(`/products`)
 export const getProductById = id => api.get(`/product/${id}`)
@@ -53,6 +54,7 @@ const apis = {
     getAllProducts,
     getProductById,
     addProduct,
+    uploadProductImage,
     deleteProductById,
     updateProduct,
     /// STORE ///

@@ -3,7 +3,7 @@ import api from '../../api'
 import '../../style/pages/Products.scss'
 import '../../style/pages/PageLayout.scss'
 import UserContext from '../../context/UserContext';
-
+import FileUpload from '../../utils/FileUpload'
 class AddProduct extends Component {
     static contextType = UserContext;
 
@@ -13,6 +13,7 @@ class AddProduct extends Component {
             name: '',
             description: '',
             image: '',
+            images: [],
             price: 0,
             stock_quantity: 0,
             categories: [],
@@ -23,6 +24,7 @@ class AddProduct extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this)
+        this.updateImages= this.updateImages.bind(this)
     }
 
     componentDidMount = () => {
@@ -35,10 +37,6 @@ class AddProduct extends Component {
         this.setState({
             storeID: this.context.storeID
         })
-
-
-
-
 
     }
 
@@ -93,6 +91,14 @@ class AddProduct extends Component {
     }
 
 
+     updateImages = (newImages) => {
+
+        console.log(newImages)
+        this.setState({
+            images: newImages
+        })
+    }
+
 
 
 
@@ -108,8 +114,10 @@ class AddProduct extends Component {
                         {this.context.storeID}
                     </h2>
                     <div className="add-product-form">
+
+                        <FileUpload refreshFunction={this.updateImages} />
                         <input name="name" type="text" placeholder="Product Name" onChange={this.handleInputChange} />
-                        <input name="description" type="text" placeholder="Description" onChange={this.handleInputChange} />
+                        <textarea name="description" type="text" placeholder="Description" onChange={this.handleInputChange} />
                         <input name="image" type="text" placeholder="Image" onChange={this.handleInputChange} />
                         <input name="categories" type="text" placeholder="Categories" onChange={this.handleInputChange} />
                         <input name="price" type="number" placeholder="Price" onChange={this.handleInputChange} />

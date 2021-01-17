@@ -9,6 +9,8 @@ const auth = require('./routes/auth')
 const storeRouter = require('./routes/store-router')
 const productRouter = require('./routes/product-router')
 
+const path = require("path");
+
 const app = express();
 const PORT = 3000;
 const { urlencoded } = require('express');
@@ -22,6 +24,7 @@ app.use(urlencoded({extended: true})); //
 app.use(express.json());
 app.use(cors());
 
+app.use('/uploads', express.static('uploads'))
 
 db.on('error', console.log.bind(console, 'MongoDB connection error:'));
 
@@ -34,6 +37,15 @@ app.use('/api', userRouter);
 app.use('/api', auth);
 app.use('/api', storeRouter);
 app.use('/api', productRouter);
+
+
+
+
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+//   });
+
+
 
 app.listen(PORT, () => {
     console.log(`Server up and running on port: ${PORT}`)

@@ -9,6 +9,10 @@ const admin = require('../middleware/admin')
 /// Examples
 // router.post('/store', auth, admin, StoreCtrl.createStore)
 router.post('/product', ProductCtrl.createProduct)
+router.post('/product/uploadImage', ProductCtrl.uploadProductImage)
+
+
+
 router.put('/product/:id', ProductCtrl.updateProduct)
 router.delete('/product/:id', ProductCtrl.deleteProduct)
 router.get('/product/:id', ProductCtrl.getProductById)

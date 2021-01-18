@@ -36,11 +36,13 @@ db.on('error', console.log.bind(console, 'MongoDB connection error:'));
 app.use(express.static('./client/build'))
 
 app.get('*', (res, req) => {
-    res.sendFile(path.resolve(__dirname, ' client', 'build', 'index.html'))
+    res.sendFile(path.join(__dirname, ' client', 'build', 'index.html'))
 })
 // }
 
-
+app.get('/', function(req, res) {
+    res.sendFile('path-to-file');
+});
 
 // app.get('/', (req, res) => {
 //     res.send('Hello Fern')

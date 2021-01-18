@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"cd ./client && npm start\"",
     "heruko-postbuild": "cd ./client && npm install && npm run build",
-    "server": "nodemon index.js",
+    "server": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

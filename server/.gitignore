@@ -11,5 +11,7 @@ pids
 logs
 results
 build
+config
+uploads
 
 node_modules

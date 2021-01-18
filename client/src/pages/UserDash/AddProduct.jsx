@@ -88,8 +88,9 @@ class AddProduct extends Component {
             // Load something
 
             alert('Product successfully uploaded')
-            this.props.history.push('/')
+            // this.props.history.push('/')
             console.log(res.data);
+            console.log(this.state.images)
 
         }, (err) => {
             console.log(err)
@@ -102,7 +103,7 @@ class AddProduct extends Component {
 
      updateImages = (newImages) => {
 
-        console.log(newImages)
+        // console.log(newImages)
         this.setState({
             images: newImages
         })

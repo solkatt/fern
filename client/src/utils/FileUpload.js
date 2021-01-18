@@ -22,7 +22,10 @@ function FileUpload(props) {
             .then(response => {
                 if (response.data.success) {
 
-                    setImages([...Images, response.data.image])
+                    // console.log('ONDROP RESPONSE:', response.data.imageUrl)
+
+                    setImages([...Images, response.data.imageUrl])
+                    // setImages([...Images, response.data.image])
                     props.refreshFunction([...Images, response.data.image])
 
                 } else {
@@ -76,7 +79,7 @@ const onDelete = (image) => {
 
             {    Images.map((image, index) => (
                 <div onClick={() => onDelete(image)}>
-                    <img style={{minWidth: '300px', width: '300px', height: '240px' }} src={`http://localhost:3000/${image}`} alt={`productImg-${index}`}/>
+                    <img style={{minWidth: '300px', width: '300px', height: '240px' }} src={`${image}`} alt={`productImg-${index}`}/>
                 </div>
 
             ))}

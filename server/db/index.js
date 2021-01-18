@@ -19,10 +19,11 @@
 
 ///////////////  
 
+const config = require('config')
 
 
 const mongoose = require('mongoose')
-const url = process.env.MONGODB_URI || "mongodb+srv://admin:CwaHxf5rrNgJAqCz@ferncluster.otqiy.mongodb.net/fern?retryWrites=true&w=majority"
+const url = config.get("MONGODB_URI") || "mongodb+srv://admin:CwaHxf5rrNgJAqCz@ferncluster.otqiy.mongodb.net/fern?retryWrites=true&w=majority"
 
 mongoose
     .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })

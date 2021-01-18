@@ -49,7 +49,13 @@ uploadProductImage = (req, res) => {
 
 }
 
+deleteProductImage = (req, res) => {
 
+
+    res.send('DELETE PRODUCT IMAGE')
+
+    /// 
+}
 
 
 
@@ -272,5 +278,6 @@ module.exports = {
     deleteProduct,
     getAllProducts,
     getProductById,
-    uploadProductImage
+    uploadProductImage,
+    deleteProductImage
 }

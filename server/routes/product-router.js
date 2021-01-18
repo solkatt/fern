@@ -11,6 +11,8 @@ const admin = require('../middleware/admin')
 router.post('/product', ProductCtrl.createProduct)
 router.post('/product/uploadImage', ProductCtrl.uploadProductImage)
 
+router.delete('/product/deleteImage', ProductCtrl.deleteProductImage)
+
 
 
 router.put('/product/:id', ProductCtrl.updateProduct)

@@ -46,6 +46,27 @@ const onDelete = (image) => {
     setImages(newImages)
     props.refreshFunction(newImages)
 
+
+    const payload = {
+    key: image,
+    }
+
+        api.deleteProductImage(payload).then((res) => {
+
+        // localStorage.setItem('storage-object', JSON.stringify({token: res.data}))
+
+        // Load something
+
+        alert('Product successfully uploaded')
+        // this.props.history.push('/')
+        console.log(res.data);
+        // console.log(this.state.images)
+
+    }, (err) => {
+        console.log(err)
+    })
+
+
 }
 
 

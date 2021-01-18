@@ -10,9 +10,9 @@ class AddProduct extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            writer: '',
             name: '',
             description: '',
-            image: '',
             images: [],
             price: 0,
             stock_quantity: 0,
@@ -35,7 +35,8 @@ class AddProduct extends Component {
 
         
         this.setState({
-            storeID: this.context.storeID
+            storeID: this.context.storeID,
+            writer: this.context.id,
         })
 
     }
@@ -54,6 +55,9 @@ class AddProduct extends Component {
 
 
     handleSubmit = async () => {
+
+        // event.preventDefault()
+
         this.setState({
             isLoading: true,
         });
@@ -63,12 +67,13 @@ class AddProduct extends Component {
 
 
 
-        const { name, description, image, categories, price, stock_quantity, storeID } = this.state
+        const { name, description, images, categories, price, stock_quantity, storeID, writer } = this.state
 
         const payload = {
+            writer: writer,
             name: name,
             description: description,
-            image: image,
+            images: images,
             categories: categories,
             price: price,
             stock_quantity: stock_quantity,
@@ -80,6 +85,10 @@ class AddProduct extends Component {
 
             // localStorage.setItem('storage-object', JSON.stringify({token: res.data}))
 
+            // Load something
+
+            alert('Product successfully uploaded')
+            this.props.history.push('/')
             console.log(res.data);
 
         }, (err) => {
@@ -118,13 +127,11 @@ class AddProduct extends Component {
                         <FileUpload refreshFunction={this.updateImages} />
                         <input name="name" type="text" placeholder="Product Name" onChange={this.handleInputChange} />
                         <textarea name="description" type="text" placeholder="Description" onChange={this.handleInputChange} />
-                        <input name="image" type="text" placeholder="Image" onChange={this.handleInputChange} />
                         <input name="categories" type="text" placeholder="Categories" onChange={this.handleInputChange} />
                         <input name="price" type="number" placeholder="Price" onChange={this.handleInputChange} />
                         <input name="stock_quantity" type="number" placeholder="Stock Quantity" onChange={this.handleInputChange} />
                         <button type="submit" onClick={this.handleSubmit}>Add Product</button>
                     </div>
-
 
 
 
@@ -135,8 +142,8 @@ class AddProduct extends Component {
 
 
 
-
-
+            
+                
 
 
 

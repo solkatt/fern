@@ -3,6 +3,10 @@ const Schema = mongoose.Schema
 
 
 const Product = new Schema({
+    writer: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     name: {
         type: String,
         required: true,
@@ -15,8 +19,9 @@ const Product = new Schema({
         minlength: 2,
         maxlength: 200,
     },
-    image: {
-        type: String,
+    images: {
+        type: Array,
+        default: [],
     },
     price: {
         type: Number,
@@ -38,7 +43,7 @@ const Product = new Schema({
         type: Array,
     }
 
-});
+}, {timestamps: true});
 
 
 // INSTALL JOI / VALIDATE

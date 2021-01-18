@@ -1,0 +1,6 @@
+{
+    "jwtPrivateKey": "fern_jwtPrivateKey",
+    "S3_ACCESS_KEY": "fern_s3AccessKey",
+    "S3_ACCESS_SECRET": "fern_s3AccessSecret",
+    "MONGODB_URI": "MONGODB_URI"
+}

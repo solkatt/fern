@@ -12,7 +12,7 @@ const productRouter = require('./routes/product-router')
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const { urlencoded } = require('express');
 
 if (!config.get('jwtPrivateKey')) {
@@ -24,9 +24,18 @@ app.use(urlencoded({extended: true})); //
 app.use(express.json());
 app.use(cors());
 
-app.use('/uploads', express.static('uploads'))
 
 db.on('error', console.log.bind(console, 'MongoDB connection error:'));
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('../client/build'))
+
+    app.get('*', (res, req) => {
+        res.sendFile(path.resolve(__dirname, ' client', 'build', 'index.html'))
+    })
+}
+
+
 
 app.get('/', (req, res) => {
     res.send('Hello Fern')

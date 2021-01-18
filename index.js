@@ -20,6 +20,7 @@ if (!config.get('jwtPrivateKey')) {
     process.exit(1)
 }
 
+
 app.use(urlencoded({extended: true})); // 
 app.use(express.json());
 app.use(cors());

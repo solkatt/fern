@@ -40,9 +40,6 @@ app.get('*', (res, req) => {
 })
 // }
 
-app.get('/', function(req, res) {
-    res.sendFile('path-to-file');
-});
 
 // app.get('/', (req, res) => {
 //     res.send('Hello Fern')

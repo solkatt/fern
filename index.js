@@ -13,7 +13,9 @@ const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const { urlencoded } = require('express');
+const {
+    urlencoded
+} = require('express');
 
 if (!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey is not defined')
@@ -21,7 +23,9 @@ if (!config.get('jwtPrivateKey')) {
 }
 
 
-app.use(urlencoded({extended: true})); // 
+app.use(urlencoded({
+    extended: true
+})); // 
 app.use(express.json());
 app.use(cors());
 
@@ -29,18 +33,18 @@ app.use(cors());
 db.on('error', console.log.bind(console, 'MongoDB connection error:'));
 
 // if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('./client/build'))
+app.use(express.static('./client/build'))
 
-    app.get('*', (res, req) => {
-        res.sendFile(path.resolve(__dirname, ' client', 'build', 'index.html'))
-    })
+app.get('*', (res, req) => {
+    res.sendFile(path.resolve(__dirname, ' client', 'build', 'index.html'))
+})
 // }
 
 
 
-app.get('/', (req, res) => {
-    res.send('Hello Fern')
-});
+// app.get('/', (req, res) => {
+//     res.send('Hello Fern')
+// });
 
 app.use('/api', movieRouter);
 app.use('/api', userRouter);

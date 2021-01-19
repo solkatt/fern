@@ -25,26 +25,33 @@ class Store extends Component {
         this.displayStore = this.displayStore.bind(this)
     }
 
-    componentDidMount = () => {
+    componentDidMount = async () => {
 
-        this.context.getUserData().then((user) => {
-            console.log(user)
-            this.loadStore()
+        this.setState({
+            isLoading: true,
         })
 
+        await this.context.getUserData().then(() => {
+            this.loadStore()
+           
+        })
 
-
+ 
+            // this.loadStore()
+         
+  
     }
 
 
 
-    loadStore = async () => {
-        
+    loadStore = () => {
+
         this.setState({ isLoading: true })
 
-        const storeID = this.context.storeID
+         const storeID = this.context.storeID
+         console.log('loadStore; this.context.storeID:', this.context.storeID)
 
-        await api.getStoreById(storeID).then(store => {
+        api.getStoreById(storeID).then(store => {
             this.setState({
                 store: store.data.data,
                 isLoading: false,
@@ -55,7 +62,7 @@ class Store extends Component {
 
     displayStore = (store) => {
 
-        console.log(store)
+    
         if (!store) return null
 
         return (
@@ -123,14 +130,14 @@ class Store extends Component {
         return (
 
             <div className="page-layout">
-<h1>State</h1>
+                <h1>State</h1>
                 <h2>
-                  StoreName:  {store.name}
+                    StoreName:  {store.name}
                 </h2>
-<h1>Context</h1>
+                <h1>Context</h1>
                 <h2>
-                   storeID: {this.context.storeID}
-                
+                    storeID: {this.context.storeID}
+
                 </h2>
 
 
@@ -139,8 +146,8 @@ class Store extends Component {
 
 
 
-                {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store) }
-
+                    {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store) }
+                    {/* {this.displayStore(store)} */}
 
 
 

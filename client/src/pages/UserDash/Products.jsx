@@ -26,7 +26,7 @@ class Products extends Component {
 
 
         
-            this.loadProducts()
+          await this.loadProducts()
         
 
 
@@ -98,32 +98,40 @@ class Products extends Component {
                 <div className="page-content">
                     <div className="product-grid">
 
-                        {products.map(product =>
-                            <div key={product._id} className="product-card">
 
-                                <h3>{product.name}</h3>
-                                <p>{product.description}</p>
-                                <h5>{product.price}</h5>
+                        
+   {products.map(product =>
+    <div key={product._id} className="product-card">
 
-
-                                <div className="btns">
-
+        <h3>{product.name}</h3>
+        <p>{product.description}</p>
+        <h5>{product.price}</h5>
 
 
-
-                                    <button><Link to={`/products/edit/${product._id}`}>
-                                        Edit
-                            </Link></button>
+        <div className="btns">
 
 
 
-                                    {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
-                                    <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
-                                    <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
 
-                                </div>
-                            </div>
-                        )}
+            <button><Link to={`/products/edit/${product._id}`}>
+                Edit
+    </Link></button>
+
+
+
+            {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
+            <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
+            <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
+
+        </div>
+    </div>
+)}
+
+
+
+
+                    
+                     
 
                     </div>
 

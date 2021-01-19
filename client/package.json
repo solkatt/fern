@@ -18,13 +18,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev-start": "set PORT=8000 && react-scripts start",
+    "dev": "set PORT=8000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8000",
-
+  "proxy": "http://localhost:3000",
   "eslintConfig": {
     "extends": [
       "react-app",

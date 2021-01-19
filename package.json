@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-start": "concurrently \"npm run server\" \"cd ./client && npm dev-start\"",
+    "dev": "concurrently \"npm run server\" \"cd ./client && npm dev-start\"",
     "start": "node index.js",
-    "heruko-postbuild": "NPM_CONFIG_PRODUCTION=false cd ./client && npm install && npm run build",
+    "heruko-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build",
     "server": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

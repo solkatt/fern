@@ -42,10 +42,10 @@ db.on('error', console.log.bind(console, 'MongoDB connection error:'));
 
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
+    app.use(express.static('./client/build'));
 
     app.get('*', function (req, res) {
-        const index = path.resolve(__dirname, 'client', 'build', 'index.html');
+        const index = path.join(__dirname, './client/build/index.html');
         res.sendFile(index);
     });
 }

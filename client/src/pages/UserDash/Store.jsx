@@ -44,18 +44,20 @@ class Store extends Component {
 
 
 
-    loadStore = () => {
+    loadStore = async () => {
 
         this.setState({ isLoading: true })
 
          const storeID = this.context.storeID
          console.log('loadStore; this.context.storeID:', this.context.storeID)
 
-        api.getStoreById(storeID).then(store => {
+        await api.getStoreById(storeID).then(store => {
             this.setState({
                 store: store.data.data,
                 isLoading: false,
             })
+        }, (err) => {
+            console.log(err)
         })
 
     }

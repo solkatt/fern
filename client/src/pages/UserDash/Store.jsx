@@ -95,6 +95,7 @@ class Store extends Component {
 
     showProps = () => {
         // alert(props.storeID)
+        this.loadStore()
     }
 
 
@@ -151,11 +152,11 @@ class Store extends Component {
                 <div className="page-content">
 
 
-                    {/* {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store) } */}
+                    {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store) }
                     {/* {this.displayStore(store)} */}
 
 
-                <button onClick={this.showProps}>SHOW PROPS</button>
+                <button onClick={this.showProps}>Load Store</button>
 
 
                 </div>

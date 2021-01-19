@@ -39,7 +39,7 @@ export class UserProvider extends React.Component {
     this.getUserData();
   }
 
-  getUserData = async () => {
+  getUserData = () => {
     this.setState({
       isLoading: true,
     });
@@ -63,7 +63,7 @@ export class UserProvider extends React.Component {
 
 
 
-      await api.getCurrentUser(payload)
+      api.getCurrentUser(payload)
         .then((res) => {
 
           if (res.data) {

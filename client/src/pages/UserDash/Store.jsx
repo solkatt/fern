@@ -24,9 +24,9 @@ class Store extends Component {
         this.loadStore = this.loadStore.bind(this)
     }
 
-    componentDidMount = async () => {
+    componentDidMount =  () => {
 
-        await this.context.getUserData().then((user) => {
+        this.context.getUserData().then((user) => {
             console.log(user)
             this.loadStore()
         })
@@ -37,12 +37,12 @@ class Store extends Component {
 
 
 
-    loadStore = async () => {
+    loadStore = () => {
         this.setState({ isLoading: true })
 
         const storeID = this.context.storeID
 
-        await api.getStoreById(storeID).then(store => {
+        api.getStoreById(storeID).then(store => {
             this.setState({
                 store: store.data.data,
                 isLoading: false,

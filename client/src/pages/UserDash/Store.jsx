@@ -22,9 +22,10 @@ class Store extends Component {
         this.showProduct = this.showProduct.bind(this)
         this.onDeleteProduct = this.onDeleteProduct.bind(this)
         this.loadStore = this.loadStore.bind(this)
+        this.displayStore = this.displayStore.bind(this)
     }
 
-    componentDidMount =  () => {
+    componentDidMount = () => {
 
         this.context.getUserData().then((user) => {
             console.log(user)
@@ -50,6 +51,32 @@ class Store extends Component {
         })
 
     }
+
+    displayStore = (store) => {
+
+        console.log(store)
+        if (!store) return null
+
+        return (
+            <div className="product-grid">
+
+                {/* Todo: Store Layout / CSS */}
+                <div className="store-layout">
+
+                    <h2>{store.name}</h2>
+                    <h3>{store.description}</h3>
+                    <h3>Store contact mail / Optional</h3>
+                    <h3>Store Adress / Optional</h3>
+                </div>
+
+                <button>Edit Store Information</button>
+            </div>
+        )
+
+
+
+    }
+
 
 
     showProduct = (props) => {
@@ -103,32 +130,9 @@ class Store extends Component {
                 <h1>STORE</h1>
                 <div className="page-content">
 
-                    {isLoading ? <h2>Loading...</h2> :
 
 
-                        <div className="product-grid">
-
-                            {/* Todo: Store Layout / CSS */}
-                            <div className="store-layout">
-
-                                <h2>{store.name}</h2>
-                                <h3>{store.description}</h3>
-                                <h3>Store contact mail / Optional</h3>
-                                <h3>Store Adress / Optional</h3>
-                            </div>
-
-                            <button>Edit Store Information</button>
-                        </div>
-
-
-
-
-
-
-
-
-
-                    }
+                {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store) }
 
 
 

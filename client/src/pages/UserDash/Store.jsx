@@ -38,12 +38,13 @@ class Store extends Component {
 
 
 
-    loadStore = () => {
+    loadStore = async () => {
+        
         this.setState({ isLoading: true })
 
         const storeID = this.context.storeID
 
-        api.getStoreById(storeID).then(store => {
+        await api.getStoreById(storeID).then(store => {
             this.setState({
                 store: store.data.data,
                 isLoading: false,
@@ -122,9 +123,15 @@ class Store extends Component {
         return (
 
             <div className="page-layout">
-
-
-
+<h1>State</h1>
+                <h2>
+                  StoreName:  {store.name}
+                </h2>
+<h1>Context</h1>
+                <h2>
+                   storeID: {this.context.storeID}
+                
+                </h2>
 
 
                 <h1>STORE</h1>

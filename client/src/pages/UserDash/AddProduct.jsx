@@ -81,6 +81,7 @@ class AddProduct extends Component {
 
         }
 
+
         await api.addProduct(payload).then((res) => {
 
             // localStorage.setItem('storage-object', JSON.stringify({token: res.data}))

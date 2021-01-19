@@ -20,7 +20,7 @@ class Store extends Component {
         }
 
 
-        this.showProduct = this.showProduct.bind(this)
+        this.showProps = this.showProps.bind(this)
         this.onDeleteProduct = this.onDeleteProduct.bind(this)
         this.loadStore = this.loadStore.bind(this)
         this.displayStore = this.displayStore.bind(this)
@@ -93,8 +93,8 @@ class Store extends Component {
 
 
 
-    showProduct = (props) => {
-        alert(props)
+    showProps = () => {
+        // alert(props.storeID)
     }
 
 
@@ -155,7 +155,7 @@ class Store extends Component {
                     {/* {this.displayStore(store)} */}
 
 
-
+                <button onClick={this.showProps}>SHOW PROPS</button>
 
 
                 </div>

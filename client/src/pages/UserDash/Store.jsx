@@ -3,6 +3,7 @@ import api from '../../api'
 import '../../style/pages/Store.scss'
 import '../../style/pages/PageLayout.scss'
 import UserContext from '../../context/UserContext';
+import { set } from 'mongoose';
 
 
 
@@ -25,17 +26,19 @@ class Store extends Component {
         this.displayStore = this.displayStore.bind(this)
     }
 
-    componentDidMount = async () => {
+    componentDidMount = () => {
 
         this.setState({
             isLoading: true,
         })
 
-        await this.context.getUserData().then(() => {
+        this.context.getUserData().then(() => {
             this.loadStore()
            
         })
+        
 
+   
  
             // this.loadStore()
          
@@ -132,7 +135,7 @@ class Store extends Component {
         return (
 
             <div className="page-layout">
-                <h1>State</h1>
+                {/* <h1>State</h1>
                 <h2>
                     StoreName:  {store.name}
                 </h2>
@@ -140,12 +143,11 @@ class Store extends Component {
                 <h2>
                     storeID: {this.context.storeID}
 
-                </h2>
+                </h2> */}
 
 
                 <h1>STORE</h1>
                 <div className="page-content">
-
 
 
                     {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store) }

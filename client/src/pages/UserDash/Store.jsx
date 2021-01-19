@@ -86,28 +86,49 @@ class Store extends Component {
 
 
 
+
+
+
     render() {
-        const { store } = this.state
+        const { store, isLoading } = this.state
 
         return (
 
             <div className="page-layout">
 
+
+
+
+
                 <h1>STORE</h1>
                 <div className="page-content">
-                    <div className="product-grid">
 
-                        {/* Todo: Store Layout / CSS */}
-                        <div className="store-layout">
+                    {isLoading ? <h2>Loading...</h2> :
 
-                            <h2>{store.name}</h2>
-                            <h3>{store.description}</h3>
-                            <h3>Store contact mail / Optional</h3>
-                            <h3>Store Adress / Optional</h3>
+
+                        <div className="product-grid">
+
+                            {/* Todo: Store Layout / CSS */}
+                            <div className="store-layout">
+
+                                <h2>{store.name}</h2>
+                                <h3>{store.description}</h3>
+                                <h3>Store contact mail / Optional</h3>
+                                <h3>Store Adress / Optional</h3>
+                            </div>
+
+                            <button>Edit Store Information</button>
                         </div>
 
-                        <button>Edit Store Information</button>
-                    </div>
+
+
+
+
+
+
+
+
+                    }
 
 
 

@@ -22,12 +22,12 @@ class Products extends Component {
         this.onEdit = this.onEdit.bind(this)
     }
 
-    componentDidMount = async () => {
+    componentDidMount = () => {
 
 
-        
-          await this.loadProducts()
-        
+
+        this.loadProducts()
+
 
 
 
@@ -68,22 +68,22 @@ class Products extends Component {
 
         // console.log(productID)
 
-       await api.deleteProductById(productID).then((res) => {
+        await api.deleteProductById(productID).then((res) => {
 
             console.log(res.data)
 
-            
-            
+
+
         }, (err) => {
             console.log(productID)
-            
+
             return console.log(err)
         })
-        
-        
-       this.loadProducts()
- 
-        
+
+
+        this.loadProducts()
+
+
     }
 
 
@@ -99,39 +99,34 @@ class Products extends Component {
                     <div className="product-grid">
 
 
-                        
-   {products.map(product =>
-    <div key={product._id} className="product-card">
+                        {products.length > 0 ?
+                            <>
+                                {products.map(product =>
+                                    <div key={product._id} className="product-card">
 
-        <h3>{product.name}</h3>
-        <p>{product.description}</p>
-        <h5>{product.price}</h5>
-
-
-        <div className="btns">
+                                        <h3>{product.name}</h3>
+                                        <p>{product.description}</p>
+                                        <h5>{product.price}</h5>
 
 
-
-
-            <button><Link to={`/products/edit/${product._id}`}>
-                Edit
-    </Link></button>
+                                        <div className="btns">
+                                            <button><Link to={`/products/edit/${product._id}`}>
+                                                Edit
+                                        </Link></button>
 
 
 
-            {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
-            <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
-            <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
+                                            {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
+                                            <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
+                                            <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
 
-        </div>
-    </div>
-)}
+                                        </div>
+                                    </div>
+                                )}
+                            </>
+                            :
+                            <h2>No products here</h2>}
 
-
-
-
-                    
-                     
 
                     </div>
 

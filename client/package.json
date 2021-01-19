@@ -19,9 +19,9 @@
   "scripts": {
     "start": "react-scripts start",
     "dev-start": "set PORT=8000 && react-scripts start",
+    "build": "react-scripts-build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm install && npm run build"
+    "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:8000",
 

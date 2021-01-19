@@ -12,8 +12,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <UserProvider value={this.state}>
+      <UserProvider value={this.state}>
+        <Router>
           <NavBar />
           <Switch>
             <Route path="/" exact component={Landing} />
@@ -28,8 +28,8 @@ class App extends React.Component {
               component={EditProduct}
             />
           </Switch>
-        </ UserProvider>
-      </Router>
+        </Router>
+      </ UserProvider>
     );
   }
 }

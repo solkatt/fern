@@ -26,25 +26,25 @@ class Store extends Component {
         this.displayStore = this.displayStore.bind(this)
     }
 
-//     componentDidMount = () => {
+    //     componentDidMount = () => {
 
-//         console.log('Componend did mount:',this.context.storeID)
+    //         console.log('Componend did mount:',this.context.storeID)
 
-//         this.setState({
-//             isLoading: true,
-//         })
+    //         this.setState({
+    //             isLoading: true,
+    //         })
 
-//         this.context.getUserData().then(() => {
-//             this.loadStore()
-           
-//         })
-        
+    //         this.context.getUserData().then(() => {
+    //             this.loadStore()
 
-//    ///////////////////////////////
-//             // this.loadStore()
-         
-  
-//     }
+    //         })
+
+
+    //    ///////////////////////////////
+    //             // this.loadStore()
+
+
+    //     }
 
 
 
@@ -52,8 +52,8 @@ class Store extends Component {
 
         this.setState({ isLoading: true })
 
-         const storeID = this.context.storeID
-         console.log('loadStore; this.context.storeID:', this.context.storeID)
+        const storeID = this.context.storeID
+        console.log('loadStore; this.context.storeID:', this.context.storeID)
 
         await api.getStoreById(storeID).then(store => {
             this.setState({
@@ -68,7 +68,7 @@ class Store extends Component {
 
     displayStore = (store) => {
 
-    
+
         if (!store) return null
 
         return (
@@ -96,6 +96,8 @@ class Store extends Component {
     showProps = () => {
         // alert(props.storeID)
         this.loadStore()
+        console.log('this.context:', this.context)
+        console.log('UserContext:', UserContext)
     }
 
 
@@ -152,14 +154,17 @@ class Store extends Component {
                 <div className="page-content">
 
 
-                    {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store) }
+                    {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store)}
                     {/* {this.displayStore(store)} */}
 
 
-                <button onClick={this.showProps}>Load Store</button>
+                    <button onClick={this.showProps}>Load Store</button>
 
 
                 </div>
+
+
+
 
             </div>
 

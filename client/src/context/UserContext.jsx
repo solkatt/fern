@@ -33,44 +33,68 @@ export class UserProvider extends React.Component {
       getUserData: this.getUserData,
       renderRedirect: this.renderRedirect,
       setRedirect: this.setRedirect,
+      fetchData: this.fetchData
     };
   }
 
   componentDidMount() {
-    const fetchData = async () => {
-      const response = await fetch(
-        `https://hn.algolia.com/api/v1/search?query=JavaScript`
-
-      );
-      const data = await response.json();
-      this.setState({ data: data })
-    }
-
-
-    fetchData()
-
-
-
-
-    // this.getUserData();
+ 
+    this.fetchData()
+    this.getUserData();
   }
 
+
+
+  // componentDidUpdate(previousProps, previousState) {
+  //   if (previousState.query !== this.state.query) {
+  //     const fetchData = async () => {
+  //       const response = await fetch(
+  //         `https://hn.algolia.com/api/v1/search?query=${this.state.query}`
+  //       );
+  //       const data = await response.json()
+  //       this.setState({ data: data })
+  //     }
+
+
+  //     fetchData()
+  //   }
+  // }
 
 
   componentDidUpdate(previousProps, previousState) {
     if (previousState.query !== this.state.query) {
-      const fetchData = async () => {
-        const response = await fetch(
-          `https://hn.algolia.com/api/v1/search?query=${this.state.query}`
-        );
-        const data = await response.json()
-        this.setState({ data: data })
-      }
+      // const fetchData = async () => {
+      //   const response = await fetch(
+      //     `https://hn.algolia.com/api/v1/search?query=${this.state.query}`
+      //   );
+      //   const data = await response.json()
+      //   this.setState({ data: data })
+      // }
 
 
-      fetchData()
+      this.fetchData()
+      this.getUserData()
     }
   }
+
+
+
+
+
+////////
+fetchData = async () => {
+  const response = await fetch(
+    `https://hn.algolia.com/api/v1/search?query=JavaScript`
+
+  );
+  const data = await response.json();
+  this.setState({ data: data })
+}
+
+
+
+
+///////////
 
 
 

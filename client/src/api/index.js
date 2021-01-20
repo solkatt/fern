@@ -2,9 +2,9 @@ import axios from 'axios';
 
 
 //HEROKU
-const api = axios.create({
-    baseURL: ''
-})
+// const api = axios.create({
+//     baseURL: ''
+// })
 
 // LOCAL
 // const api = axios.create({
@@ -12,6 +12,14 @@ const api = axios.create({
 // })
 
 
+const production  = 'https://afern.herokuapp.com/api';
+const development = 'http://localhost:3000/api';
+const url = (process.env.NODE_ENV ? production : development);
+
+
+const api = axios.create({
+    baseURL: url
+})
 
 
 export const insertMovie = payload => api.post(`/movie`, payload)

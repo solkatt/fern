@@ -1,8 +1,18 @@
 import axios from 'axios';
 
+
+//HEROKU
 const api = axios.create({
-    baseURL: '' || 'http://localhost:3000/api'
+    baseURL: ''
 })
+
+// LOCAL
+// const api = axios.create({
+//     baseURL: '' || 'http://localhost:3000/api'
+// })
+
+
+
 
 export const insertMovie = payload => api.post(`/movie`, payload)
 export const getAllMovies = () => api.get(`/movies`)

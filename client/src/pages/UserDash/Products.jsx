@@ -24,7 +24,7 @@ class Products extends Component {
         this.loadAllProducts = this.loadAllProducts.bind(this)
         this.loadStoreProducts = this.loadStoreProducts.bind(this)
         this.onEdit = this.onEdit.bind(this)
-    
+
     }
     componentDidMount = async () => {
 
@@ -35,21 +35,21 @@ class Products extends Component {
     }
 
 
-    loadStoreProducts =  async () => {
-        const {storeID} = this.context
-      
-                this.setState({ isLoading: true })
-        
-                await api.getProductsByStore(storeID).then(products => {
-                    this.setState({
-                        products: products.data.data,
-                        isLoading: false,
-                    })
-                })
-    }
-    
+    loadStoreProducts = async () => {
+        const { storeID } = this.context
 
-/// LOAD ALL PRODUCTS
+        this.setState({ isLoading: true })
+
+        await api.getProductsByStore(storeID).then(products => {
+            this.setState({
+                products: products.data.data,
+                isLoading: false,
+            })
+        })
+    }
+
+
+    /// LOAD ALL PRODUCTS
     loadAllProducts = async () => {
         this.setState({ isLoading: true })
 
@@ -98,7 +98,7 @@ class Products extends Component {
         })
 
 
-        this.loadProducts()
+        this.loadStoreProducts()
 
 
     }
@@ -120,6 +120,17 @@ class Products extends Component {
                             <>
                                 {products.map(product =>
                                     <div key={product._id} className="product-card">
+
+
+                                        {/* {products.images.map(image =>
+                                            <img src={image} alt={image.indexOf()} />)} */}
+
+                                            {product.images.length > 0 ? 
+                                        <img style={{height: '100px', width: '100px'}} src={product.images[0]} alt={product.images.indexOf()}/>
+                                        : 
+                                        <div>DEFUALT IMAGE</div>
+                                      
+                                    }
 
                                         <h3>{product.name}</h3>
                                         <p>{product.description}</p>

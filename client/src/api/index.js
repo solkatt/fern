@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //HEROKU
 const api = axios.create({
-    baseURL: ''
+    baseURL: '/api'
 })
 
 // LOCAL

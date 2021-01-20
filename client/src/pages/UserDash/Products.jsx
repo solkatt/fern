@@ -33,10 +33,10 @@ class Products extends Component {
 
     }
 
-    loadProducts = () => {
+    loadProducts = async() => {
         this.setState({ isLoading: true })
 
-        api.getAllProducts().then(products => {
+       await api.getAllProducts().then(products => {
             this.setState({
                 products: products.data.data,
                 isLoading: false,

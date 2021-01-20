@@ -28,26 +28,31 @@ class Store extends Component {
 
     }
 
-        componentDidMount = () => {
+        componentDidMount = async () => {
 
-            // console.log('Componend did mount:',this.context.storeID)
 
-            // this.setState({
-            //     isLoading: true,
-            // })
+     
+            await this.context.getUserData().then(() => {
+                this.loadStore()
 
-            // this.context.getUserData().then(() => {
-            //     this.loadStore()
+            })
 
-            // })
 
-            this.loadStore()
 
-       ///////////////////////////////
-                // this.loadStore()
 
 
         }
+
+
+        // componentDidUpdate(prevProps, prevState) {
+        //     if (prevState.value !== this.state.value) {
+        //         this.loadProducts()
+        //     }
+        // }
+    
+    
+
+
 
 
 

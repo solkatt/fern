@@ -17,8 +17,8 @@ class App extends React.Component {
           <NavBar />
           <Switch>
             <Route path="/" exact component={Landing} />
-            {/* <Route path="/store" exact component={Store} /> */}
-            <Route path="/store" render={ (props)=> <UserProvider> <Store {...props} /> </UserProvider> } />
+            <Route path="/store" exact component={Store} />
+            {/* <Route path="/store" render={ (props)=> <UserProvider> <Store {...props} /> </UserProvider> } /> */}
             <Route path="/products/all" exact component={Products} />
             <Route path="/movies/list" exact component={Products} />¨
             <Route path="/products/add" exact component={AddProduct} />

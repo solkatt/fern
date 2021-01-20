@@ -23,14 +23,16 @@ export const getStoreById = id => api.get(`/store/${id}`)
 ////////////////    PRODUCT    /////////////////////////
 export const addProduct = payload => api.post(`/product`, payload)
 export const uploadProductImage = payload => api.post(`/product/uploadImage`, payload)
-export const deleteProductImage = payload => api.delete(`/product/deleteImage`, payload)
+
+export const deleteProductImage = (id, payload) => api.put(`/product/${id}/delete-image/`, payload)
+
+export const updateProduct = (id, payload) => api.put(`/product/${id}`, payload)
 
 
 export const deleteProductById = id => api.delete(`/product/${id}`)
 export const getAllProducts = () => api.get(`/products`)
 export const getProductById = id => api.get(`/product/${id}`)
 
-export const updateProduct = (id, payload) => api.put(`/product/${id}`, payload)
 
 
 

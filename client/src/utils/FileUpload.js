@@ -48,16 +48,15 @@ const onDelete = (image) => {
 
 
     const payload = {
-    key: image,
+    image: image,
     }
 
-        api.deleteProductImage(payload).then((res) => {
+    const productID = 'temp';
 
-        // localStorage.setItem('storage-object', JSON.stringify({token: res.data}))
+        api.deleteProductImage(productID, payload).then((res) => {
 
-        // Load something
 
-        alert('Product successfully uploaded')
+        alert('Product successfully deleted image')
         // this.props.history.push('/')
         console.log(res.data);
         // console.log(this.state.images)
@@ -99,8 +98,8 @@ const onDelete = (image) => {
 
 
             {    Images.map((image, index) => (
-                <div onClick={() => onDelete(image)}>
-                    <img style={{minWidth: '300px', width: '300px', height: '240px' }} src={`${image}`} alt={`productImg-${index}`}/>
+                <div onClick={() => onDelete(image)} key={index}>
+                    <img style={{minWidth: '300px', width: '300px', height: '240px' }} src={`${image}`} alt={`productImg-${index}`} key={index}/>
                 </div>
 
             ))}

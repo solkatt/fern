@@ -23,7 +23,6 @@ export class UserProvider extends React.Component {
       //   token: "",
       redirect: false,
       storeID: '',
-      data: {},
 
       //   onSignIn: this.onSignIn,
       onSignOut: this.onSignOut,
@@ -33,72 +32,12 @@ export class UserProvider extends React.Component {
       getUserData: this.getUserData,
       renderRedirect: this.renderRedirect,
       setRedirect: this.setRedirect,
-      fetchData: this.fetchData
     };
   }
 
-  componentDidMount() {
- 
-    this.fetchData()
-    this.getUserData();
+  async componentDidMount() {
+    await this.getUserData();
   }
-
-
-
-  // componentDidUpdate(previousProps, previousState) {
-  //   if (previousState.query !== this.state.query) {
-  //     const fetchData = async () => {
-  //       const response = await fetch(
-  //         `https://hn.algolia.com/api/v1/search?query=${this.state.query}`
-  //       );
-  //       const data = await response.json()
-  //       this.setState({ data: data })
-  //     }
-
-
-  //     fetchData()
-  //   }
-  // }
-
-
-  componentDidUpdate(previousProps, previousState) {
-    if (previousState.query !== this.state.query) {
-      // const fetchData = async () => {
-      //   const response = await fetch(
-      //     `https://hn.algolia.com/api/v1/search?query=${this.state.query}`
-      //   );
-      //   const data = await response.json()
-      //   this.setState({ data: data })
-      // }
-
-
-      this.fetchData()
-      this.getUserData()
-    }
-  }
-
-
-
-
-
-////////
-fetchData = async () => {
-  const response = await fetch(
-    `https://afern.herokuapp.com/products`
-
-  );
-  const data = await response.json();
-  this.setState({ data: data })
-}
-
-
-
-
-///////////
-
-
-
-
 
   getUserData = async () => {
     this.setState({
@@ -124,7 +63,7 @@ fetchData = async () => {
 
 
 
-      await api.getCurrentUser(payload)
+     await api.getCurrentUser(payload)
         .then((res) => {
 
           if (res.data) {

@@ -1,21 +1,23 @@
 const Product = require('../models/product-model')
 const multer = require('multer')
 
-const upload = require("../services/ImageUpload");
+// const upload = require("../services/ImageUpload");
+const s3 = require("../services/s3");
+
 // TODO: change to upload.array()
-const singleUpload = upload.single("file");
+const singleUpload = s3.upload.single("file");
+
+const config = require('config')
 
 // const multipleUpload =.array('photos', 12)
 
 
 
-
 uploadProductImage = (req, res) => {
     console.log('UPLOAD PRODUCT IMAGE')
-    console.log('RES REQ FILE:', req.data)
 
 
-    singleUpload(req, res,function (err) {
+    singleUpload(req, res, function (err) {
         if (err) {
             return res.json({
                 success: false,
@@ -33,12 +35,6 @@ uploadProductImage = (req, res) => {
             imageUrl: req.file.location
         })
 
-
-
-
-
-
-
         // let update = { profilePicture: req.file.location };
 
         // User.findByIdAndUpdate(uid, update, { new: true })
@@ -51,10 +47,75 @@ uploadProductImage = (req, res) => {
 
 deleteProductImage = (req, res) => {
 
+    const id = req.params.id
+    const image = req.body.image
+    if (id === 'temp') {
+        console.log('DELETE ONLY ON S3')
+        console.log(image)
 
-    res.send('DELETE PRODUCT IMAGE')
 
+ 
+        s3.deleteProductImage(image, function (err) {
+            if (err) {
+                return next(err)
+            }
+            console.log('deleted')
+        });
+
+
+    } else {
+// IF THERE IS AN PRODUCT ID CHECK DB FOR PRODUCT AND UPDATE IMAGES
+    }
+
+
+
+    //     const id = req.params.id
+    //     const payload = req.body.image
+    // console.log('ID:',id)
+    // console.log('BODY:', payload)
+
+    // res.json({id})
+
+    // check if images is in db an delete there as well
     /// 
+
+    // const body = req.body
+
+    // if (!body) {
+    //     return res.status(400).json({
+    //         success: false,
+    //         error: 'You must provide an image to remove',
+    //     })
+    // }
+
+    // Product.findOne({
+    //     _id: req.params.id
+    // }, (err, product) => {
+    //     if (err) {
+    //         return res.status(404).json({
+    //             err,
+    //             message: 'Product not found!',
+    //         })
+    //     }
+
+    //     product.time = body.time
+    //     product
+    //         .save()
+    //         .then(() => {
+    //             return res.status(200).json({
+    //                 success: true,
+    //                 id: product._id,
+    //                 message: 'Product updated!',
+    //             })
+    //         })
+    //         .catch(error => {
+    //             return res.status(404).json({
+    //                 error,
+    //                 message: 'Product not updated!',
+    //             })
+    //         })
+    // })
+
 }
 
 
@@ -279,5 +340,6 @@ module.exports = {
     getAllProducts,
     getProductById,
     uploadProductImage,
-    deleteProductImage
+    deleteProductImage,
+
 }

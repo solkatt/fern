@@ -84,7 +84,7 @@ export class UserProvider extends React.Component {
 ////////
 fetchData = async () => {
   const response = await fetch(
-    `https://hn.algolia.com/api/v1/search?query=JavaScript`
+    `https://afern.herokuapp.com/products`
 
   );
   const data = await response.json();

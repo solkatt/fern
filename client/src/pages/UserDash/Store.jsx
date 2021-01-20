@@ -26,7 +26,6 @@ class Store extends Component {
         this.loadStore = this.loadStore.bind(this)
         this.displayStore = this.displayStore.bind(this)
 
-        this.loadProducts = this.loadProducts.bind(this)
     }
 
         componentDidMount = () => {
@@ -43,7 +42,6 @@ class Store extends Component {
             // })
 
             this.loadStore()
-            this.loadProducts()
 
        ///////////////////////////////
                 // this.loadStore()
@@ -108,19 +106,8 @@ class Store extends Component {
     }
 
 
-///////////
-    loadProducts = async() => {
-        this.setState({ isLoading: true })
 
-       await api.getAllProducts().then(products => {
-            this.setState({
-                products: products.data.data,
-                isLoading: false,
-            })
-        })
-    }
-
-///////////////////
+ 
 
 
     onDeleteProduct = async (productID) => {

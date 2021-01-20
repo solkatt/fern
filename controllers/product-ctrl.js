@@ -14,7 +14,6 @@ const config = require('config')
 
 
 uploadProductImage = (req, res) => {
-    console.log('UPLOAD PRODUCT IMAGE')
 
 
     singleUpload(req, res, function (err) {

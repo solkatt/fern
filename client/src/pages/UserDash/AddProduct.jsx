@@ -89,9 +89,9 @@ class AddProduct extends Component {
             // Load something
 
             alert('Product successfully uploaded')
-            // this.props.history.push('/')
-            console.log(res.data);
             console.log(this.state.images)
+            this.props.history.push('/')
+    
 
         }, (err) => {
             console.log(err)

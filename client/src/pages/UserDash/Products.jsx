@@ -3,8 +3,11 @@ import api from '../../api'
 import '../../style/pages/AddProduct.scss'
 import '../../style/pages/PageLayout.scss'
 import { Link } from 'react-router-dom'
+import UserContext from '../../context/UserContext';
 
 class Products extends Component {
+
+    static contextType = UserContext;
 
     constructor(props) {
         super(props)
@@ -18,26 +21,36 @@ class Products extends Component {
 
         this.showProduct = this.showProduct.bind(this)
         this.onDeleteProduct = this.onDeleteProduct.bind(this)
-        this.loadProducts = this.loadProducts.bind(this)
+        this.loadAllProducts = this.loadAllProducts.bind(this)
+        this.loadStoreProducts = this.loadStoreProducts.bind(this)
         this.onEdit = this.onEdit.bind(this)
+    
     }
+    componentDidMount = async () => {
 
-    componentDidMount = () => {
+        await this.context.getUserData().then(() => {
+            this.loadStoreProducts()
 
-
-
-        this.loadProducts()
-
-
-
-
+        })
     }
 
 
+    loadStoreProducts =  async () => {
+        const {storeID} = this.context
+      
+                this.setState({ isLoading: true })
+        
+                await api.getProductsByStore(storeID).then(products => {
+                    this.setState({
+                        products: products.data.data,
+                        isLoading: false,
+                    })
+                })
+    }
     
 
-
-    loadProducts = async () => {
+/// LOAD ALL PRODUCTS
+    loadAllProducts = async () => {
         this.setState({ isLoading: true })
 
         await api.getAllProducts().then(products => {

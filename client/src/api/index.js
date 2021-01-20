@@ -18,6 +18,7 @@ export const getCurrentUser = payload => api.get('/me', payload)
 
 ////////////////    STORE   /////////////////////////
 export const getStoreById = id => api.get(`/store/${id}`)
+export const getProductsByStore = id => api.get(`/store/${id}/products`)
 
 
 ////////////////    PRODUCT    /////////////////////////
@@ -58,6 +59,7 @@ const apis = {
     ////Should Be getAllProductsByStore and another one all for all products
     getAllProducts,
     getProductById,
+    getProductsByStore,
     addProduct,
     uploadProductImage,
     deleteProductImage,

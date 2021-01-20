@@ -12,7 +12,7 @@ router.post('/product', ProductCtrl.createProduct)
 router.post('/product/uploadImage', ProductCtrl.uploadProductImage)
 
 router.put('/product/:id/delete-image/', ProductCtrl.deleteProductImage)
-
+router.get('/store/:id/products', ProductCtrl.getProductsByStore)
 
 
 router.put('/product/:id', ProductCtrl.updateProduct)

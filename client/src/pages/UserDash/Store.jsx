@@ -98,7 +98,7 @@ class Store extends Component {
         // alert(props.storeID)
         this.loadStore()
         console.log('this.context:', this.context)
-        console.log('UserContext:', UserContext)
+        console.log('this.context.data:', this.context.data)
     }
 
 
@@ -140,7 +140,7 @@ class Store extends Component {
         return (
 
             <div className="page-layout">
-                <h1>State</h1>
+                {/* <h1>State</h1>
                 <h2>
                     StoreName:  {store.name}
                 </h2>
@@ -148,7 +148,7 @@ class Store extends Component {
                 <h2>
                     storeID: {this.context.storeID}
 
-                </h2>
+                </h2> */}
 
 
                 <h1>STORE</h1>
@@ -158,7 +158,7 @@ class Store extends Component {
                     {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store)}
                     {/* {this.displayStore(store)} */}
 
-
+                    {/* <h3>{this.context.data}</h3> */}
                     <button onClick={this.showProps}>Load Store</button>
 
 

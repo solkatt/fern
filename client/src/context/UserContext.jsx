@@ -35,8 +35,8 @@ export class UserProvider extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.getUserData();
+  async componentDidMount() {
+    await this.getUserData();
   }
 
   getUserData = () => {

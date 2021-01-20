@@ -17,6 +17,7 @@ class Store extends Component {
             store: [],
             columns: [],
             isLoading: false,
+            testProps: props,
         }
 
 

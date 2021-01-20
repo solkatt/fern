@@ -17,7 +17,7 @@ class Store extends Component {
             store: [],
             columns: [],
             isLoading: false,
-            testProps: props,
+            products: [],
         }
 
 
@@ -25,27 +25,31 @@ class Store extends Component {
         this.onDeleteProduct = this.onDeleteProduct.bind(this)
         this.loadStore = this.loadStore.bind(this)
         this.displayStore = this.displayStore.bind(this)
+
+        this.loadProducts = this.loadProducts.bind(this)
     }
 
-    //     componentDidMount = () => {
+        componentDidMount = () => {
 
-    //         console.log('Componend did mount:',this.context.storeID)
+            // console.log('Componend did mount:',this.context.storeID)
 
-    //         this.setState({
-    //             isLoading: true,
-    //         })
+            // this.setState({
+            //     isLoading: true,
+            // })
 
-    //         this.context.getUserData().then(() => {
-    //             this.loadStore()
+            // this.context.getUserData().then(() => {
+            //     this.loadStore()
 
-    //         })
+            // })
+
+            this.loadStore()
+            this.loadProducts()
+
+       ///////////////////////////////
+                // this.loadStore()
 
 
-    //    ///////////////////////////////
-    //             // this.loadStore()
-
-
-    //     }
+        }
 
 
 
@@ -99,8 +103,24 @@ class Store extends Component {
         this.loadStore()
         console.log('this.context:', this.context)
         console.log('this.context.data:', this.context.data)
+        console.log('this.state.products:', this.state.products)
+
     }
 
+
+///////////
+    loadProducts = async() => {
+        this.setState({ isLoading: true })
+
+       await api.getAllProducts().then(products => {
+            this.setState({
+                products: products.data.data,
+                isLoading: false,
+            })
+        })
+    }
+
+///////////////////
 
 
     onDeleteProduct = async (productID) => {

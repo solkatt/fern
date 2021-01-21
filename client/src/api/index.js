@@ -12,7 +12,7 @@ import axios from 'axios';
 // })
 
 
-const production  = '';
+const production  = '/api';
 const development = 'http://localhost:3000/api';
 const url = (process.env.NODE_ENV ? production : development);
 

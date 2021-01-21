@@ -55,18 +55,12 @@ if (process.env.NODE_ENV === 'production') {
 //     res.send('Hello Fern')
 // });
 
-// app.use('/api', movieRouter);
-// app.use('/api', userRouter);
-// app.use('/api', auth);
-// app.use('/api', storeRouter);
-// app.use('/api', productRouter);
+app.use('/api', movieRouter);
+app.use('/api', userRouter);
+app.use('/api', auth);
+app.use('/api', storeRouter);
+app.use('/api', productRouter);
 
-
-app.use('', movieRouter);
-app.use('', userRouter);
-app.use('', auth);
-app.use('', storeRouter);
-app.use('', productRouter);
 
 
 

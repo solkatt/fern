@@ -41,10 +41,21 @@ db.on('error', console.log.bind(console, 'MongoDB connection error:'));
 // // }
 
 
+
+app.use('/api', movieRouter);
+app.use('/api', userRouter);
+app.use('/api', auth);
+app.use('/api', storeRouter);
+app.use('/api', productRouter);
+
+
+
+
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, './client/build')));
     
-    app.get('*', function (req, res) {
+    app.get('/*', function (req, res) {
         const index = path.join(__dirname, './client/build/index.html');
         res.sendFile(index);
     });
@@ -55,11 +66,6 @@ if (process.env.NODE_ENV === 'production') {
 //     res.send('Hello Fern')
 // });
 
-app.use('/api', movieRouter);
-app.use('/api', userRouter);
-app.use('/api', auth);
-app.use('/api', storeRouter);
-app.use('/api', productRouter);
 
 
 

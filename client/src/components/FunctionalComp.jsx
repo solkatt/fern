@@ -8,10 +8,7 @@ function FunctionalComp(props) {
 
     return (
         <div>
-{/* <pre>{JSON.stringify(user, null, 2)}</pre>
-    <h1> {user}</h1>
-    <button onClick={() => setUser('hey')}>Change Value</button>
-     */}
+
         </div>
     )
   }

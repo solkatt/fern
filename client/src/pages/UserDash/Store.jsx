@@ -4,7 +4,7 @@ import '../../style/pages/Store.scss'
 import '../../style/pages/PageLayout.scss'
 import UserContext from '../../context/UserContext';
 import { set } from 'mongoose';
-
+import LoadingAnimation from '../../components/LoadingAnimation'
 
 
 class Store extends Component {
@@ -167,7 +167,7 @@ class Store extends Component {
                 <div className="page-content">
 
 
-                    {isLoading ? <h2>Loading animation..</h2> : this.displayStore(store)}
+                    {isLoading ? <LoadingAnimation /> : this.displayStore(store)}
                     {/* {this.displayStore(store)} */}
 
                     {/* <h3>{this.context.data}</h3> */}

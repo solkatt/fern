@@ -4,6 +4,7 @@ import '../../style/pages/AddProduct.scss'
 import '../../style/pages/PageLayout.scss'
 import { Link } from 'react-router-dom'
 import UserContext from '../../context/UserContext';
+import LoadingAnimation from '../../components/LoadingAnimation'
 
 class Products extends Component {
 
@@ -73,33 +74,69 @@ class Products extends Component {
 
 
     onDeleteProduct = async (productID) => {
-
-
-        // Todo -- Sometimes error on delete / page doesnt update
-
-
         // this.setState({
         //     isLoading: true,
         // })
-        // console.log('Loading...')
-
-        // console.log(productID)
 
         await api.deleteProductById(productID).then((res) => {
-
             console.log(res.data)
-
-
-
         }, (err) => {
             console.log(productID)
-
             return console.log(err)
         })
-
-
         this.loadStoreProducts()
+    }
 
+    displayProducts = (products) => {
+
+
+        if (!products) {
+            return (
+                <>
+                    <h2>No products here</h2>
+                </>
+            )
+        }
+
+
+
+        return (
+
+            <>
+                {products.map(product =>
+                    <div key={product._id} className="product-card">
+
+
+                        {/* {products.images.map(image =>
+            <img src={image} alt={image.indexOf()} />)} */}
+
+                        {product.images.length > 0 ?
+                            <img style={{ height: '100px', width: '100px' }} src={product.images[0]} alt={product.images.indexOf()} />
+                            :
+                            <div>DEFUALT IMAGE</div>
+
+                        }
+
+                        <h3>{product.name}</h3>
+                        <p>{product.description}</p>
+                        <h5>{product.price}</h5>
+
+
+                        <div className="btns">
+                            <button><Link to={`/products/edit/${product._id}`}>
+                                Edit
+            </Link></button>
+
+                            {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
+                            <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
+                            <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
+
+                        </div>
+                    </div>
+                )}
+            </>
+
+        )
 
     }
 
@@ -107,7 +144,8 @@ class Products extends Component {
 
 
     render() {
-        const { products } = this.state
+
+        const { products, isLoading } = this.state
 
         return (
 
@@ -116,44 +154,8 @@ class Products extends Component {
                     <div className="product-grid">
 
 
-                        {products.length > 0 ?
-                            <>
-                                {products.map(product =>
-                                    <div key={product._id} className="product-card">
 
-
-                                        {/* {products.images.map(image =>
-                                            <img src={image} alt={image.indexOf()} />)} */}
-
-                                            {product.images.length > 0 ? 
-                                        <img style={{height: '100px', width: '100px'}} src={product.images[0]} alt={product.images.indexOf()}/>
-                                        : 
-                                        <div>DEFUALT IMAGE</div>
-                                      
-                                    }
-
-                                        <h3>{product.name}</h3>
-                                        <p>{product.description}</p>
-                                        <h5>{product.price}</h5>
-
-
-                                        <div className="btns">
-                                            <button><Link to={`/products/edit/${product._id}`}>
-                                                Edit
-                                        </Link></button>
-
-
-
-                                            {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
-                                            <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
-                                            <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
-
-                                        </div>
-                                    </div>
-                                )}
-                            </>
-                            :
-                            <h2>No products here</h2>}
+                        {isLoading ? <LoadingAnimation /> : this.displayProducts(products)}
 
 
                     </div>

@@ -4,18 +4,85 @@
 .landing-page {
     width: 100%;
     height: 100%;
-    background: $fern-green;
+    // background: $fern-green;
+    background: linear-gradient(180deg, rgba(27,84,18,1) 0%, rgba(70,137,102,1) 100%);
+    // background: black;
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    // align-items: center;
 
-    h1 {
-        font-family: $title-font;
-        font-size: $jumbo;
-        color: $fern-yellow;
+    .fern-intro {
+        margin-left: 3rem;
+        margin-top: 10rem; 
+        display: flex;
+        flex-direction: column;
+        // border: 1px solid white;
+        h1 {
+            font-family: $title-font;
+            font-size: $title-jumbo;
+            color: $fern-yellow;
+            margin-bottom: -2rem;
+
+        }
+    
+        h2 {
+            font-family: $h2-font;
+            color: $fern-white;
+            font-size: $h2-big;
+            font-weight: 300;
+        }
+
+        h3 {
+            font-family: $h2-font;
+            color: $fern-faded-white;
+            font-size: $h3-medium;
+            font-weight: 300;
+
+        }
+
+        .cta-join {
+            width: 250px;
+            height: 50px;
+            border: 3px solid $fern-yellow;
+            border-radius: 2.5rem;
+            background: none;
+            font-family: $title-font;
+            font-size: $title-button;
+            color: $fern-yellow;
+
+            margin-top: 3rem;
+
+
+            &:hover {
+                background: $fern-yellow;
+                color: $fern-green;
+            }
+        }
+
+
+
+
     }
+
+    .fern-animation {
+        // border: 1px solid $fern-yellow;
+   
+
+        align-self: flex-end;
+        justify-self: flex-end;
+        margin-bottom: 6rem;
+
+
+        img {
+            transform: scaleX(-1);
+        }
+
+    }
+
+
+
 
 
 }

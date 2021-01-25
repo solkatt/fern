@@ -31,6 +31,7 @@ class Store extends Component {
     }
 
     componentDidMount = async () => {
+        this.setState({ isLoading: true })
 
         await this.context.getUserData().then(() => {
             this.loadStore()
@@ -91,6 +92,7 @@ class Store extends Component {
                 </div>
 
                 <button>Edit Store Information</button>
+
             </div>
         )
 

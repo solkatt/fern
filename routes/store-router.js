@@ -10,9 +10,12 @@ const admin = require('../middleware/admin')
 // router.post('/store', auth, admin, StoreCtrl.createStore)
 router.post('/store', StoreCtrl.createStore)
 router.put('/store/:id', StoreCtrl.updateStore)
-// router.delete('/movie/:id', MovieCtrl.deleteMovie)
- router.get('/store/:id', StoreCtrl.getStoreById)
- router.get('/stores', StoreCtrl.getStores)
+router.get('/store/:id', StoreCtrl.getStoreById)
+router.get('/stores', StoreCtrl.getStores)
+
+router.post('/store/upload-image', StoreCtrl.uploadStoreImage)
+
+router.put('/store/:id/delete-image/', StoreCtrl.deleteStoreImage)
 
 
 module.exports = router

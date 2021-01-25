@@ -41,12 +41,23 @@ class Products extends Component {
 
         this.setState({ isLoading: true })
 
-        await api.getProductsByStore(storeID).then(products => {
-            this.setState({
-                products: products.data.data,
-                isLoading: false,
+        if (storeID) {
+            await api.getProductsByStore(storeID).then(products => {
+                this.setState({
+                    products: products.data.data,
+                    isLoading: false,
+                })
+                
+            }, (err) => {
+                console.log(err)
+                this.setState({
+                    isLoading: false,
+                })
+                
             })
-        })
+        }
+        this.setState({ isLoading: false })
+    
     }
 
 
@@ -90,7 +101,7 @@ class Products extends Component {
     displayProducts = (products) => {
 
 
-        if (!products) {
+        if (products.length < 1) {
             return (
                 <>
                     <h2>No products here</h2>

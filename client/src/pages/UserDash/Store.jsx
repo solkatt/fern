@@ -3,7 +3,8 @@ import api from '../../api'
 import '../../style/pages/Store.scss'
 import '../../style/pages/PageLayout.scss'
 import UserContext from '../../context/UserContext';
-import { set } from 'mongoose';
+// import { set } from 'mongoose';
+import { Link } from 'react-router-dom'
 import LoadingAnimation from '../../components/LoadingAnimation'
 
 
@@ -25,59 +26,57 @@ class Store extends Component {
         this.onDeleteProduct = this.onDeleteProduct.bind(this)
         this.loadStore = this.loadStore.bind(this)
         this.displayStore = this.displayStore.bind(this)
+        this.displayCreateStore = this.displayCreateStore.bind(this)
 
     }
 
-        componentDidMount = async () => {
+    componentDidMount = async () => {
+
+        await this.context.getUserData().then(() => {
+            this.loadStore()
+        })
+
+    }
 
 
-     
-            await this.context.getUserData().then(() => {
-                this.loadStore()
-
-            })
-
-
-
-
-
-        }
-
-
-        // componentDidUpdate(prevProps, prevState) {
-        //     if (prevState.value !== this.state.value) {
-        //         this.loadProducts()
-        //     }
-        // }
-    
-    
-
-
-
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.value !== this.state.value) {
+    //         this.loadProducts()
+    //     }
+    // }
 
 
     loadStore = async () => {
 
         this.setState({ isLoading: true })
-
         const storeID = this.context.storeID
-        console.log('loadStore; this.context.storeID:', this.context.storeID)
 
-        await api.getStoreById(storeID).then(store => {
+        if (storeID) {
+
+            await api.getStoreById(storeID).then(store => {
+                this.setState({
+                    store: store.data.data,
+                    isLoading: false,
+                })
+            }, (err) => {
+                console.log(err)
+                this.setState({
+                    isLoading: false,
+                })
+            })
+        } else {
             this.setState({
-                store: store.data.data,
                 isLoading: false,
             })
-        }, (err) => {
-            console.log(err)
-        })
+        }
 
     }
 
     displayStore = (store) => {
 
+        const { storeID } = this.context
 
-        if (!store) return null
+        if (!storeID || !store) return this.displayCreateStore()
 
         return (
             <div className="product-grid">
@@ -95,9 +94,34 @@ class Store extends Component {
             </div>
         )
 
+    }
+
+
+    handleSetUpStore = () => {
 
 
     }
+
+    
+
+
+
+    displayCreateStore = () => {
+        // const storeID = this.context.storeID
+
+        return (
+            <div className="create-store">
+                <h1>No store here at the moment</h1>
+                <button onClick={this.handleSetUpStore}>
+                <Link to={`/store/create`}>
+                    Set one up!
+                    </Link>
+                </button>
+            </div>
+        )
+    }
+
+
 
 
 
@@ -112,7 +136,7 @@ class Store extends Component {
 
 
 
- 
+
 
 
     onDeleteProduct = async (productID) => {
@@ -148,6 +172,7 @@ class Store extends Component {
 
     render() {
         const { store, isLoading } = this.state
+        const { storeID } = this.context
 
         return (
 
@@ -168,10 +193,9 @@ class Store extends Component {
 
 
                     {isLoading ? <LoadingAnimation /> : this.displayStore(store)}
-                    {/* {this.displayStore(store)} */}
 
                     {/* <h3>{this.context.data}</h3> */}
-                    <button onClick={this.showProps}>Load Store</button>
+                    {/* <button onClick={this.showProps}>Load Store</button> */}
 
 
                 </div>

@@ -34,7 +34,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 
-const upload = multer({
+const uploadProduct = multer({
     fileFilter: fileFilter,
     storage: multerS3({
         s3: s3,
@@ -42,7 +42,7 @@ const upload = multer({
         acl: "public-read",
         metadata: function (req, file, cb) {
             cb(null, {
-                fieldName: 'Testing_metadata'
+                fieldName: Date.now() + file.originalname,
             });
         },
         key: function (req, file, cb) {
@@ -50,6 +50,29 @@ const upload = multer({
         },
     }),
 });
+
+
+const uploadStore = multer({
+    fileFilter: fileFilter,
+    storage: multerS3({
+        s3: s3,
+        bucket: "fern-store-images",
+        acl: "public-read",
+        metadata: function (req, file, cb) {
+            cb(null, {
+                fieldName: Date.now() + file.originalname,
+            });
+        },
+        key: function (req, file, cb) {
+            cb(null, Date.now() + file.originalname);
+        },
+    }),
+});
+
+
+
+
+
 
 
 const deleteProductImage = async (filename, callback) => {
@@ -71,14 +94,38 @@ const deleteProductImage = async (filename, callback) => {
             callback(null);
         }
     });
-
-
-
-
 }
 
 
+
+const deleteStoreImage = async (filename, callback) => {
+
+    var image = filename.replace('https://fern-store-images.s3.eu-north-1.amazonaws.com/', '');
+    console.log(image)
+
+    const s3 = new aws.S3();
+
+    const params = {
+        Bucket: 'fern-store-images',
+        Key: image
+    };
+    s3.deleteObject(params, function (err, data) {
+        if (err) {
+            console.log(err);
+            callback(err);
+        } else {
+            callback(null);
+        }
+    });
+}
+
+
+
+
+
 module.exports = {
-    upload: upload,
-    deleteProductImage: deleteProductImage
+    uploadProduct: uploadProduct,
+    uploadStore: uploadStore,
+    deleteProductImage: deleteProductImage,
+    deleteStoreImage: deleteStoreImage
 }

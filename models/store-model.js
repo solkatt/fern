@@ -23,6 +23,23 @@ const Store = new Schema({
         type: Array,
         maxlength: 40,
     },
+    adress: {
+        street: {
+            type: String,
+        },
+        zip: {
+            type: String,
+        },
+        city: {
+            type: String,
+        }
+    },
+    email: {
+        type: String,
+    },
+    logoImg: {
+        type: String,
+    }
 }, {
     timestamps: true
 }, )

@@ -37,12 +37,14 @@ export const getCurrentUser = payload => api.get('/me', payload)
 ////////////////    STORE   /////////////////////////
 export const getStoreById = id => api.get(`/store/${id}`)
 export const getProductsByStore = id => api.get(`/store/${id}/products`)
+export const uploadStoreImage = payload => api.post(`/store/upload-image`, payload)
+
+export const deleteStoreImage = (id, payload) => api.put(`/store/${id}/delete-image/`, payload)
 
 
 ////////////////    PRODUCT    /////////////////////////
 export const addProduct = payload => api.post(`/product`, payload)
-export const uploadProductImage = payload => api.post(`/product/uploadImage`, payload)
-
+export const uploadProductImage = payload => api.post(`/product/upload-image`, payload)
 export const deleteProductImage = (id, payload) => api.put(`/product/${id}/delete-image/`, payload)
 
 export const updateProduct = (id, payload) => api.put(`/product/${id}`, payload)
@@ -85,6 +87,8 @@ const apis = {
     updateProduct,
     /// STORE ///
     getStoreById,
+    uploadStoreImage,
+    deleteStoreImage
 }
 
 export default apis

@@ -32,9 +32,11 @@ export const getMovieById = id => api.get(`/movie/${id}`)
 export const registerUser = payload => api.post('/user', payload)
 export const loginUser = payload => api.post('auth', payload)
 export const getCurrentUser = payload => api.get('/me', payload)
+export const updateUserStoreID = (id, payload) => api.put(`/user/${id}`, payload)
 
 
 ////////////////    STORE   /////////////////////////
+export const createStore = payload => api.post(`/store`, payload)
 export const getStoreById = id => api.get(`/store/${id}`)
 export const getProductsByStore = id => api.get(`/store/${id}/products`)
 export const uploadStoreImage = payload => api.post(`/store/upload-image`, payload)
@@ -58,6 +60,7 @@ export const getProductById = id => api.get(`/product/${id}`)
 
 
 
+
 ////////////////    CUSTOMER    /////////////////////////
 
 
@@ -75,6 +78,7 @@ const apis = {
     registerUser,
     loginUser,
     getCurrentUser,
+    updateUserStoreID,
     /// PRODUCTS ///
     ////Should Be getAllProductsByStore and another one all for all products
     getAllProducts,
@@ -86,6 +90,7 @@ const apis = {
     deleteProductById,
     updateProduct,
     /// STORE ///
+    createStore,
     getStoreById,
     uploadStoreImage,
     deleteStoreImage

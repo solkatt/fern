@@ -106,6 +106,44 @@ res.send(user)
 
 
 
+updateUserStoreID = async (req, res) => {
+    const storeID = req.body.storeID
+
+    console.log('req.body.storeID:', storeID)
+    
+    if (!storeID) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    User.findOne({ _id: req.params.id }, (err, user) => {
+
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'User not found!',
+            })
+        }
+        user.storeID = storeID
+        user.save()
+            .then(() => {
+                return res.status(200).json({
+                    success: true,
+                    id: user._id,
+                    storeID: user.storeID,
+                    message: 'Added StoreID to User!',
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'User Store not updated!',
+                })
+            })
+    })
+}
 
 
 
@@ -113,10 +151,7 @@ res.send(user)
 
 
 
-
-
-
-// updateMovie = async (req, res) => {
+// updateUser = async (req, res) => {
 //     const body = req.body
 
 //     if (!body) {
@@ -126,15 +161,15 @@ res.send(user)
 //         })
 //     }
 
-//     Movie.findOne({ _id: req.params.id }, (err, movie) => {
+//     Movie.findOne({ _id: req.params.id }, (err, user) => {
 //         if (err) {
 //             return res.status(404).json({
 //                 err,
 //                 message: 'Movie not found!',
 //             })
 //         }
-//         movie.name = body.name
-//         movie.time = body.time
+//         user.name = body.name
+//         user.time = body.time
 //         movie.rating = body.rating
 //         movie
 //             .save()
@@ -153,6 +188,9 @@ res.send(user)
 //             })
 //     })
 // }
+
+
+
 
 // deleteMovie = async (req, res) => {
 //     await Movie.findOneAndDelete({ _id: req.params.id }, (err, movie) => {
@@ -201,7 +239,8 @@ res.send(user)
 
 module.exports = {
     registerUser,
-    getCurrentUser
+    getCurrentUser,
+    updateUserStoreID
     // updateMovie,
     // deleteMovie,
     // getMovies,

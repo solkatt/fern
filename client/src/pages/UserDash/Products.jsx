@@ -31,7 +31,6 @@ class Products extends Component {
 
         await this.context.getUserData().then(() => {
             this.loadStoreProducts()
-
         })
     }
 

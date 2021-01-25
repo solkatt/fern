@@ -24,6 +24,9 @@ const User = new Schema({
         minlength: 5,
         maxlength: 1024
     },
+    storeID: {
+        type: String
+    },
     isAdmin: Boolean,
 }, {
     timestamps: true

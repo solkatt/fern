@@ -29,21 +29,28 @@ class CreateStore extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleAdressChange = this.handleAdressChange.bind(this)
         this.updateImages = this.updateImages.bind(this)
         this.redirect = this.redirect.bind(this)
         this.displayCreateStore = this.displayCreateStore.bind(this)
+        this.connectStoreToUser = this.connectStoreToUser.bind(this)
     }
 
-    componentDidMount = () => {
+    componentDidMount = async () => {
         // this.setState({
         //      isLoading: true
         //     })
 
 
-        this.setState({
-            // storeID: this.context.storeID,
-            userID: this.context.id,
+        await this.context.getUserData().then(() => {
+            this.setState({
+                // storeID: this.context.storeID,
+                userID: this.context.id,
+            })
         })
+
+
+
 
     }
 
@@ -52,10 +59,21 @@ class CreateStore extends Component {
     handleInputChange = (event) => {
         const value = event.target.value;
         const field = event.target.name;
+
         this.setState({
             [field]: value
         })
 
+    }
+
+    handleAdressChange = (event) => {
+
+        const value = event.target.value;
+        const field = event.target.name;
+        
+        const adress = {...this.state.adress}
+        adress[field] = value
+        this.setState({adress})
 
     }
 
@@ -72,9 +90,9 @@ class CreateStore extends Component {
         //and state.store-id 
 
 
-
-        const { name, description, logoImg, categories, email, owner, userID, adress } = this.state
-
+        
+        const { name, description, logoImg, categories, email, userID, adress } = this.state
+        
         const payload = {
             name: name,
             description: description,
@@ -82,18 +100,50 @@ class CreateStore extends Component {
             categories: categories,
             email: email,
             owner: userID,
+            adress: adress,
+            storeID: '',
         }
 
 // create Store
 // Then put StoreID to User
-        await api.addProduct(payload).then((res) => {
+        await api.createStore(payload).then((res) => {
 
             // localStorage.setItem('storage-object', JSON.stringify({token: res.data}))
 
             // Load something
+            const storeID = res.data.id
+            alert('Store successfully created')
+            // console.log(this.state.images)
 
-            alert('Product successfully uploaded')
-            console.log(this.state.images)
+             this.connectStoreToUser(userID, storeID)
+
+
+        }, (err) => {
+            console.log(err)
+        })
+
+    
+    }
+
+
+
+    connectStoreToUser = async (userID, storeID) => {
+
+
+
+        const payload = {
+            storeID: storeID 
+        }
+
+
+        await api.updateUserStoreID(userID, payload).then((res) => {
+
+            // localStorage.setItem('storage-object', JSON.stringify({token: res.data}))
+
+            // Load something
+            console.log(res.data)
+
+            alert('Store successfully connected to User')
             this.props.history.push('/')
 
 
@@ -102,8 +152,10 @@ class CreateStore extends Component {
         })
 
 
-
     }
+
+
+
 
     redirect = () => {
         this.props.history.push('/store')
@@ -126,14 +178,18 @@ class CreateStore extends Component {
 
             <>
                 <h1>CREATE STORE</h1>
+                <h3>{this.state.userID}</h3>
                 <div className="add-product-form">
 
                     <FileUpload refreshFunction={this.updateImages} />
-                    <input name="name" type="text" placeholder="Product Name" onChange={this.handleInputChange} />
+                    <input name="name" type="text" placeholder="Store Name" onChange={this.handleInputChange} />
                     <textarea name="description" type="text" placeholder="Description" onChange={this.handleInputChange} />
-                    <input name="categories" type="text" placeholder="Categories" onChange={this.handleInputChange} />
-                    <input name="price" type="number" placeholder="Price" onChange={this.handleInputChange} />
-                    <input name="stock_quantity" type="number" placeholder="Stock Quantity" onChange={this.handleInputChange} />
+                    {/* <input name="categories" type="text" placeholder="Categories" onChange={this.handleInputChange} /> */}
+                    <input name="email" type="email" placeholder="Email" onChange={this.handleInputChange} />
+                    <input name="street" type="text" placeholder="Street" onChange={this.handleAdressChange} />
+                    <input name="zip" type="text" placeholder="Zip" onChange={this.handleAdressChange} />
+                    <input name="city" type="text" placeholder="City" onChange={this.handleAdressChange} />
+
                     <button type="submit" onClick={this.handleSubmit}>Add Product</button>
                 </div>
             </>

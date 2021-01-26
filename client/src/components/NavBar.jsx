@@ -37,7 +37,6 @@ class NavBar extends Component {
             joinOpen: !prevState.joinOpen
         }));
 
-        console.log('joinOpen:', this.state.joinOpen)
     }
 
 
@@ -47,7 +46,6 @@ class NavBar extends Component {
             loginOpen: !prevState.loginOpen
         }));
 
-        console.log('loginOpen', this.state.loginOpen)
     }
 
 
@@ -96,8 +94,9 @@ class NavBar extends Component {
             
        
                     <>
-                  
+
                             <CartNavBar />
+
                     </>
 
 

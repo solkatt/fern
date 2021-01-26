@@ -7,4 +7,5 @@ import UserDashboard from './UserDashboard'
 import CartNavBar from './CartNavBar'
 
 
-export { Links, Logo, NavBar, JoinModal, LoginModal, UserDashboard, CartNavBar }
+
+export { Links, Logo, NavBar, JoinModal, LoginModal, UserDashboard, CartNavBar}

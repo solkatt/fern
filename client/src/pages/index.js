@@ -11,4 +11,7 @@ import EditProduct from './UserDash/EditProduct'
 import Store from './UserDash/Store'
 import CreateStore from './UserDash/CreateStore'
 
-export { MoviesList, MoviesInsert, CreateStore, Landing, Products, AddProduct, EditProduct, Store, Storefront }
+import Cart from './CustomerDash/Cart'
+
+
+export { MoviesList, MoviesInsert, CreateStore, Landing, Products, AddProduct, EditProduct, Store, Storefront, Cart }

@@ -38,12 +38,16 @@ export class CartProvider extends React.Component {
 
 
   addToCart = (product) => {
+
+
+    console.log('shoppingCart', this.state.shoppingCart)
+
     const alreadyInCart = this.state.shoppingCart.some(
-      (element) => element.product._id === product._id
+      (element) => element.product === product
     );
     const cloneShoppingCart = Object.assign([], this.state.shoppingCart);
     const productInCart = cloneShoppingCart.find(
-      (element) => element.product._id === product._id
+      (element) => element.product === product
     );
 
     if (!this.checkStockAvailability(productInCart, product)) {
@@ -51,12 +55,13 @@ export class CartProvider extends React.Component {
     }
 
     if (alreadyInCart) {
+      alert('already in cart')
       const existingItem = cloneShoppingCart.find(
-        (element) => element.product._id === product._id
+        (element) => element.product === product
       );
       existingItem.quantity += 1;
     } else {
-      const itemInCart = { product: product, quantity: 1 };
+      const itemInCart = { product: product, quantity: 1};
 
       cloneShoppingCart.push(itemInCart);
     }

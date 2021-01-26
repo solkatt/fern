@@ -3,9 +3,10 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { NavBar } from '../components'
-import { AddProduct, CreateStore, Landing, Products, EditProduct, Store, StorePage } from '../pages';
+import { AddProduct, CreateStore, Landing, Products, EditProduct, Store, Storefront} from '../pages';
 import '../style/App.scss'
 import { UserProvider } from '../context/UserContext';
+import { CartProvider } from '../context/CartContext';
 
 
 class App extends React.Component {
@@ -13,6 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <UserProvider value={this.state}>
+        <CartProvider value={this.state}>
         <Router>
           <NavBar />
           <Switch>
@@ -31,10 +33,11 @@ class App extends React.Component {
            <Route
               path="/storefront/:name"
               exact
-              component={StorePage}
+              component={Storefront}
             />
           </Switch>
         </Router>
+      </ CartProvider>
       </ UserProvider>
     );
   }

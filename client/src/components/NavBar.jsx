@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Logo, JoinModal, LoginModal, Links, UserDashboard } from './index'
+import { Logo, JoinModal, LoginModal, Links, UserDashboard, CartNavBar } from './index'
 import { Link } from 'react-router-dom'
 
 // import Links from './Links'
@@ -8,7 +8,6 @@ import '../style/NavBar.scss'
 import '../style/Common.scss'
 
 import UserContext from '../context/UserContext';
-
 
 class NavBar extends Component {
 
@@ -94,10 +93,15 @@ class NavBar extends Component {
     displayCustomerDashboard = () => {
 
         return (
+            
+       
+                    <>
+                  
+                            <CartNavBar />
+                    </>
 
-            <>
-                <h3>ShoppingCart</h3>
-            </>
+
+        
         )
 
     }

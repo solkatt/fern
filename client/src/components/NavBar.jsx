@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import { Logo, JoinModal, LoginModal, Links, UserDashboard } from './index'
 import { Link } from 'react-router-dom'
+
 // import Links from './Links'
 import '../style/NavBar.scss'
 import '../style/Common.scss'
@@ -23,8 +24,13 @@ class NavBar extends Component {
 
         this.onClickJoin = this.onClickJoin.bind(this);
         this.onClickLogin = this.onClickLogin.bind(this);
+        this.displayUserDashboard = this.displayUserDashboard.bind(this);
+        this.displayCustomerDashboard = this.displayCustomerDashboard.bind(this);
 
     }
+
+
+
 
     onClickJoin(event) {
         this.setState(prevState => ({
@@ -46,6 +52,56 @@ class NavBar extends Component {
     }
 
 
+    displayUserDashboard = () => {
+
+
+        const isLoggedIn = this.context.isLoggedIn
+
+        if (isLoggedIn) {
+            return (
+                <>
+                    <UserDashboard class="links" />
+                    <h2>isLoggedIn {this.context.isLoggedIn.toString()}</h2>
+                    <h2>isLoggedIn {this.context.storeID}</h2>
+                    <div className="join pointer" onClick={this.context.onSignOut}>
+                        <Link to="/">Logout</Link>
+                    </div>
+                </>
+            )
+        } else {
+
+            return (
+                <>
+
+                    <div className="nav-menu">
+
+                        <div className="log-in pointer" onClick={this.onClickLogin}><p>Log in</p></div>
+                        <div className="join pointer" onClick={this.onClickJoin}><p>Join</p></div>
+
+                        {(this.state.joinOpen) ? <JoinModal onCloseModal={this.onClickJoin} /> : ''}
+                        {(this.state.loginOpen) ? <LoginModal onCloseModal={this.onClickLogin} /> : ''}
+
+                        {/*IF SIGNED IN, SHOW LOG OUT & USER MENU */}
+                    </div>
+                </>
+
+            )
+        }
+
+    }
+
+
+    displayCustomerDashboard = () => {
+
+        return (
+
+            <>
+                <h3>ShoppingCart</h3>
+            </>
+        )
+
+    }
+
 
     // onClickLogout(event) {
 
@@ -64,6 +120,9 @@ class NavBar extends Component {
 
     render() {
 
+        const currentPath = window.location.pathname
+
+
 
 
 
@@ -73,46 +132,17 @@ class NavBar extends Component {
 
                 <Logo />
 
-                {this.context.isLoggedIn ?
-                    (
-                        <>
-                            <UserDashboard class="links" />
-    
-                            <h2>isLoggedIn {this.context.isLoggedIn.toString()}</h2>
-                            <h2>isLoggedIn {this.context.storeID}</h2>
-
-                            <div className="join pointer" onClick={this.context.onSignOut}>
-                           
-                                <Link to="/">Logout</Link>
-
-                                </div>
-
-                        </>
-                    ) : (
+                {currentPath.includes('/storefront/') ? this.displayCustomerDashboard() : this.displayUserDashboard()}
 
 
-                        <>
 
-                            <div className="nav-menu">
-
-                                <div className="log-in pointer" onClick={this.onClickLogin}><p>Log in</p></div>
-                                <div className="join pointer" onClick={this.onClickJoin}><p>Join</p></div>
-
-                                {(this.state.joinOpen) ? <JoinModal onCloseModal={this.onClickJoin} /> : ''}
-                                {(this.state.loginOpen) ? <LoginModal onCloseModal={this.onClickLogin} /> : ''}
-
-                                {/*IF SIGNED IN, SHOW LOG OUT & USER MENU */}
-                            </div>
-
-                        </>
-                    )
-                }
 
 
             </nav>
         )
 
     }
+
 }
 
 

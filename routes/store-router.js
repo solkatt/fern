@@ -14,7 +14,7 @@ router.get('/store/:id', StoreCtrl.getStoreById)
 router.get('/stores', StoreCtrl.getStores)
 
 router.post('/store/upload-image', StoreCtrl.uploadStoreImage)
-
+router.get('/storefront/:name', StoreCtrl.getStoreByName)
 router.put('/store/:id/delete-image/', StoreCtrl.deleteStoreImage)
 
 

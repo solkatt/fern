@@ -38,6 +38,7 @@ export const updateUserStoreID = (id, payload) => api.put(`/user/${id}`, payload
 ////////////////    STORE   /////////////////////////
 export const createStore = payload => api.post(`/store`, payload)
 export const getStoreById = id => api.get(`/store/${id}`)
+export const getStoreByName = name => api.get(`/storefront/${name}`)
 export const getProductsByStore = id => api.get(`/store/${id}/products`)
 export const uploadStoreImage = payload => api.post(`/store/upload-image`, payload)
 
@@ -92,6 +93,7 @@ const apis = {
     /// STORE ///
     createStore,
     getStoreById,
+    getStoreByName,
     uploadStoreImage,
     deleteStoreImage
 }

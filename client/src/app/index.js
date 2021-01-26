@@ -3,7 +3,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { NavBar } from '../components'
-import { AddProduct, CreateStore, Landing, Products, EditProduct, Store } from '../pages';
+import { AddProduct, CreateStore, Landing, Products, EditProduct, Store, StorePage } from '../pages';
 import '../style/App.scss'
 import { UserProvider } from '../context/UserContext';
 
@@ -27,6 +27,11 @@ class App extends React.Component {
               path="/products/edit/:id"
               exact
               component={EditProduct}
+            />
+           <Route
+              path="/storefront/:name"
+              exact
+              component={StorePage}
             />
           </Switch>
         </Router>

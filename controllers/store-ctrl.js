@@ -124,7 +124,38 @@ deleteStoreImage = (req, res) => {
 
 
 
+getStoreByName = async (req, res) => {
 
+console.log('req.params.name', req.params.name)
+
+
+    await Store.findOne({
+        name: req.params.name
+    }, (err, store) => {
+        if (err) {
+            return res.status(400).json({
+                success: false,
+                error: err
+            })
+        }
+
+        if (!store) {
+            return res
+                .status(404)
+                .json({
+                    success: false,
+                    error: `Store not found`
+                })
+        }
+        return res.status(200).json({
+            success: true,
+            data: store
+        })
+    }).catch(err => console.log(err))
+
+
+
+}
 
 
 
@@ -259,6 +290,7 @@ module.exports = {
     // deleteMovie,
     getStores,
     getStoreById,
+    getStoreByName,
     uploadStoreImage,
     deleteStoreImage
 }

@@ -8,6 +8,7 @@ import api from '../../api'
 import CartContext from '../../context/CartContext';
 import LoadingAnimation from '../../components/LoadingAnimation';
 
+import { Link } from 'react-router-dom'
 
 
 class Cart extends Component {
@@ -55,9 +56,18 @@ class Cart extends Component {
 
 
     componentDidMount = async () => {
+
+    
+
+
+
+
         this.setState({ isLoading: true })
 
         await this.loadCartData()
+
+
+        //then take storeID from cart to link to
     }
 
 
@@ -109,6 +119,9 @@ class Cart extends Component {
                     })
 
 
+                    
+
+
                 }, (err) => {
                     console.log(err)
                     this.setState({
@@ -147,7 +160,7 @@ class Cart extends Component {
                     (product) => {
 
                         return (
-                            <div>
+                            <div key={product._id}>
                                 <h3>{product.name}</h3>
                                 <h3>{product.price}</h3>
                                 <h3>{product.cartQuantity}</h3>
@@ -169,7 +182,7 @@ class Cart extends Component {
 
     render() {
 
-        const { isLoading } = this.state
+        const { isLoading, products } = this.state
 
 
         return (
@@ -177,11 +190,21 @@ class Cart extends Component {
                 <div className="modal" onClick={this.onClickOutside}>
                     <div className="join-modal">
                         <FaWindowClose className="close pointer" onClick={this.onCloseModal} />
-                        <h1>CART</h1>
+                        <h1>CART for {this.context.store.name}</h1>
                         {isLoading ? <LoadingAnimation /> : this.displayCartContent()}
 
-                        <button type="submit" onClick={this.handleSubmit}>Check out</button>
-                        <button type="submit" onClick={() => { console.log(this.state.products) }}>Check state products</button>
+                        {/* <button type="submit" onClick={this.handleSubmit}>Check out</button> */}
+
+
+
+
+                        <button><Link to={{  
+                            pathname: `/storefront/{${this.context.store.name}}/checkout`,
+                            state: {products}}}>
+                               Checkout
+            </Link></button> 
+
+
                     </div>
                 </div>
             </>

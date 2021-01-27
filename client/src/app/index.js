@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { NavBar } from '../components'
 import { AddProduct, CreateStore, Landing, Products, EditProduct, Store, Storefront} from '../pages';
+import {Checkout} from '../pages/index'
 import '../style/App.scss'
 import { UserProvider } from '../context/UserContext';
 import { CartProvider } from '../context/CartContext';
@@ -35,6 +36,13 @@ class App extends React.Component {
               exact
               component={Storefront}
             />
+                  <Route
+              path="/storefront/:name/checkout"
+              exact
+              component={Checkout}
+            />
+            
+            
           </Switch>
         </Router>
       </ CartProvider>

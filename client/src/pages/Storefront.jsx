@@ -128,7 +128,7 @@ class EditProduct extends Component {
                             </button>
 
                             {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
-                            <button onClick={() => this.context.addToCart(product._id)}>Add to Cart</button>
+                            <button onClick={() => this.context.addToCart(product._id, this.state.store)}>Add to Cart</button>
 
                         </div>
                     </div>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 // import Links from './Links'
 import '../style/NavBar.scss'
 import '../style/Common.scss'
+import { FiLogOut } from 'react-icons/fi';
 
 import UserContext from '../context/UserContext';
 
@@ -59,7 +60,10 @@ class NavBar extends Component {
                 <>
                     <UserDashboard class="links" />
                     <div className="join pointer" onClick={this.context.onSignOut}>
-                        <Link className='nav-link-logout' to="/">Logout</Link>
+                        <Link className='nav-link-logout' to="/">
+                        <FiLogOut className="logout-icon" />
+
+                            </Link>
                     </div>
                 </>
             )
@@ -70,8 +74,8 @@ class NavBar extends Component {
 
                     <div className="nav-menu">
 
-                        <div className="log-in pointer" onClick={this.onClickLogin}><p>Log in</p></div>
-                        <div className="join pointer" onClick={this.onClickJoin}><p>Join</p></div>
+                        <div className="log-in pointer" onClick={this.onClickLogin}><h4>Log in</h4></div>
+                        <div className="join pointer" onClick={this.onClickJoin}><h4>Join</h4></div>
 
                         {(this.state.joinOpen) ? <JoinModal onCloseModal={this.onClickJoin} /> : ''}
                         {(this.state.loginOpen) ? <LoginModal onCloseModal={this.onClickLogin} /> : ''}

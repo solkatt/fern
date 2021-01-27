@@ -88,11 +88,12 @@ class LoginModal extends Component {
                 <div className="modal" onClick={this.onClickOutside}>
                     <div className="login-modal">
                     <FaWindowClose className="close pointer" onClick={this.onCloseModal}/>
-                        <h1>Login</h1>
-
+                        <div className='login-form'>
+                        <h1 className='login-title'>LOGIN</h1>
                         <input name="email" type="email" placeholder="Email"  onChange={this.handleInputChange}></input>
-                        <input name="password" type="password" placeholder="Lösenord"  onChange={this.handleInputChange}></input>
-                        <button type="submit" onClick={this.handleSubmit}>Login</button>
+                        <input name="password" type="password" placeholder="Password"  onChange={this.handleInputChange}></input>
+                        <button className='login-button' type="submit" onClick={this.handleSubmit}>Login</button> 
+                        </div>
                     </div>
                 </div>
             </>

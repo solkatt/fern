@@ -1,3 +1,6 @@
+@import './Variables.scss';
+
+
 nav {
     position: absolute;
     display: flex;
@@ -6,9 +9,10 @@ nav {
     // background: rgba(0,0,0,0.1);
     height: 3rem;
     width: 100%;
-
+    box-sizing: border-box;
     z-index: 10;
     color: #f1f1f1;
+    padding: 0 6rem;
    
 
 
@@ -18,19 +22,35 @@ nav {
     }
     .nav-menu {
         display: flex;
-        background: green;
          padding: 0 2rem;
 
 
 
         .log-in {
-            background: orange;
             margin: 0 1rem;
+            transition: color 1s ease-in-out;
+      
+            h4 {
+                
+                &:hover {
+                    color: $fern-yellow;
+                    transition: color .2s ease-in-out;
+
+                }
+            }
         }
 
         .join {
-            background: hotpink;
             margin: 0 1rem;
+
+            h4 {
+                
+                &:hover {
+                    color: $fern-yellow;
+                    transition: color .2s ease-in-out;
+
+                }
+            }
         }
     }
 }

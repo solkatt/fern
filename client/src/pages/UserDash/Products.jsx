@@ -5,6 +5,8 @@ import '../../style/pages/PageLayout.scss'
 import { Link } from 'react-router-dom'
 import UserContext from '../../context/UserContext';
 import LoadingAnimation from '../../components/LoadingAnimation'
+import { AiFillEdit, AiFillDelete} from 'react-icons/ai';
+
 
 class Products extends Component {
 
@@ -31,7 +33,7 @@ class Products extends Component {
         this.setState({
             isLoading: true
         })
-        
+
         await this.context.getUserData().then(() => {
             this.loadStoreProducts()
         })
@@ -49,17 +51,17 @@ class Products extends Component {
                     products: products.data.data,
                     isLoading: false,
                 })
-                
+
             }, (err) => {
                 console.log(err)
                 this.setState({
                     isLoading: false,
                 })
-                
+
             })
         }
         this.setState({ isLoading: false })
-    
+
     }
 
 
@@ -123,27 +125,33 @@ class Products extends Component {
                         {/* {products.images.map(image =>
             <img src={image} alt={image.indexOf()} />)} */}
 
-                        {product.images.length > 0 ?
-                            <img style={{ height: '100px', width: '100px' }} src={product.images[0]} alt={product.images.indexOf()} />
-                            :
-                            <div>DEFUALT IMAGE</div>
 
-                        }
+                            {product.images.length > 0 ?
+                                <img src={product.images[0]} alt={product.images.indexOf()} />
+                                :
+                                <div>DEFUALT IMAGE</div>
 
-                        <h3>{product.name}</h3>
-                        <p>{product.description}</p>
-                        <h5>{product.price}</h5>
+                            }
+                            <div className='product-info-container'>
+
+                            <h3 className='product-name'>{product.name}</h3>
+                            <p className='product-description'>{product.description}</p>
+                            <h5 className='product-price'>{product.price}kr</h5>
 
 
-                        <div className="btns">
-                            <button><Link to={`/products/edit/${product._id}`}>
-                                Edit
-            </Link></button>
+                            <div className="product-btns">
+                                <button><Link to={`/products/edit/${product._id}`}>
+                                <AiFillEdit className='edit-icon'/>
 
-                            {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
-                            <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
-                            <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
-
+                               
+                               </Link>
+                                </button>
+                                <button onClick={() => this.onDeleteProduct(product._id)}>
+                               
+                                    <AiFillDelete className='edit-icon'/>
+                                    </button>
+                       
+                            </div>
                         </div>
                     </div>
                 )}
@@ -165,7 +173,7 @@ class Products extends Component {
             <div className="page-layout">
                 <div className="page-content">
                     <div className="product-grid">
-
+                        <h2 className='page-title'>PRODUCTS</h2>
 
 
                         {isLoading ? <LoadingAnimation /> : this.displayProducts(products)}

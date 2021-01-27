@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
+import '../style/UserDash.scss'
 
 class UserDashboard extends Component {
     render() {
         return (
             <React.Fragment>
-                <Link to="/" className="navbar-brand">
+                <Link to="/" className="nav-link">
                     Home
                 </Link>
 

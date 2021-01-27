@@ -23,8 +23,17 @@ class Landing extends Component {
 
 
                 <div className="fern-animation">
-                    animation
-                    <img src="https://freesvg.org/img/TJ-78--Leaf-Detailed-rounded-21-6-16-copy.png" alt=""/>
+                    <div className='animation'>
+
+
+                    <script
+                        src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js">
+                    </script><lottie-player src="https://assets7.lottiefiles.com/packages/lf20_aitf3mii.json" background="transparent" speed="1" className='animation' loop autoplay></lottie-player>
+
+                            </div>
+
+
+
                 </div>
 
 

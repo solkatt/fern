@@ -190,7 +190,6 @@ class Store extends Component {
                 </h2> */}
 
 
-                <h1>STORE</h1>
                 <div className="page-content">
 
 

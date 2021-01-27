@@ -1,0 +1,12 @@
+.nav-link {
+
+    color: white;
+    text-decoration: none; /* no underline */
+
+
+
+    a &:active {
+
+        color: red;
+    }
+}

@@ -1,12 +1,18 @@
+@import '../Variables.scss';
+
+
 .page-layout {
-    background: #f2f2f2;
+    background: $fern-black;
+
     padding-top: 3rem;
     box-sizing: border-box;
     height: 100%;
-    
+
     .page-content {
-        
+        // background: #f2f2f2;
+
         height: 100%;
-    
-        }
+        
+
     }
+}

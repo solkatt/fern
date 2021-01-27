@@ -3,12 +3,19 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: teal;
+    // background: rgba(0,0,0,0.1);
     height: 3rem;
     width: 100%;
-    
+
+    z-index: 10;
+    color: #f1f1f1;
    
 
+
+    .nav-link-logout {
+        color: white;
+        text-decoration: none;
+    }
     .nav-menu {
         display: flex;
         background: green;

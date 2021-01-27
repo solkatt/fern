@@ -8,6 +8,7 @@ const userRouter = require('./routes/user-router')
 const auth = require('./routes/auth')
 const storeRouter = require('./routes/store-router')
 const productRouter = require('./routes/product-router')
+const orderRouter = require('./routes/order-router')
 
 const path = require("path");
 
@@ -47,6 +48,7 @@ app.use('/api', userRouter);
 app.use('/api', auth);
 app.use('/api', storeRouter);
 app.use('/api', productRouter);
+app.use('/api', orderRouter);
 
 
 

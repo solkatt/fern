@@ -16,13 +16,12 @@ export class CartProvider extends React.Component {
     this.state = {
       quantity: 9,
       shoppingCart: [],
-      products: [],
       store: [],
 
       addToCart: this.addToCart,
       getTotalQuantity: this.getTotalQuantity,
       linkCartToStore: this.linkCartToStore,
-      loadCartData: this.loadCartData,
+      loadCartStore: this.loadCartStore,
 
     };
 
@@ -31,14 +30,14 @@ export class CartProvider extends React.Component {
   }
 
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     if (localStorage.getItem("cart") === null) {
       localStorage.setItem("cart", JSON.stringify([]));
-      this.loadCartData()
     }
     this.setState({
       shoppingCart: JSON.parse(localStorage.getItem("cart")),
     });
+
   };
 
 
@@ -77,6 +76,9 @@ export class CartProvider extends React.Component {
 
 
 
+
+
+
   linkCartToStore = (storeID) => {
 
     api.getStoreById(storeID).then((store) => {
@@ -90,39 +92,6 @@ export class CartProvider extends React.Component {
     // IF NOT SAME STORE AS BEFORE ASK IF EMPTY CART
 
   }
-
-
-  loadCartData = async () => {
-
-    const shoppingCart = this.state.shoppingCart
-    console.log('shoppingCart:', shoppingCart)
-
-    await shoppingCart.map(
-        (product) => {
-            api.getProductById(product.product).then((dbProduct) => {
-             
-
-                const loadedProduct = dbProduct.data.data
-
-                 loadedProduct.cartQuantity = product.quantity
- 
-                this.setState({
-                    products: [...this.state.products, loadedProduct],
-                })
-
-
-                this.linkCartToStore(loadedProduct.storeID)
-
-
-            }, (err) => {
-                console.log(err)
-        
-            })
-
-        })
-        console.log('this state producsts',this.state.products)
-}
-
 
 
 

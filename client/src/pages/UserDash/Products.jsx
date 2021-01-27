@@ -28,7 +28,10 @@ class Products extends Component {
 
     }
     componentDidMount = async () => {
-
+        this.setState({
+            isLoading: true
+        })
+        
         await this.context.getUserData().then(() => {
             this.loadStoreProducts()
         })

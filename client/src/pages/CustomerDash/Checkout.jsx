@@ -3,6 +3,7 @@ import api from '../../api'
 import '../../style/pages/EditProduct.scss'
 import '../../style/pages/PageLayout.scss'
 import { Redirect } from "react-router-dom";
+
 import CartContext from '../../context/CartContext';
 import LoadingAnimation from '../../components/LoadingAnimation';
 
@@ -31,16 +32,19 @@ class Checkout extends Component {
 
         this.setState({ isLoading: true })
 
-        await this.context.loadCartData().then(() => {
+        await this.loadCartData().then(() => {
             this.setState({
-                store: this.context.store,
-                products: this.context.products,
                 isLoading: false
             })
         })
 
         // this.setState({store: name})
     }
+
+
+
+
+
 
     // loadProduct = async (id) => {
     //     this.setState({ isLoading: true })
@@ -153,10 +157,9 @@ class Checkout extends Component {
 
     displayCheckout = () => {
 
-        const store = this.state.store
+        const store = this.context.store
 
 
-        console.log('Checkout prodcuts:',this.state.products)
 
         return (
             <>
@@ -165,18 +168,104 @@ class Checkout extends Component {
 
 
                 <div>
+                    <h2>Cart:</h2>
                     {this.state.products.map((product) => {
                         return (
-                            <div>
+                            <div key={product._id}>
                                 <h2>Product name: {product.name}</h2>
-                                <h2>quantity: {product.quantity}</h2>
-                                </div>
+                                <img src={product.images[0]} style={{ height: '200px', width: '200px' }} />
+                                <h2>Price styck: {product.price}</h2>
+                                <h2>quantity: {product.cartQuantity}</h2>
+                                <p>+</p>
+                                <p>-</p>
+                            </div>
                         )
                     })}
                 </div>
+
+                <div>
+                    <h2>Customer info:</h2>
+                    <input name="firstName" type="text" placeholder="Förnamn" onChange={this.handleInputChange}></input>
+                    <input name="lastName" type="text" placeholder="Efternamn" onChange={this.handleInputChange}></input>
+                    <input name="email" type="email" placeholder="Email" onChange={this.handleInputChange}></input>
+                    <input name="phone" type="text" placeholder="Telefon" onChange={this.handleInputChange}></input>
+                    <input name="adress" type="text" placeholder="Address" onChange={this.handleInputChange}></input>
+                    <input name="city" type="text" placeholder="City" onChange={this.handleInputChange}></input>
+                    <input name="zip" type="text" placeholder="Zip" onChange={this.handleInputChange}></input>
+                    <input name="store" type="text" placeholder="Butik" onChange={this.handleInputChange}></input>
+
+                    <button>Next</button>
+                </div>
+                <div>
+                    <h2>Shipping</h2>
+
+                    <label class="container">DHL
+                        <input type="checkbox" checked="checked" />
+                        <span class="checkmark"></span>
+                    </label>
+                    <button>Next</button>
+
+                </div>
+                <div>
+                    <h2>Payment</h2>
+
+                  
+                    <button>Next</button>
+
+                </div>
+
             </>
         )
 
+    }
+
+
+
+
+    loadCartData = async () => {
+
+        this.setState({ isLoading: true })
+
+
+        const shoppingCart = this.context.shoppingCart
+
+
+        await shoppingCart.map(
+            (product) => {
+                api.getProductById(product.product).then((dbProduct) => {
+
+
+                    const loadedProduct = dbProduct.data.data
+
+                    loadedProduct.cartQuantity = product.quantity
+
+                    this.setState({
+                        products: [...this.state.products, loadedProduct],
+                        isLoading: false,
+                    })
+
+
+
+
+
+                }, (err) => {
+                    console.log(err)
+                    this.setState({
+                        isLoading: false,
+                    })
+                })
+
+
+
+                // return (
+                //     <div key={index}>
+                //       <h2>{product}</h2>
+                //       <h2>{product.price}kr</h2>
+                //       <img style={{height: '100px', width: '100px'}} src={image} />
+                //     </div>
+                // )
+
+            })
     }
 
 

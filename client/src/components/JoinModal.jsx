@@ -104,7 +104,7 @@ class JoinModal extends Component {
                         <input name="city" type="text" placeholder="City" onChange={this.handleInputChange}></input>
                         <input name="zip" type="text" placeholder="Zip" onChange={this.handleInputChange}></input>
                         <input name="store" type="text" placeholder="Butik" onChange={this.handleInputChange}></input> */}
-                        <input name="password" type="password" placeholder="password" onChange={this.handleInputChange}></input> */}
+                        <input name="password" type="password" placeholder="password" onChange={this.handleInputChange}></input>
 
                         <button type="submit" onClick={this.handleSubmit}>Join</button>
                     </div>

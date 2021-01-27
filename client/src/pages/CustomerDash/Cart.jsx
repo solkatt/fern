@@ -66,7 +66,6 @@ class Cart extends Component {
 
         await this.loadCartData()
 
-
         //then take storeID from cart to link to
     }
 
@@ -118,6 +117,7 @@ class Cart extends Component {
                         isLoading: false,
                     })
 
+                    this.context.linkCartToStore(loadedProduct.storeID)
 
                     
 
@@ -198,7 +198,7 @@ class Cart extends Component {
 
 
 
-                        <button><Link to={{  
+                        <button onClick={this.onCloseModal}><Link to={{  
                             pathname: `/storefront/{${this.context.store.name}}/checkout`,
                             state: {products}}}>
                                Checkout

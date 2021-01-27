@@ -58,6 +58,8 @@ export const getAllProducts = () => api.get(`/products`)
 export const getProductById = id => api.get(`/product/${id}`)
 
 
+////////////////    ORDER    /////////////////////////
+export const createOrder = payload => api.post(`/order`, payload)
 
 
 
@@ -95,7 +97,9 @@ const apis = {
     getStoreById,
     getStoreByName,
     uploadStoreImage,
-    deleteStoreImage
+    deleteStoreImage,
+    /// ORDER
+    createOrder
 }
 
 export default apis

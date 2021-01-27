@@ -14,7 +14,6 @@ export class CartProvider extends React.Component {
   constructor() {
     super();
     this.state = {
-      quantity: 9,
       shoppingCart: [],
       store: [],
 
@@ -22,6 +21,7 @@ export class CartProvider extends React.Component {
       getTotalQuantity: this.getTotalQuantity,
       linkCartToStore: this.linkCartToStore,
       loadCartStore: this.loadCartStore,
+      calculateSum: this.calculateSum,
 
     };
 
@@ -83,7 +83,7 @@ export class CartProvider extends React.Component {
 
     api.getStoreById(storeID).then((store) => {
       this.setState({ store: store.data.data })
-      console.log('linkCartToStore',store)
+ 
     }, (err) => {
       console.log(err)
     })
@@ -93,7 +93,21 @@ export class CartProvider extends React.Component {
 
   }
 
+  calculateSum = (products) => {
 
+    
+    if(!products) return
+    
+    let sum = 0;
+    for (let i = 0; i < products.length; i++) {
+      sum =
+        products[i].price *
+          products[i].cartQuantity +
+        sum;
+    }
+
+     return sum;
+  };
 
 
 

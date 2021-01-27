@@ -15,13 +15,26 @@ class Checkout extends Component {
         this.state = {
             products: [],
             store: '',
-            columns: [],
+            name: '',
+            email: '',
+            adress: [
+                {street: '', city: '', zip: 0}
+            ],
+            phone: 0,
+            payment_method: null,
+
             isLoading: false,
             redirect: null
         }
 
         this.displayCheckout = this.displayCheckout.bind(this)
-        // this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleAdressChange = this.handleAdressChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+
+
+
+
         // this.showProduct = this.showProduct.bind(this)
         // this.onDeleteProduct = this.onDeleteProduct.bind(this)
         // this.loadProduct = this.loadProduct.bind(this)
@@ -33,9 +46,12 @@ class Checkout extends Component {
         this.setState({ isLoading: true })
 
         await this.loadCartData().then(() => {
+            
             this.setState({
                 isLoading: false
+
             })
+
         })
 
         // this.setState({store: name})
@@ -43,20 +59,6 @@ class Checkout extends Component {
 
 
 
-
-
-
-    // loadProduct = async (id) => {
-    //     this.setState({ isLoading: true })
-
-    //     await api.getProductById(id).then(product => {
-    //         this.setState({
-    //             product: product.data.data,
-    //             isLoading: false,
-    //         })
-    //         console.log(this.state.product)
-    //     })
-    // }
 
 
     //    componentDidMount = async () => {
@@ -93,63 +95,114 @@ class Checkout extends Component {
 
 
 
-    // handleInputChange = (event) => {
-    //     const value = event.target.value;
-    //     const field = event.target.name;
-    //     // this.setState({
-    //     //         [field]: value
-    //     // })
+    handleInputChange = (event) => {
+        const value = event.target.value;
+        const field = event.target.name;
+        this.setState({
+                [field]: value
+        })
 
 
-    //     // this.setState({...this.state.product, name: value});
+    
 
 
-    //     this.setState(prevState => {
-    //         let product = { ...prevState.product };  // creating copy of state variable jasper
-    //         product[field]  = value;                     // update the name property, assign a new value                 
-    //         return { product };                                 // return new object jasper object
-    //       })
+        // this.setState({...this.state.product, name: value});
 
 
-
-    // }
-
-
+        // this.setState(prevState => {
+        //     let product = { ...prevState.product };  // creating copy of state variable jasper
+        //     product[field]  = value;                     // update the name property, assign a new value                 
+        //     return { product };                                 // return new object jasper object
+        //   })
 
 
 
+    }
+
+    handleAdressChange = (event) => {
+
+        const value = event.target.value;
+        const field = event.target.name;
+        
+        const adress = {...this.state.adress}
+        adress[field] = value
+        this.setState({adress})
+
+    }
 
 
-    // onUpdateProduct = async (productID) => {
 
 
-    //     const {name, description, image, price, stock_quantity, storeID, categories } = this.state.product
-
-    //     const payload = {
-    //         name: name,
-    //         description: description,
-    //         image: image,
-    //         price: price,
-    //         stock_quantity: stock_quantity,
-    //         storeID: storeID,
-    //         categories: categories,
-    //     }
+    handleSubmit = async () => {
 
 
-    //    // img, if no new image then used previous
-
-    //     await api.updateProduct(productID, payload).then((res) => {
-
-    //         console.log(res.data);
+        this.setState({
+            isLoading: true,
+        });
 
 
-    //         // this.setState({ redirect: "/products/all" });
+        alert('fired')
+
+        
+        const { products, name, email, adress, phone, payment_method } = this.state
+
+        const store = this.context.store
+
+        const total_price = this.context.calculateSum(products)
+        
+        const destructuredProducts = products.map((fullProduct) => {
+            return (
+                {product: fullProduct.name, productID: fullProduct._id, price: fullProduct.price, quantity: fullProduct.cartQuantity }
+            )
+        })
+
+        console.log(store)
+
+        const payload = {
+            products: destructuredProducts,
+            storeName: store.name,
+            name: name,
+            email: email,
+            adress: [
+                {street: adress.street, city: adress.city, zip: adress.zip}
+            ],
+            phone: phone,
+            payment_method: 'DHL',
+            total_price: total_price,
+            storeID: store._id
+        }
+        console.log('payload:', payload)
 
 
-    //     }, (err) => {
-    //         return console.log(err)
-    //     })
-    // }
+   
+
+// create Store
+// Then put StoreID to User
+        await api.createOrder(payload).then((res) => {
+
+
+            // const storeID = res.data.id
+            this.setState({
+                isLoading: false,
+                // rediret: 'ordercomplete'
+            })
+            alert('Order successfully created')
+
+            console.log(res.data)
+
+        }, (err) => {
+            console.log(err)
+            this.setState({
+                isLoading: false,
+            })
+        })
+
+        this.setState({
+            isLoading: false,
+            // rediret: 'ordercomplete'
+        })
+    }
+
 
 
 
@@ -158,6 +211,14 @@ class Checkout extends Component {
     displayCheckout = () => {
 
         const store = this.context.store
+        const products = this.state.products
+
+        let totalPrice = 0
+
+        if(this.state.products) {
+
+
+        }
 
 
 
@@ -178,6 +239,9 @@ class Checkout extends Component {
                                 <h2>quantity: {product.cartQuantity}</h2>
                                 <p>+</p>
                                 <p>-</p>
+
+                                Total:{products ? this.context.calculateSum(products) : ''}
+
                             </div>
                         )
                     })}
@@ -185,22 +249,19 @@ class Checkout extends Component {
 
                 <div>
                     <h2>Customer info:</h2>
-                    <input name="firstName" type="text" placeholder="Förnamn" onChange={this.handleInputChange}></input>
-                    <input name="lastName" type="text" placeholder="Efternamn" onChange={this.handleInputChange}></input>
+                    <input name="name" type="text" placeholder="Name" onChange={this.handleInputChange}></input>
                     <input name="email" type="email" placeholder="Email" onChange={this.handleInputChange}></input>
-                    <input name="phone" type="text" placeholder="Telefon" onChange={this.handleInputChange}></input>
-                    <input name="adress" type="text" placeholder="Address" onChange={this.handleInputChange}></input>
-                    <input name="city" type="text" placeholder="City" onChange={this.handleInputChange}></input>
-                    <input name="zip" type="text" placeholder="Zip" onChange={this.handleInputChange}></input>
-                    <input name="store" type="text" placeholder="Butik" onChange={this.handleInputChange}></input>
-
+                    <input name="phone" type="number" placeholder="Phone" onChange={this.handleInputChange}></input>
+                    <input name="adress" type="text" placeholder="Adress" onChange={this.handleAdressChange}></input>
+                    <input name="city" type="text" placeholder="City" onChange={this.handleAdressChange}></input>
+                    <input name="zip" type="number" placeholder="Zip" onChange={this.handleAdressChange}></input>
                     <button>Next</button>
                 </div>
                 <div>
                     <h2>Shipping</h2>
 
                     <label class="container">DHL
-                        <input type="checkbox" checked="checked" />
+                        <input type="checkbox"  />
                         <span class="checkmark"></span>
                     </label>
                     <button>Next</button>
@@ -210,7 +271,7 @@ class Checkout extends Component {
                     <h2>Payment</h2>
 
                   
-                    <button>Next</button>
+                    <button onClick={this.handleSubmit}>Place Order</button>
 
                 </div>
 

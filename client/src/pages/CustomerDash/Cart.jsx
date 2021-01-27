@@ -116,8 +116,9 @@ class Cart extends Component {
                         products: [...this.state.products, loadedProduct],
                         isLoading: false,
                     })
-
+                 
                     this.context.linkCartToStore(loadedProduct.storeID)
+
 
                     
 
@@ -150,15 +151,15 @@ class Cart extends Component {
 
 
         const products = this.state.products
-        console.log('displayCartC, products[0]', products[0])
 
+        
         if (products.length < 1) return 
-
+        
         return (
             <>
                 {products.map(
                     (product) => {
-
+                        
                         return (
                             <div key={product._id}>
                                 <h3>{product.name}</h3>
@@ -168,8 +169,11 @@ class Cart extends Component {
                             </div>
                         )
                     }
-                )}
+                    )}
+<div>
+    Total:{products ? this.context.calculateSum(products) : ''}
 
+</div>
 
             </>
         )

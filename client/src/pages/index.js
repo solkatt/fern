@@ -1,6 +1,3 @@
-
-import MoviesList from './MoviesList'
-import MoviesInsert from './MoviesInsert'
 import Landing from './Landing'
 import Storefront from './Storefront'
 
@@ -10,9 +7,10 @@ import EditProduct from './UserDash/EditProduct'
 
 import Store from './UserDash/Store'
 import CreateStore from './UserDash/CreateStore'
+import Orders from './UserDash/Orders'
 
 import Cart from './CustomerDash/Cart'
 import Checkout from './CustomerDash/Checkout'
 
 
-export { MoviesList, MoviesInsert, CreateStore, Landing, Products, AddProduct, EditProduct, Store, Storefront, Cart, Checkout }
+export { CreateStore, Landing, Products, AddProduct, EditProduct, Store, Storefront, Cart, Checkout, Orders }

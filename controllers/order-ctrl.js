@@ -151,34 +151,34 @@ createOrder = (req, res) => {
 // }
 
 
-// getOrderByStore = async (req, res) => {
+getOrdersByStore = async (req, res) => {
 
-//     const storeID = req.params.id
+    const storeID = req.params.id
 
 
-//     await Product.find({
-//         storeID: storeID
-//     }, (err, products) => {
-//         if (err) {
-//             return res.status(400).json({
-//                 success: false,
-//                 error: err
-//             })
-//         }
-//         if (!products.length) {
-//             return res
-//                 .status(404)
-//                 .json({
-//                     success: false,
-//                     error: `No Products found`
-//                 })
-//         }
-//         return res.status(200).json({
-//             success: true,
-//             data: products
-//         })
-//     }).catch(err => console.log(err))
-// }
+    await Order.find({
+        storeID: storeID
+    }, (err, orders) => {
+        if (err) {
+            return res.status(400).json({
+                success: false,
+                error: err
+            })
+        }
+        if (!orders.length) {
+            return res
+                .status(404)
+                .json({
+                    success: false,
+                    error: `No Orders found`
+                })
+        }
+        return res.status(200).json({
+            success: true,
+            data: orders
+        })
+    }).catch(err => console.log(err))
+}
 
 
 
@@ -188,6 +188,7 @@ createOrder = (req, res) => {
 
 module.exports = {
     createOrder,
+    getOrdersByStore
     // updateOrder,
     // deleteOrder,
     // getOrdersByStore,

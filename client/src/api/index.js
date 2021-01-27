@@ -60,6 +60,7 @@ export const getProductById = id => api.get(`/product/${id}`)
 
 ////////////////    ORDER    /////////////////////////
 export const createOrder = payload => api.post(`/order`, payload)
+export const getOrdersByStore = id => api.get(`/store/${id}/orders`)
 
 
 
@@ -99,7 +100,8 @@ const apis = {
     uploadStoreImage,
     deleteStoreImage,
     /// ORDER
-    createOrder
+    createOrder,
+    getOrdersByStore
 }
 
 export default apis

@@ -156,7 +156,6 @@ class Checkout extends Component {
             )
         })
 
-        console.log(store)
 
         const payload = {
             products: destructuredProducts,
@@ -171,7 +170,6 @@ class Checkout extends Component {
             total_price: total_price,
             storeID: store._id
         }
-        console.log('payload:', payload)
 
 
    

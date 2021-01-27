@@ -10,7 +10,7 @@ const admin = require('../middleware/admin')
 // router.post('/store', auth, admin, StoreCtrl.createStore)
 router.post('/order', OrderCtrl.createOrder)
 
-// router.get('/store/:id/products', ProductCtrl.getProductsByStore)
+router.get('/store/:id/orders', OrderCtrl.getOrdersByStore)
 
 
 // router.put('/product/:id', ProductCtrl.updateProduct)

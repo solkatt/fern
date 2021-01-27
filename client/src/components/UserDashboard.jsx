@@ -23,9 +23,7 @@ class UserDashboard extends Component {
                     Add New Product
                             </Link>
              
-
-             {/* TODO */}
-                <Link to="/store/orders" className="nav-link">
+                <Link to="/orders" className="nav-link">
                     Orders
                             </Link>
                             

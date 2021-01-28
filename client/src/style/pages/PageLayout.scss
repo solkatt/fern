@@ -21,9 +21,9 @@
 
         .page-title {
             position: absolute;
-            left: 0;
+            left: -4.5rem;
             bottom: 50%;
-            transform: translateY(50%);
+            transform: translateX(50%);
             font-size: 5rem;
             color: $fern-yellow;
             transform: rotate(-90deg);

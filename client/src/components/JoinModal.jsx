@@ -95,18 +95,21 @@ class JoinModal extends Component {
                 <div className="modal" onClick={this.onClickOutside}>
                     <div className="join-modal">
                         <FaWindowClose className="close pointer" onClick={this.onCloseModal} />
-                        <h1>Join</h1>
-                        <input name="firstName" type="text" placeholder="Förnamn" onChange={this.handleInputChange}></input>
-                        <input name="lastName" type="text" placeholder="Efternamn" onChange={this.handleInputChange}></input>
+                        <div className='join-form'>
+                        <h1 className='join-title'>JOIN</h1>
+
+                        <input name="firstName" type="text" placeholder="First Name" onChange={this.handleInputChange}></input>
+                        <input name="lastName" type="text" placeholder="Last Name" onChange={this.handleInputChange}></input>
                         <input name="email" type="email" placeholder="Email" onChange={this.handleInputChange}></input>
                         {/* <input name="phone" type="text" placeholder="Telefon" onChange={this.handleInputChange}></input>
                         <input name="adress" type="text" placeholder="Address" onChange={this.handleInputChange}></input>
                         <input name="city" type="text" placeholder="City" onChange={this.handleInputChange}></input>
                         <input name="zip" type="text" placeholder="Zip" onChange={this.handleInputChange}></input>
                         <input name="store" type="text" placeholder="Butik" onChange={this.handleInputChange}></input> */}
-                        <input name="password" type="password" placeholder="password" onChange={this.handleInputChange}></input>
+                        <input name="password" type="password" placeholder="Password" onChange={this.handleInputChange}></input>
 
-                        <button type="submit" onClick={this.handleSubmit}>Join</button>
+                        <button className='join-button' type="submit" onClick={this.handleSubmit}>Join</button>
+                        </div>
                     </div>
                 </div>
             </>

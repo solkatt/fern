@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import api from '../api'
-// import '../style/pages/EditProduct.scss'
+import '../style/pages/StoreFront.scss'
 import '../style/pages/PageLayout.scss'
 import { Redirect } from "react-router-dom";
 import LoadingAnimation from '../components/LoadingAnimation'
 
 import CartContext from '../context/CartContext';
+
+import { RiFacebookCircleFill, RiMessengerFill, RiInstagramFill, RiMailFill } from 'react-icons/ri';
 
 
 class EditProduct extends Component {
@@ -34,9 +36,9 @@ class EditProduct extends Component {
 
         const { name } = this.props.match.params
 
-        await this.loadStore(name).then( async () => {
+        await this.loadStore(name).then(async () => {
             this.loadStoreProducts(this.state.store._id)
-         
+
         })
 
     }
@@ -49,7 +51,7 @@ class EditProduct extends Component {
                 store: store.data.data,
                 isLoading: false,
             })
-            
+
             console.log('DATA', store.data)
         }, (err) => {
             this.setState({
@@ -108,27 +110,31 @@ class EditProduct extends Component {
             <img src={image} alt={image.indexOf()} />)} */}
 
                         {product.images.length > 0 ?
-                            <img style={{ height: '100px', width: '100px' }} src={product.images[0]} alt={product.images.indexOf()} />
+                            <img src={product.images[0]} alt={product.images.indexOf()} />
                             :
                             <div>DEFUALT IMAGE</div>
 
                         }
 
-                        <h3>{product.name}</h3>
-                        <p>{product.description} to be trunctaded</p> 
-                        <h5>{product.price}</h5>
+                        <div className='product-info-container'>
 
 
-                        <div className="btns">
-                            <button>
-                                {/* TODO LINK TO PRODUCT PAGE */}
-                                {/* <Link to={`/products/edit/${product._id}`}>
+                            <h3 className='product-name'>{product.name}</h3>
+                            <p className='product-description'>{product.description} to be trunctaded</p>
+                            <h5 className='product-price'>{product.price}kr</h5>
+
+
+                            <div className="btns">
+                                <button>
+                                    {/* TODO LINK TO PRODUCT PAGE */}
+                                    {/* <Link to={`/products/edit/${product._id}`}>
                                     Edit
                                 </Link> */}
-                            </button>
+                                </button>
 
-                            {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
-                            <button onClick={() => this.context.addToCart(product._id, this.state.store)}>Add to Cart</button>
+                                {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
+                                <button onClick={() => this.context.addToCart(product._id, this.state.store)}>Add to Cart</button>
+                            </div>
 
                         </div>
                     </div>
@@ -153,13 +159,32 @@ class EditProduct extends Component {
             <div className="page-layout">
                 <div className="page-content">
 
-                    <h1>{store.name}</h1>
+                    <div className='store-container'>
+                        <div className='store-left-container'>
+                            <div className='store-image'></div>
+                            <div className='store-social'>
+                                <RiFacebookCircleFill className='social-icon' />
+                                <RiMessengerFill className='social-icon' />
+                                <RiInstagramFill className='social-icon' />
+                                <RiMailFill className='social-icon' />
+                            </div>
+                        </div>
+
+                        <div className='store-right-container'>
+
+                            <h2 className='storefront-title'>{store.name}</h2>
+                            <p className='storefront-description'>{store.description}</p>
+                        </div>
+
+                    </div>
+                    <h2 className='page-title'>{store.name}</h2>
+
                     <h3>{store.description}</h3>
                     <div className="product-grid">
 
 
-                    
-                    {isLoading ? <LoadingAnimation /> : this.displayProducts(products)}
+
+                        {isLoading ? <LoadingAnimation /> : this.displayProducts(products)}
 
 
 

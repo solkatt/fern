@@ -1,0 +1,160 @@
+@import '../Variables.scss';
+
+
+.store-container {
+    display: flex;
+
+    align-items: center;
+
+
+
+    .store-left-container {
+        .store-image {
+            height: 200px;
+            width: 200px;
+            background: red;
+        }
+
+        background: white;
+        height: 25%;
+
+
+        .store-social {
+
+            .social-icon {
+                font-size: 2rem;
+            }
+        }
+
+
+    }
+
+
+    .store-right-container {
+
+
+        .storefront-title {
+
+            font-family: $title-font;
+            font-size: 4rem;
+            color: $fern-yellow;
+        }
+
+
+        .storefront-description {}
+
+    }
+
+
+}
+
+
+
+h2 {
+    color: red;
+}
+
+
+.product-grid {
+    align-self: center;
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 6rem;
+    box-sizing: border-box;
+
+    overflow-y: scroll;
+    background: $fern-faded-white;
+
+
+
+
+
+    .product-card {
+        width: 22rem;
+        height: 20rem;
+        border-radius: .2rem;
+        background: white;
+        box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+
+        margin: 1rem;
+        transform: translateY(0);
+        transition: all .2s ease-in-out;
+
+        img {
+            width: 100%;
+            height: 50%;
+            object-fit: cover;
+
+            border-radius: .2rem .2rem 0 0;
+
+        }
+
+        &:hover {
+            transform: translateY(-.5rem);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+
+            transition: all .2s ease-in-out;
+
+        }
+
+        .product-info-container {
+
+            width: 100%;
+            padding: 1rem;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+
+
+            .product-name {
+                font-family: $h2-font;
+                font-size: 2rem;
+            }
+
+            .product-description {
+                font-size: 1rem;
+            }
+
+            .product-price {
+                font-size: 2rem;
+                font-family: $title-font;
+                color: $fern-green;
+                align-self: flex-end;
+
+            }
+
+            .product-btns {
+                position: absolute;
+                bottom: 1rem;
+
+
+
+                button {
+                    width: 2rem;
+                    height: 2rem;
+                    background: none;
+                    border: none;
+
+
+                    .edit-icon {
+                        font-size: 1.5rem;
+                        color: black;
+                        text-decoration: none;
+
+
+                        &:hover {
+                            color: $fern-yellow;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+}

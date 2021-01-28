@@ -171,9 +171,7 @@ class EditProduct extends Component {
                         </div>
 
                     </div>
-                    {/* <h2 className='page-title'>{store.name}</h2> */}
 
-                    <h3>{store.description}</h3>
                     <div className="storefront-product-grid">
 
 

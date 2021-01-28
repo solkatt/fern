@@ -51,11 +51,9 @@ class CartNavBar extends Component {
 
             <>
 
-                <div className='cartNavBar'>
-                    <h3>Cart</h3>
-
-                    <AiOutlineShoppingCart onClick={this.onClickCart} />
-                    <h4>{this.context.getTotalQuantity()}</h4>
+                <div className='cart-navbar'>
+                    <AiOutlineShoppingCart className='cart-icon' onClick={this.onClickCart} />
+                    <div className='cart-quantity'  onClick={this.onClickCart} ><h2 className='cart-quantity-number'>{this.context.getTotalQuantity()}</h2></div>
                     {(this.state.cartOpen) ? <Cart onCloseModal={this.onClickCart} /> : ''}
 
                 </div>

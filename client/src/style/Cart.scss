@@ -1,0 +1,175 @@
+@import './Variables.scss';
+
+.cart-modalbg {
+    position: absolute;
+
+    background: rgba(0, 0, 0, 0);
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .cart-modal {
+        position: absolute;
+        border-radius: .2rem;
+        top: 5rem;
+        right: 7rem;
+        width: 25rem;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        box-shadow: -3px 3px 10px rgba(122, 122, 122, 0.2);;
+
+
+        .cart-store-title {
+            padding: 1rem 0;
+            background: $fern-white;
+            border-radius: .2rem .2rem 0 0 ;
+            text-align: center;
+            width: 100%;
+            align-self: center;
+            font-family: $fern_font;
+            color: $fern-black;
+        }
+
+
+
+        .cart-item {
+            margin-top: .5rem;
+            color: $fern-black;
+            padding: 0 1rem;
+            display: flex;
+
+
+            .cart-item-image-container {
+                width: 40%;
+                background: white;
+                display: flex;
+                align-items: center;
+
+                .cart-item-image {
+
+                    height: 5rem;
+                    width: 7rem;
+                    object-fit: cover;
+                }
+            }
+
+            .cart-item-info {
+                padding: .5rem;
+                box-sizing: border-box;
+                border-radius: .2rem;
+                width: 60%;
+                height: 5rem;
+                background: $fern-white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+
+                .cart-item-title {
+                    font-family: $fern_font;
+                    font-size: 1rem;
+                    font-weight: 900;
+
+                }
+
+                .cart-item-price {
+                    // margin-top: 1rem;
+                    font-family: $fern_font;
+                    align-self: flex-end;
+                    font-size: .8rem;
+                    font-weight: 100;
+
+                }
+
+
+                .cart-item-edit {
+                    margin-top: .5rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 4rem;
+
+                    font-size: 1rem;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+
+
+                    .cart-item-quantity {
+
+                        font-family: $fern_font;
+                        font-size: .7rem;
+                    }
+
+                }
+
+
+            }
+
+        }
+
+
+        .cart-total-price {
+            font-family: $fern_font;
+            font-size: 1rem;
+
+            color: black;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+
+            .cart-total-total {
+                font-family: $fern_font;
+                font-size: 1rem;
+            }
+
+            .cart-total-sum {
+                font-family: $fern_font;
+                font-size: 1rem;
+            }
+
+
+        }
+
+    }
+
+    .cart-line {
+
+        margin-top: .5rem;
+        width: 80%;
+        align-self: center;
+        height: 2px;
+        background: rgba(36, 36, 36, 0.1);
+    }
+}
+
+
+.checkout-button {
+    margin-top: 1rem;
+    align-self: center;
+    border: none;
+    height: 2rem;
+    width: 8rem;
+    border-radius: .7rem;
+    background: $fern-green;
+
+    font-family: $title-font;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    
+
+
+    .checkout-button-text {
+        text-decoration: none;
+        color: white;
+
+    }
+}

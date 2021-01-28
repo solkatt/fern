@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../style/Cart.scss'
 import '../../style/Common.scss'
 
-import { FaWindowClose } from 'react-icons/fa';
+import { AiFillDelete, AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import api from '../../api'
 
 import CartContext from '../../context/CartContext';
@@ -35,7 +35,7 @@ class Cart extends Component {
 
 
     onClickOutside = (event) => {
-        const specifiedElement = document.querySelector('.join-modal')
+        const specifiedElement = document.querySelector('.cart-modal')
         let isClickInside = specifiedElement.contains(event.target)
         if (!isClickInside) {
             this.onCloseModal()
@@ -57,7 +57,7 @@ class Cart extends Component {
 
     componentDidMount = async () => {
 
-    
+
 
 
 
@@ -106,21 +106,21 @@ class Cart extends Component {
         await shoppingCart.map(
             (product) => {
                 api.getProductById(product.product).then((dbProduct) => {
-                 
+
 
                     const loadedProduct = dbProduct.data.data
 
-                     loadedProduct.cartQuantity = product.quantity
-     
+                    loadedProduct.cartQuantity = product.quantity
+
                     this.setState({
                         products: [...this.state.products, loadedProduct],
                         isLoading: false,
                     })
-                 
+
                     this.context.linkCartToStore(loadedProduct.storeID)
 
 
-                    
+
 
 
                 }, (err) => {
@@ -149,31 +149,44 @@ class Cart extends Component {
 
     displayCartContent = () => {
 
-
         const products = this.state.products
 
-        
-        if (products.length < 1) return 
-        
+
+        if (products.length < 1) return
+
         return (
             <>
+
                 {products.map(
                     (product) => {
-                        
+
                         return (
-                            <div key={product._id}>
-                                <h3>{product.name}</h3>
-                                <h3>{product.price}</h3>
-                                <h3>{product.cartQuantity}</h3>
-                                <img style={{height: '100px', width: '100px'}} src={product.images[0]} />
-                            </div>
+                            <>
+                                <div className='cart-item' key={product._id}>
+                                    <div className='cart-item-image-container'>
+                                        <img className='cart-item-image' src={product.images[0]} />
+                                    </div>
+                                    <div className='cart-item-info'>
+                                        <h3 className='cart-item-title'>{product.name}</h3>
+                                        <div className='cart-item-edit'>
+                                            <AiOutlineMinusCircle />
+                                            <h3 className='cart-item-quantity'>X {product.cartQuantity} </h3>
+                                            <AiOutlinePlusCircle />
+                                        </div>
+                                       {/* < AiFillDelete className=''/> */}
+                                        <h3 className='cart-item-price'>{product.price} kr</h3>
+                                    </div>
+                                </div>
+                                <div className='cart-line'></div>
+                            </>
                         )
                     }
-                    )}
-<div>
-    Total:{products ? this.context.calculateSum(products) : ''}
+                )}
+                <div className='cart-total-price'>
+                    <h2 className='cart-total-total'>Total:</h2> <h2 className='cart-total-sum'>{products ? this.context.calculateSum(products) : ''} kr</h2>
 
-</div>
+                </div>
+
 
             </>
         )
@@ -191,10 +204,9 @@ class Cart extends Component {
 
         return (
             <>
-                <div className="modal" onClick={this.onClickOutside}>
-                    <div className="join-modal">
-                        <FaWindowClose className="close pointer" onClick={this.onCloseModal} />
-                        <h1>CART for {this.context.store.name}</h1>
+                <div className="cart-modalbg" onClick={this.onClickOutside}>
+                    <div className="cart-modal">
+                        <h1 className='cart-store-title'>Products in Cart</h1>
                         {isLoading ? <LoadingAnimation /> : this.displayCartContent()}
 
                         {/* <button type="submit" onClick={this.handleSubmit}>Check out</button> */}
@@ -202,11 +214,13 @@ class Cart extends Component {
 
 
 
-                        <button onClick={this.onCloseModal}><Link to={{  
+                        <button className='checkout-button' onClick={this.onCloseModal}>
+                            <Link className='checkout-button-text' to={{
                             pathname: `/storefront/{${this.context.store.name}}/checkout`,
-                            state: {products}}}>
-                               Checkout
-            </Link></button> 
+                            state: { products }
+                        }}>
+                            Checkout
+            </Link></button>
 
 
                     </div>

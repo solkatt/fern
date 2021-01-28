@@ -124,19 +124,12 @@ class EditProduct extends Component {
                             <h5 className='product-price'>{product.price}kr</h5>
 
 
-                            <div className="btns">
-                                <button>
-                                    {/* TODO LINK TO PRODUCT PAGE */}
-                                    {/* <Link to={`/products/edit/${product._id}`}>
-                                    Edit
-                                </Link> */}
-                                </button>
+                    
 
-                                {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
-                                <button onClick={() => this.context.addToCart(product._id, this.state.store)}>Add to Cart</button>
+                                <button className='add-to-cart' onClick={() => this.context.addToCart(product._id, this.state.store)}>Add to Cart</button>
                             </div>
 
-                        </div>
+               
                     </div>
                 )}
             </>
@@ -174,13 +167,14 @@ class EditProduct extends Component {
 
                             <h2 className='storefront-title'>{store.name}</h2>
                             <p className='storefront-description'>{store.description}</p>
+                            <p>{store.adress}</p>
                         </div>
 
                     </div>
-                    <h2 className='page-title'>{store.name}</h2>
+                    {/* <h2 className='page-title'>{store.name}</h2> */}
 
                     <h3>{store.description}</h3>
-                    <div className="product-grid">
+                    <div className="storefront-product-grid">
 
 
 

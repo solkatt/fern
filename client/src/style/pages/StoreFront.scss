@@ -4,22 +4,38 @@
 .store-container {
     display: flex;
 
+    height: 30%;
     align-items: center;
-
+    box-sizing: border-box;
+    padding-top: 1rem;
+    
 
 
     .store-left-container {
+        border-radius: .7rem;
+        width: 20%;
+        height: 100%;
+        
+        background: $fern-faded-white;
+
+
         .store-image {
-            height: 200px;
-            width: 200px;
-            background: red;
+          height: 80%;
+         width: 100%;
+
+        border-radius: .7rem .7rem 0 0;
+
+        background: grey;
+
         }
 
-        background: white;
-        height: 25%;
 
 
         .store-social {
+            display: flex;
+            padding: .4rem;
+            justify-content: space-around;
+            align-items: center;
 
             .social-icon {
                 font-size: 2rem;
@@ -31,17 +47,24 @@
 
 
     .store-right-container {
-
+        margin-left: 2rem;
+        border-radius: .7rem;
+        box-sizing: border-box;
+        width: 80%;
+        height: 100%;
+       
 
         .storefront-title {
 
             font-family: $title-font;
-            font-size: 4rem;
+            font-size: 5rem;
             color: $fern-yellow;
         }
 
 
-        .storefront-description {}
+        .storefront-description {
+            color: $fern-faded-white;
+        }
 
     }
 
@@ -50,14 +73,11 @@
 
 
 
-h2 {
-    color: red;
-}
 
 
-.product-grid {
-    align-self: center;
-    height: 75%;
+.storefront-product-grid {
+
+    height: 65%;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -127,31 +147,19 @@ h2 {
 
             }
 
-            .product-btns {
+
+
+            .add-to-cart {
+
+                border-radius: .7rem;
+                border: none;
+                padding: .4rem;
                 position: absolute;
+                background: $fern-green;
+                color: white;
                 bottom: 1rem;
-
-
-
-                button {
-                    width: 2rem;
-                    height: 2rem;
-                    background: none;
-                    border: none;
-
-
-                    .edit-icon {
-                        font-size: 1.5rem;
-                        color: black;
-                        text-decoration: none;
-
-
-                        &:hover {
-                            color: $fern-yellow;
-                        }
-                    }
-                }
             }
+          
 
         }
 

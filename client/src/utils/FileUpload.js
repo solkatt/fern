@@ -2,6 +2,8 @@ import api from '../api'
 
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
+import '../style/Common.scss'
+
 
 function FileUpload(props) {
 
@@ -74,32 +76,24 @@ const onDelete = (image) => {
 
     return (
 
-        <div>
-            FileUpload
+        <div className='fileupload-container'>
             <Dropzone onDrop={onDrop} multiple={false} maxSize={8000000000} >
                 {({ getRootProps, getInputProps }) => (
-                    <div style={
-                        {
-                            width: '300px',
-                            height: '240px',
-                            border: '1px solid lightgray',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }} {...getRootProps()}>
+                    <div className='fileupload-drop' {...getRootProps()}>
 
                         <input {...getInputProps()} />
                         <h2 > + </h2>
+                        <h4>Drop or click to add image</h4>
                     </div >
                 )}
             </Dropzone>
 
-            <div style={{ display: 'flex', width: '350px', height: '240px', overflowX: 'scroll' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '350px', height: '240px', overflow: 'hidden' }}>
 
 
             {    Images.map((image, index) => (
                 <div onClick={() => onDelete(image)} key={index}>
-                    <img style={{minWidth: '300px', width: '300px', height: '240px' }} src={`${image}`} alt={`productImg-${index}`} key={index}/>
+                    <img className='fileupload-image' src={`${image}`} alt={`productImg-${index}`} key={index}/>
                 </div>
 
             ))}

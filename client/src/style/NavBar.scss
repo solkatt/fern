@@ -13,25 +13,44 @@ nav {
     z-index: 10;
     color: #f1f1f1;
     padding: 0 6rem;
-   
 
+
+    .nav-link {
+        color: #f1f1f1;
+
+
+        &:hover {
+            color: $fern-yellow;
+            transition: all .2s ease-in-out;
+        }
+
+        
+
+    }
 
     .nav-link-logout {
         color: white;
         text-decoration: none;
+
+        &:hover {
+            color: $fern-yellow;
+            transition: color .2s ease-in-out;
+
+        }
     }
+
     .nav-menu {
         display: flex;
-         padding: 0 2rem;
+        padding: 0 2rem;
 
 
 
         .log-in {
             margin: 0 1rem;
             transition: color 1s ease-in-out;
-      
+
             h4 {
-                
+
                 &:hover {
                     color: $fern-yellow;
                     transition: color .2s ease-in-out;
@@ -44,7 +63,7 @@ nav {
             margin: 0 1rem;
 
             h4 {
-                
+
                 &:hover {
                     color: $fern-yellow;
                     transition: color .2s ease-in-out;

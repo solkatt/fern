@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import api from '../../api'
-import '../../style/pages/AddProduct.scss'
+import '../../style/pages/Orders.scss'
 import '../../style/pages/PageLayout.scss'
 import { Link } from 'react-router-dom'
 import UserContext from '../../context/UserContext';
@@ -82,35 +82,15 @@ class Orders extends Component {
 
             <>
                 {orders.map(order =>
-                    <div key={order._id} className="product-card">
+                    <div key={order._id} className="order-card">
 
-                        <h2>Order {order._id}</h2>
-                        <h2>Date: {order.createdAt}</h2>
-                        <h2>Total: {order.total_price}kr</h2>
-
-{/* 
-                        {product.images.length > 0 ?
-                            <img style={{ height: '100px', width: '100px' }} src={product.images[0]} alt={product.images.indexOf()} />
-                            :
-                            <div>DEFUALT IMAGE</div>
-
-                        }
-
-                        <h3>{product.name}</h3>
-                        <p>{product.description}</p>
-                        <h5>{product.price}</h5>
+                        <h2 className='order-id'>Order: {order._id}</h2>
+                        <h2 className='order-info'>Date: {order.createdAt}</h2>
+                        <h2 className='order-info'>Total: {order.total_price}kr</h2>
+                        <h2 className='order-info'>Shipped: {order.sent ? 'Yes' : 'No' }</h2>
+                        
 
 
-                        <div className="btns">
-                            <button><Link to={`/products/edit/${product._id}`}>
-                                Edit
-                               </Link></button>
-
-                            {/* <button onClick={() => this.onEdit(product._id)}>Edit</button> */}
-                            {/* <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
-                            <button onClick={() => this.showProduct(product._id)}>Show this ID</button>
-
-                        </div>  */}
                     </div>
                 )}
             </>
@@ -130,7 +110,8 @@ class Orders extends Component {
 
             <div className="page-layout">
                 <div className="page-content">
-                    <div className="product-grid">
+                    <h2 className='page-title'>Orders</h2>
+                    <div className="order-grid">
 
 
 

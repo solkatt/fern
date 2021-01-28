@@ -1,0 +1,106 @@
+@import '../Variables.scss';
+
+.page-title {
+    position: absolute;
+    transform: translate-y(2rem);
+    // transform: rotate(-90deg);
+    z-index: 100;
+    font-size: 4rem;
+    font-family: $title-font;
+}
+
+.order-grid {
+    align-self: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 6rem;
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    background: $fern-faded-white;
+
+
+    .order-card {
+        width: 40rem;
+        height: 5rem;
+        border-radius: .2rem;
+        background: white;
+        box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+
+        margin: .2rem;
+        padding: 1rem;
+        transform: translateY(0);
+        transition: all .2s ease-in-out;
+
+
+
+        &:hover {
+            transform: translateY(-.2rem);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+
+            transition: all .2s ease-in-out;
+
+        }
+
+
+
+        .order-id {
+            // font-family: $h2-font;
+            font-family: $fern_font;
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .order-info {
+            // font-family: $h2-font;
+            font-family: $fern_font;
+            font-size: 1rem;
+        }
+
+        .product-description {
+            font-size: 1rem;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-family: $title-font;
+            color: $fern-green;
+            align-self: flex-end;
+
+        }
+
+        .product-btns {
+            position: absolute;
+            bottom: 1rem;
+
+
+
+            button {
+                width: 2rem;
+                height: 2rem;
+                background: none;
+                border: none;
+
+
+                .edit-icon {
+                    font-size: 1.5rem;
+                    color: black;
+                    text-decoration: none;
+
+
+                    &:hover {
+                        color: $fern-yellow;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+

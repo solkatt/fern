@@ -48,17 +48,19 @@
             height: 50px;
             border: 3px solid $fern-yellow;
             border-radius: 2.5rem;
-            background: none;
+            background: $fern-black;
             font-family: $title-font;
             font-size: $title-button;
             color: $fern-yellow;
 
             margin-top: 3rem;
-
+            transition: all .3s ease-in-out;
 
             &:hover {
                 background: $fern-yellow;
-                color: $fern-green;
+                color: $fern-black;
+                transition: all .3s ease-in-out;
+
             }
         }
 

@@ -172,8 +172,9 @@ class Products extends Component {
 
             <div className="page-layout">
                 <div className="page-content">
+                <h2 className='page-title'>products</h2>
+
                     <div className="product-grid">
-                        <h2 className='page-title'>PRODUCTS</h2>
 
 
                         {isLoading ? <LoadingAnimation /> : this.displayProducts(products)}

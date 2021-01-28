@@ -4,6 +4,9 @@ import '../../style/pages/Products.scss'
 import '../../style/pages/PageLayout.scss'
 import UserContext from '../../context/UserContext';
 import FileUpload from '../../utils/FileUpload'
+import '../../style/Common.scss'
+
+
 class AddProduct extends Component {
     static contextType = UserContext;
 
@@ -121,19 +124,19 @@ class AddProduct extends Component {
                 <div className="page-content">
 
 
-                    <h2>
-                        {this.context.storeID}
-                    </h2>
+                 <div className='add-product-container'>
+
+                    <FileUpload refreshFunction={this.updateImages} />
                     <div className="add-product-form">
 
-                        <FileUpload refreshFunction={this.updateImages} />
-                        <input name="name" type="text" placeholder="Product Name" onChange={this.handleInputChange} />
-                        <textarea name="description" type="text" placeholder="Description" onChange={this.handleInputChange} />
-                        <input name="categories" type="text" placeholder="Categories" onChange={this.handleInputChange} />
-                        <input name="price" type="number" placeholder="Price" onChange={this.handleInputChange} />
-                        <input name="stock_quantity" type="number" placeholder="Stock Quantity" onChange={this.handleInputChange} />
-                        <button type="submit" onClick={this.handleSubmit}>Add Product</button>
+                        <input name="name" className='common-input' type="text" placeholder="Product Name" onChange={this.handleInputChange} />
+                        <textarea name="description" className='common-input' type="text" placeholder="Description" onChange={this.handleInputChange} />
+                        {/* <input name="categories" className='common-input' type="text" placeholder="Categories" onChange={this.handleInputChange} /> */}
+                        <input name="price" className='common-input' type="number" placeholder="Price" onChange={this.handleInputChange} />
+                        <input name="stock_quantity" className='common-input' type="number" placeholder="Stock Quantity" onChange={this.handleInputChange} />
+                        <button type="submit" className='common-button' onClick={this.handleSubmit}>Add Product</button>
                     </div>
+                 </div>
 
 
 

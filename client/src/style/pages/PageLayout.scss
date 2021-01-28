@@ -7,13 +7,27 @@
     padding-top: 3rem;
     box-sizing: border-box;
     height: 100%;
-
+    display: flex;
+    justify-content: center;
+    
     .page-content {
         // background: #f2f2f2;
-
+        
         height: 100%;
-        width: 100%;
+        width: 80%;
         
 
+
+
+        .page-title {
+            position: absolute;
+            left: 0;
+            bottom: 50%;
+            transform: translateY(50%);
+            font-size: 5rem;
+            color: $fern-yellow;
+            transform: rotate(-90deg);
+
+        }
     }
 }

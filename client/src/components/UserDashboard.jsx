@@ -6,9 +6,9 @@ class UserDashboard extends Component {
     render() {
         return (
             <React.Fragment>
-                <Link to="/" className="nav-link">
+                {/* <Link to="/" className="nav-link">
                     Home
-                </Link>
+                </Link> */}
 
 
                 <Link to="/store/" className="nav-link">

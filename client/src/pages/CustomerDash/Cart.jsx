@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../style/Cart.scss'
 import '../../style/Common.scss'
 
-import { AiFillDelete, AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineMinusCircle } from 'react-icons/ai';
 import api from '../../api'
 
 import CartContext from '../../context/CartContext';
@@ -169,9 +169,9 @@ class Cart extends Component {
                                     <div className='cart-item-info'>
                                         <h3 className='cart-item-title'>{product.name}</h3>
                                         <div className='cart-item-edit'>
-                                            <AiOutlineMinusCircle />
+                                            <AiOutlineMinus />
                                             <h3 className='cart-item-quantity'>X {product.cartQuantity} </h3>
-                                            <AiOutlinePlusCircle />
+                                            <AiOutlinePlus />
                                         </div>
                                        {/* < AiFillDelete className=''/> */}
                                         <h3 className='cart-item-price'>{product.price} kr</h3>
@@ -183,7 +183,7 @@ class Cart extends Component {
                     }
                 )}
                 <div className='cart-total-price'>
-                    <h2 className='cart-total-total'>Total:</h2> <h2 className='cart-total-sum'>{products ? this.context.calculateSum(products) : ''} kr</h2>
+                    <h2 className='cart-total-total'>Total</h2> <h2 className='cart-total-sum'>{products ? this.context.calculateSum(products) : ''} kr</h2>
 
                 </div>
 

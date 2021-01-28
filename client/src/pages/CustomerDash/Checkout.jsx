@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import api from '../../api'
-import '../../style/pages/EditProduct.scss'
+import '../../style/pages/Checkout.scss'
 import '../../style/pages/PageLayout.scss'
 import { Redirect } from "react-router-dom";
 
@@ -18,7 +18,7 @@ class Checkout extends Component {
             name: '',
             email: '',
             adress: [
-                {street: '', city: '', zip: 0}
+                { street: '', city: '', zip: 0 }
             ],
             phone: 0,
             payment_method: null,
@@ -31,6 +31,7 @@ class Checkout extends Component {
         this.handleInputChange = this.handleInputChange.bind(this)
         this.handleAdressChange = this.handleAdressChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.onClickNextBtn = this.onClickNextBtn.bind(this)
 
 
 
@@ -46,7 +47,7 @@ class Checkout extends Component {
         this.setState({ isLoading: true })
 
         await this.loadCartData().then(() => {
-            
+
             this.setState({
                 isLoading: false
 
@@ -99,11 +100,11 @@ class Checkout extends Component {
         const value = event.target.value;
         const field = event.target.name;
         this.setState({
-                [field]: value
+            [field]: value
         })
 
 
-    
+
 
 
         // this.setState({...this.state.product, name: value});
@@ -123,10 +124,10 @@ class Checkout extends Component {
 
         const value = event.target.value;
         const field = event.target.name;
-        
-        const adress = {...this.state.adress}
+
+        const adress = { ...this.state.adress }
         adress[field] = value
-        this.setState({adress})
+        this.setState({ adress })
 
     }
 
@@ -143,16 +144,16 @@ class Checkout extends Component {
 
         alert('fired')
 
-        
+
         const { products, name, email, adress, phone, payment_method } = this.state
 
         const store = this.context.store
 
         const total_price = this.context.calculateSum(products)
-        
+
         const destructuredProducts = products.map((fullProduct) => {
             return (
-                {product: fullProduct.name, productID: fullProduct._id, price: fullProduct.price, quantity: fullProduct.cartQuantity }
+                { product: fullProduct.name, productID: fullProduct._id, price: fullProduct.price, quantity: fullProduct.cartQuantity }
             )
         })
 
@@ -163,7 +164,7 @@ class Checkout extends Component {
             name: name,
             email: email,
             adress: [
-                {street: adress.street, city: adress.city, zip: adress.zip}
+                { street: adress.street, city: adress.city, zip: adress.zip }
             ],
             phone: phone,
             payment_method: 'DHL',
@@ -172,10 +173,10 @@ class Checkout extends Component {
         }
 
 
-   
 
-// create Store
-// Then put StoreID to User
+
+        // create Store
+        // Then put StoreID to User
         await api.createOrder(payload).then((res) => {
 
 
@@ -202,7 +203,40 @@ class Checkout extends Component {
     }
 
 
+    onClickNextBtn = (event) => {
 
+
+        const button = event.target.name
+
+        const detailsContainer = document.querySelector('.customer-details-container')
+        const detailsTitle = document.querySelector('.details-title')
+
+        const shippingContainer = document.querySelector('.shipping-container')
+         const shippingTitle =  document.querySelector('.shipping-title')
+
+        const paymentContainer = document.querySelector('.payment-container')
+        // const paymentTitle =  document.querySelector('.payment-title')
+
+
+        if (button === 'details') {
+            detailsContainer.classList.add('hide')
+            detailsTitle.classList.add('hide')
+
+            shippingContainer.classList.remove('hide')
+            shippingTitle.classList.remove('hide')
+        }
+
+        if (button === 'shipping') {
+            shippingContainer.classList.add('hide')
+            // shippingTitle.classList.add('hide')
+
+            paymentContainer.classList.remove('hide')
+            // shippingTitle.classList.add('hide')
+
+        }
+
+
+    }
 
 
 
@@ -213,7 +247,7 @@ class Checkout extends Component {
 
         let totalPrice = 0
 
-        if(this.state.products) {
+        if (this.state.products) {
 
 
         }
@@ -222,57 +256,75 @@ class Checkout extends Component {
 
         return (
             <>
-                <h2>POOP</h2>
-                <h2>Store: {store.name}</h2>
 
 
-                <div>
-                    <h2>Cart:</h2>
-                    {this.state.products.map((product) => {
-                        return (
-                            <div key={product._id}>
-                                <h2>Product name: {product.name}</h2>
-                                <img src={product.images[0]} style={{ height: '200px', width: '200px' }} />
-                                <h2>Price styck: {product.price}</h2>
-                                <h2>quantity: {product.cartQuantity}</h2>
-                                <p>+</p>
-                                <p>-</p>
+                <div className='order-container hide'>
+
+                    <h2>Store: {store.name}</h2>
+
+
+                    <div>
+                        <h2>Cart:</h2>
+                        {this.state.products.map((product) => {
+                            return (
+                                <div className='order-item' key={product._id}>
+                                    <div className='order-item-image-container'>
+
+                                        <img src={product.images[0]} style={{ height: '200px', width: '200px' }} />
+                                    </div>
+
+                                    <h2>Product name: {product.name}</h2>
+                                    <h2>Price styck: {product.price}</h2>
+                                    <h2>quantity: {product.cartQuantity}</h2>
+                                    <p>+</p>
+                                    <p>-</p>
 
                                 Total:{products ? this.context.calculateSum(products) : ''}
 
-                            </div>
-                        )
-                    })}
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
 
-                <div>
-                    <h2>Customer info:</h2>
-                    <input name="name" type="text" placeholder="Name" onChange={this.handleInputChange}></input>
-                    <input name="email" type="email" placeholder="Email" onChange={this.handleInputChange}></input>
-                    <input name="phone" type="number" placeholder="Phone" onChange={this.handleInputChange}></input>
-                    <input name="adress" type="text" placeholder="Adress" onChange={this.handleAdressChange}></input>
-                    <input name="city" type="text" placeholder="City" onChange={this.handleAdressChange}></input>
-                    <input name="zip" type="number" placeholder="Zip" onChange={this.handleAdressChange}></input>
-                    <button>Next</button>
+                <div className='checkout-wrapper'>
+
+                    <h1 className='details-title'>ORDER DETAILS</h1>
+                    <div className='customer-details-container'>
+                        <div className='details-form'>
+
+                            <input name="name" type="text" placeholder="Name" onChange={this.handleInputChange}></input>
+                            <input name="email" type="email" placeholder="Email" onChange={this.handleInputChange}></input>
+                            <input name="phone" type="number" placeholder="Phone" onChange={this.handleInputChange}></input>
+                            <input name="adress" type="text" placeholder="Adress" onChange={this.handleAdressChange}></input>
+                            <input name="city" type="text" placeholder="City" onChange={this.handleAdressChange}></input>
+                            <input name="zip" type="number" placeholder="Zip" onChange={this.handleAdressChange}></input>
+                            <button name="details" className="next-button common-button" onClick={this.onClickNextBtn}>Next</button>
+                        </div>
+                    </div>
+
+
+                    <h2 className='shipping-title hide'>Shipping</h2>
+                    <div className='shipping-container hide'>
+
+
+
+                        <label class="container">DHL
+                        <input type="checkbox" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <button name="shipping" className="next-button common-button" onClick={this.onClickNextBtn}>Next</button>
+
+                    </div>
+                    <div className='payment-container hide'>
+                        <h2>Payment</h2>
+
+
+                        <button onClick={this.handleSubmit}>Place Order</button>
+
+                    </div>
+
                 </div>
-                <div>
-                    <h2>Shipping</h2>
-
-                    <label class="container">DHL
-                        <input type="checkbox"  />
-                        <span class="checkmark"></span>
-                    </label>
-                    <button>Next</button>
-
-                </div>
-                <div>
-                    <h2>Payment</h2>
-
-                  
-                    <button onClick={this.handleSubmit}>Place Order</button>
-
-                </div>
-
             </>
         )
 

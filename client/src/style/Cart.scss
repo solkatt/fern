@@ -95,8 +95,8 @@
                     align-items: center;
                     width: 4rem;
 
-                    font-size: 1rem;
-
+                    font-size: .6rem;
+                    color: grey;
                     &:hover {
                         cursor: pointer;
                     }
@@ -125,6 +125,10 @@
             padding: 1rem;
             display: flex;
             justify-content: space-between;
+            width: 85%;
+            align-self: center;
+            border-bottom: 1px solid rgba(61, 61, 61, 0.3);
+
 
             .cart-total-total {
                 font-family: $fern_font;

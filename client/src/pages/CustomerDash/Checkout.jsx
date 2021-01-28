@@ -212,7 +212,7 @@ class Checkout extends Component {
         const detailsTitle = document.querySelector('.details-title')
 
         const shippingContainer = document.querySelector('.shipping-container')
-         const shippingTitle =  document.querySelector('.shipping-title')
+        const shippingTitle = document.querySelector('.shipping-title')
 
         const paymentContainer = document.querySelector('.payment-container')
         // const paymentTitle =  document.querySelector('.payment-title')
@@ -228,10 +228,10 @@ class Checkout extends Component {
 
         if (button === 'shipping') {
             shippingContainer.classList.add('hide')
-            // shippingTitle.classList.add('hide')
+            shippingTitle.classList.add('hide')
 
             paymentContainer.classList.remove('hide')
-            // shippingTitle.classList.add('hide')
+            //  shippingTitle.classList.remove('hide')
 
         }
 
@@ -308,11 +308,33 @@ class Checkout extends Component {
                     <div className='shipping-container hide'>
 
 
+                        <div className='shipping-alternatives'>
+                            <form>
+                                <label>
+                                    <input type="radio" name="radio" checked />
+                                    <span className='shipping-alternative-title'>Sschenker</span>
+                                    <p className='shipping-alternative-info'>69kr | 2-3 days delivery</p>
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" />
+                                    <span className='shipping-alternative-title'>Postnord</span>
+                                    <p className='shipping-alternative-info'>89kr | 2-14 days delivery</p>
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" />
+                                    <span className='shipping-alternative-title'>DHL</span>
+                                    <p className='shipping-alternative-info'>99kr | 1-4 days delivery</p>
+                                </label>
+                                <label>
+                                    <input type="radio" name="radio" />
+                                    <span className='shipping-alternative-title'>Instabox</span>
+                                    <p className='shipping-alternative-info'>129kr | Next day delivery</p>
 
-                        <label class="container">DHL
-                        <input type="checkbox" />
-                            <span class="checkmark"></span>
-                        </label>
+                                </label>
+                            </form>
+
+                        </div>
+
                         <button name="shipping" className="next-button common-button" onClick={this.onClickNextBtn}>Next</button>
 
                     </div>

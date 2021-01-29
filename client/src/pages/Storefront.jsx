@@ -120,7 +120,7 @@ class EditProduct extends Component {
 
 
                             <h3 className='product-name'>{product.name}</h3>
-                            <p className='product-description'>{product.description} to be trunctaded</p>
+                            <p className='product-description'>{product.description}</p>
                             <h5 className='product-price'>{product.price}kr</h5>
 
 

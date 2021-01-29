@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import api from '../../api'
-import '../../style/pages/Products.scss'
+import '../../style/pages/CreateStore.scss'
 import '../../style/pages/PageLayout.scss'
 import UserContext from '../../context/UserContext';
 import FileUpload from '../../utils/FileUploadStore'
+import '../../style/Common.scss'
+
 class CreateStore extends Component {
     static contextType = UserContext;
 
@@ -177,21 +179,26 @@ class CreateStore extends Component {
         return (
 
             <>
-                <h1>CREATE STORE</h1>
-                <h3>{this.state.userID}</h3>
+
+            <div className='add-store-container'>
+
+                <h1 className='create-store-title'>CREATE STORE</h1>
+                {/* <h3>{this.state.userID}</h3> */}
+                <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_1B1MZg.json"  background="transparent"  speed="1"  style={{width: '500px', height: '500px'}}  loop  autoplay></lottie-player>
                 <div className="add-product-form">
 
-                    <FileUpload refreshFunction={this.updateImages} />
-                    <input name="name" type="text" placeholder="Store Name" onChange={this.handleInputChange} />
-                    <textarea name="description" type="text" placeholder="Description" onChange={this.handleInputChange} />
+                    {/* <FileUpload refreshFunction={this.updateImages} /> */}
+                    <input name="name" className='common-input create-store-input' type="text" placeholder="Store Name" onChange={this.handleInputChange} />
+                    <textarea name="description" className='common-input create-store-textinput' type="text" placeholder="Description" onChange={this.handleInputChange} />
                     {/* <input name="categories" type="text" placeholder="Categories" onChange={this.handleInputChange} /> */}
-                    <input name="email" type="email" placeholder="Email" onChange={this.handleInputChange} />
-                    <input name="street" type="text" placeholder="Street" onChange={this.handleAdressChange} />
-                    <input name="zip" type="text" placeholder="Zip" onChange={this.handleAdressChange} />
-                    <input name="city" type="text" placeholder="City" onChange={this.handleAdressChange} />
+                    <input name="email" className='common-input create-store-input' type="email" placeholder="Email" onChange={this.handleInputChange} />
+                    <input name="street" className='common-input create-store-input' type="text" placeholder="Street" onChange={this.handleAdressChange} />
+                    <input name="zip" className='common-input create-store-input' type="text" placeholder="Zip" onChange={this.handleAdressChange} />
+                    <input name="city" className='common-input create-store-input' type="text" placeholder="City" onChange={this.handleAdressChange} />
 
-                    <button type="submit" onClick={this.handleSubmit}>Add Product</button>
+                    <button type="submit" className='common-button' onClick={this.handleSubmit}>Add Product</button>
                 </div>
+            </div>
             </>
         )
 

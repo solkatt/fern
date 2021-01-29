@@ -115,8 +115,8 @@ class Store extends Component {
             <div className="create-store">
                 <h1 className='no-store-title'>No store here at the moment</h1>
                 <button className='setup-store-button common-button' onClick={this.handleSetUpStore}>
-                    <h2 className='setup-text'>Set one up!</h2>
-                <Link className='link' to={`/store/create`}>
+                <Link className='setup-text' to={`/store/create`}>
+                    Set one up!
                     </Link>
                 </button>
             </div>

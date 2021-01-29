@@ -75,7 +75,7 @@ const onDelete = (image) => {
     return (
 
         <div>
-            FileUpload
+        
             <Dropzone onDrop={onDrop} multiple={false} maxSize={8000000000} >
                 {({ getRootProps, getInputProps }) => (
                     <div style={

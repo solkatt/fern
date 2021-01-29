@@ -1,0 +1,55 @@
+@import '../Variables.scss';
+
+
+
+.add-store-container {
+
+    background: $fern-black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+
+    .create-store-title {
+        position: absolute;
+        color: $fern-yellow;
+        top: 5rem;
+        left: 10rem;
+        font-size: 10rem;
+        font-family: $title-font;
+    }
+
+    .add-product-form {
+        // width: 100%;
+        // background: red;
+        margin-top: 2rem;
+        height: 520px;
+        width: 26rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // border: 2px solid black;
+
+       .create-store-input {
+            width: 30rem;
+        }
+       .create-store-textinput {
+            width: 30rem;
+            height: 8rem;
+        }
+
+        button {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 8rem;
+        border: 2px solid $fern-yellow;
+        background: none;
+        color: $fern-yellow;
+        }
+    }
+}

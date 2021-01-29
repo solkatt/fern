@@ -21,23 +21,34 @@
         width: 26rem;
         display: flex;
         flex-direction: column;
-        // justify-content: center;
+        justify-content: center;
         align-items: center;
         // border: 2px solid black;
 
         input {}
 
-        button {
-            font-size: 2rem;
 
-            border: 2px solid $fern-yellow;
-            background: none;
-            color: $fern-yellow;
 
-            &:hover {
-                background: $fern-yellow;
-                color: $fern-black;
+        .btns {
+            margin-top: 10rem;
+            display: flex;
+            justify-content: center;
+            width: 50rem;
+            justify-content: space-between;
+
+            button {
+                font-size: 2rem;
+    
+                border: 2px solid $fern-yellow;
+                background: none;
+                color: $fern-yellow;
+    
+                &:hover {
+                    background: $fern-yellow;
+                    color: $fern-black;
+                }
             }
+
         }
     }
 }

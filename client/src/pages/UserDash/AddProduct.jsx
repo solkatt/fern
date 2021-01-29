@@ -93,7 +93,7 @@ class AddProduct extends Component {
 
             alert('Product successfully uploaded')
             console.log(this.state.images)
-            this.props.history.push('/')
+            this.props.history.push('/products/all')
     
 
         }, (err) => {
@@ -122,6 +122,7 @@ class AddProduct extends Component {
         return (
             <div className="page-layout">
                 <div className="page-content">
+                <h2 className='page-title'>add product</h2>
 
 
                  <div className='add-product-container'>

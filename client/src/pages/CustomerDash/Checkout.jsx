@@ -185,6 +185,10 @@ class Checkout extends Component {
 
             })
 
+            alert('Order Created')
+
+            localStorage.removeItem('cart');
+
             console.log('RES DATA:'.res)
             this.props.history.push('/')
 

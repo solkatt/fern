@@ -88,6 +88,7 @@ class EditProduct extends Component {
 
             console.log(res.data);
 
+            alert('Product Deleted')
 
             this.setState({ redirect: "/products/all" });
 
@@ -125,6 +126,10 @@ class EditProduct extends Component {
             console.log(res.data);
 
 
+            alert('Product Updated')
+
+            this.setState({ redirect: "/products/all" });
+
             // this.setState({ redirect: "/products/all" });
 
 
@@ -150,6 +155,7 @@ class EditProduct extends Component {
 
                     <div className="edit-product-container">
                         {/* <h1>{product}</h1> */}
+                        <h2 className='page-title'>edit product</h2>
 
 
                         <div key={product._id} className="edit-product-container">
@@ -162,8 +168,8 @@ class EditProduct extends Component {
                             <h5>{product.image}</h5> */}
                             <div className='edit-product-form'>
                            
-                            <h5>{product.images}</h5>
-
+                            {/* <h5>{product.images}</h5> */}
+                            
                                 <p className='edit-product-field'>Name</p>
                                 <input name="name" className='common-input' type="text" defaultValue={product.name} onChange={this.handleInputChange} />
                                 <input name="description" className='common-input' type="text" defaultValue={product.description} onChange={this.handleInputChange} />
@@ -174,7 +180,7 @@ class EditProduct extends Component {
 
                                 <div className="btns">
                                     <button className='common-button' onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
-                                    <button className='common-input' onClick={() => this.showProduct(product._id)}>Show this.state.product</button>
+                                    {/* <button className='common-input' onClick={() => this.showProduct(product._id)}>Show this.state.product</button> */}
                                     <button className='common-button' onClick={() => this.onUpdateProduct(product._id)}>Update Product</button>
 
                                 </div>

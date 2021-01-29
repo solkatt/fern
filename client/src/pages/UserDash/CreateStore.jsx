@@ -114,7 +114,7 @@ class CreateStore extends Component {
 
             // Load something
             const storeID = res.data.id
-            alert('Store successfully created')
+            // alert('Store successfully created')
             // console.log(this.state.images)
 
              this.connectStoreToUser(userID, storeID)
@@ -145,7 +145,7 @@ class CreateStore extends Component {
             // Load something
             console.log(res.data)
 
-            alert('Store successfully connected to User')
+            // alert('Store successfully connected to User')
             this.props.history.push('/')
 
 
@@ -196,7 +196,7 @@ class CreateStore extends Component {
                     <input name="zip" className='common-input create-store-input' type="text" placeholder="Zip" onChange={this.handleAdressChange} />
                     <input name="city" className='common-input create-store-input' type="text" placeholder="City" onChange={this.handleAdressChange} />
 
-                    <button type="submit" className='common-button' onClick={this.handleSubmit}>Add Product</button>
+                    <button type="submit" className='common-button' onClick={this.handleSubmit}>CREATE STORE</button>
                 </div>
             </div>
             </>

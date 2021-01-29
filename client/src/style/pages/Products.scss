@@ -24,11 +24,11 @@
 
 
     .product-card {
-        width: 22rem;       
+        width: 15rem;       
         height: 20rem;
         border-radius: .2rem;
         background: white;
-        box-shadow: 5px 10px 10px rgba(0,0,0,0.2);
+        box-shadow: 5px 4px 10px rgba(0,0,0,0.1);
   
         margin: 1rem;
         transform: translateY(0);
@@ -44,8 +44,8 @@
         }
 
         &:hover {
-            transform: translateY(-.5rem);
-            box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
+            transform: translateY(-.1rem);
+            box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
 
             transition: all .2s ease-in-out;
 
@@ -54,24 +54,29 @@
         .product-info-container {
 
             width: 100%;
-            padding: 1rem;
+            padding: 0 1rem;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             
     
             .product-name {
-                    font-family: $h2-font;
-                    font-size: 2rem;
+                    font-family: $fern_font;
+                    font-size: 1.5rem;
             }
     
             .product-description {
+                font-family: $fern_font;
+
+                margin-top: .3rem;
                 font-size: 1rem;
             }
     
             .product-price {
-                font-size: 2rem;
-                font-family: $title-font;
+                position: relative;
+                bottom: -2.5rem;
+                font-size: 1.2rem;
+                font-family: $fern_font;
                 color: $fern-green;
                 align-self: flex-end;
 
@@ -84,20 +89,21 @@
 
     
                 button {
-                    width: 2rem;
-                    height: 2rem;
+                    width: .5rem;
+                    height: .5rem;
                     background: none;
                     border: none;
+                    margin-right: 1rem;
                     
-
+                    
                     .edit-icon {
                         font-size: 1.5rem;
-                        color: black;
+                        color: rgb(194, 194, 194);
                         text-decoration: none;
 
 
                         &:hover {
-                            color: $fern-yellow;
+                            color: $fern-black;
                         }
                     }
                 }

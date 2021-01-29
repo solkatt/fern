@@ -323,7 +323,7 @@ class Checkout extends Component {
                             <form>
                                 <label>
                                     <input type="radio" name="radio" />
-                                    <span className='shipping-alternative-title'>Sschenker</span>
+                                    <span className='shipping-alternative-title'>Schenker</span>
                                     <p className='shipping-alternative-info'>69kr | 2-3 days delivery</p>
                                 </label>
                                 <label>

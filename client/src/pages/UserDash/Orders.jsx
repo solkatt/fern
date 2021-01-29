@@ -70,7 +70,7 @@ class Orders extends Component {
         if (orders.length < 1) {
             return (
                 <>
-                    <h2>No orders atm</h2>
+                    <h2>No orders at the moment</h2>
                 </>
             )
         }

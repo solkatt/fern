@@ -1,8 +1,47 @@
 @import '../Variables.scss';
+@import '../Common.scss';
 
 .store-layout {
     border: 2px solid black;
     height: 80%;
     width: 60%;
 
+}
+
+.create-store {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+
+
+    .no-store-title {
+        margin-top: 5rem;
+        font-family: $title-font;
+        color: $fern-yellow;
+
+        font-size: 10rem;
+    }
+
+    .setup-store-button {
+        text-decoration: none;
+        margin-bottom: 10rem;
+        border: 2px solid $fern-yellow;
+        background: none;
+        color: $fern-yellow;
+
+        
+     
+        &:hover {
+            background: $fern-yellow;
+            color: $fern-black;
+            cursor: pointer;
+        }
+        // .setup-text {
+        //     color: $fern-yellow;
+            
+        // }
+    }
 }

@@ -67,7 +67,9 @@ class JoinModal extends Component {
         }
 
         await api.registerUser(payload).then((res) => {
-            console.log(res);
+
+console.log(res)
+             this.onCloseModal()
 
         }, (err) => {
             console.log(err)

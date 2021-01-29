@@ -113,10 +113,10 @@ class Store extends Component {
 
         return (
             <div className="create-store">
-                <h1>No store here at the moment</h1>
-                <button onClick={this.handleSetUpStore}>
-                <Link to={`/store/create`}>
-                    Set one up!
+                <h1 className='no-store-title'>No store here at the moment</h1>
+                <button className='setup-store-button common-button' onClick={this.handleSetUpStore}>
+                    <h2 className='setup-text'>Set one up!</h2>
+                <Link className='link' to={`/store/create`}>
                     </Link>
                 </button>
             </div>
@@ -174,7 +174,7 @@ class Store extends Component {
 
     render() {
         const { store, isLoading } = this.state
-        const { storeID } = this.context
+        // const { storeID } = this.context
 
         return (
 

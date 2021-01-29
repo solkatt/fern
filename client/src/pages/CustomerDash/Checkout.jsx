@@ -136,16 +136,15 @@ class Checkout extends Component {
 
     handleSubmit = async () => {
 
+    
+
 
         this.setState({
             isLoading: true,
         });
 
 
-        alert('fired')
-
-
-        const { products, name, email, adress, phone, payment_method } = this.state
+        const { products, name, email, adress, phone} = this.state
 
         const store = this.context.store
 
@@ -174,7 +173,6 @@ class Checkout extends Component {
 
 
 
-
         // create Store
         // Then put StoreID to User
         await api.createOrder(payload).then((res) => {
@@ -184,10 +182,13 @@ class Checkout extends Component {
             this.setState({
                 isLoading: false,
                 // rediret: 'ordercomplete'
-            })
-            alert('Order successfully created')
 
-            console.log(res.data)
+            })
+
+            console.log('RES DATA:'.res)
+            this.props.history.push('/')
+
+
 
         }, (err) => {
             console.log(err)
@@ -203,20 +204,25 @@ class Checkout extends Component {
     }
 
 
+
     onClickNextBtn = (event) => {
 
 
         const button = event.target.name
 
+    
+
         const detailsContainer = document.querySelector('.customer-details-container')
         const detailsTitle = document.querySelector('.details-title')
 
         const shippingContainer = document.querySelector('.shipping-container')
+        
         const shippingTitle = document.querySelector('.shipping-title')
 
         const paymentContainer = document.querySelector('.payment-container')
-        // const paymentTitle =  document.querySelector('.payment-title')
+        const paymentTitle =  document.querySelector('.payment-title')
 
+        // const orderContainer = document.querySelector('.order-container')
 
         if (button === 'details') {
             detailsContainer.classList.add('hide')
@@ -231,9 +237,11 @@ class Checkout extends Component {
             shippingTitle.classList.add('hide')
 
             paymentContainer.classList.remove('hide')
-            //  shippingTitle.classList.remove('hide')
+            paymentTitle.classList.remove('hide')
 
         }
+
+      
 
 
     }
@@ -245,7 +253,6 @@ class Checkout extends Component {
         const store = this.context.store
         const products = this.state.products
 
-        let totalPrice = 0
 
         if (this.state.products) {
 
@@ -270,7 +277,7 @@ class Checkout extends Component {
                                 <div className='order-item' key={product._id}>
                                     <div className='order-item-image-container'>
 
-                                        <img src={product.images[0]} style={{ height: '200px', width: '200px' }} />
+                                        <img alt='product' src={product.images[0]} style={{ height: '200px', width: '200px' }} />
                                     </div>
 
                                     <h2>Product name: {product.name}</h2>
@@ -311,7 +318,7 @@ class Checkout extends Component {
                         <div className='shipping-alternatives'>
                             <form>
                                 <label>
-                                    <input type="radio" name="radio" checked />
+                                    <input type="radio" name="radio" />
                                     <span className='shipping-alternative-title'>Sschenker</span>
                                     <p className='shipping-alternative-info'>69kr | 2-3 days delivery</p>
                                 </label>
@@ -339,10 +346,11 @@ class Checkout extends Component {
 
                     </div>
                     <div className='payment-container hide'>
-                        <h2>Payment</h2>
+                        <h2 className='payment-title'>Payment</h2>
 
-
-                        <button onClick={this.handleSubmit}>Place Order</button>
+                        <input className='credit-card-input' placeholder='Credit Card Number'></input>
+                         
+                        <button name='pay' className='pay-button common-button' onClick={this.handleSubmit}>PAY</button>
 
                     </div>
 
@@ -365,46 +373,51 @@ class Checkout extends Component {
 
         await shoppingCart.map(
             (product) => {
-                api.getProductById(product.product).then((dbProduct) => {
 
 
-                    const loadedProduct = dbProduct.data.data
+                return (
 
-                    loadedProduct.cartQuantity = product.quantity
-
-                    this.setState({
-                        products: [...this.state.products, loadedProduct],
-                        isLoading: false,
+                    api.getProductById(product.product).then((dbProduct) => {
+                        
+                        
+                        const loadedProduct = dbProduct.data.data
+                        
+                        loadedProduct.cartQuantity = product.quantity
+                        
+                        this.setState({
+                            products: [...this.state.products, loadedProduct],
+                            isLoading: false,
+                        })
+                        
+                        
+                        
+                        
+                        
+                    }, (err) => {
+                        console.log(err)
+                        this.setState({
+                            isLoading: false,
+                        })
                     })
-
-
-
-
-
-                }, (err) => {
-                    console.log(err)
-                    this.setState({
-                        isLoading: false,
+                    
+                    
+                    
+                    // return (
+                        //     <div key={index}>
+                        //       <h2>{product}</h2>
+                        //       <h2>{product.price}kr</h2>
+                        //       <img style={{height: '100px', width: '100px'}} src={image} />
+                        //     </div>
+                        // )
+                        
+                        )
                     })
-                })
-
-
-
-                // return (
-                //     <div key={index}>
-                //       <h2>{product}</h2>
-                //       <h2>{product.price}kr</h2>
-                //       <img style={{height: '100px', width: '100px'}} src={image} />
-                //     </div>
-                // )
-
-            })
-    }
-
-
-
-
-
+                }
+                
+                
+                
+                
+                
     render() {
         const { isLoading, products } = this.state
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import '../style/Landing.scss'
 
-import FunctionalComp from '../components/FunctionalComp'
 
 class Landing extends Component {
 

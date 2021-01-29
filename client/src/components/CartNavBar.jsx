@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import api from '../api'
 import '../style/CartNavBar.scss'
 
 import CartContext from '../context/CartContext';
@@ -30,7 +29,6 @@ class CartNavBar extends Component {
 
     componentDidMount = () => {
 
-        console.log(this.context)
     }
 
 
@@ -40,7 +38,6 @@ class CartNavBar extends Component {
             cartOpen: !prevState.cartOpen
         }));
 
-        console.log('cartOpen:', this.state.cartOpen)
     }
 
 

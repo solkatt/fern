@@ -3,7 +3,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { NavBar } from '../components'
-import { AddProduct, CreateStore, Landing, Products, EditProduct, Store, Storefront, Orders} from '../pages';
+import { AddProduct, CreateStore, Landing, Products, EditProduct, Store, Storefront, Orders, OrderCompleted} from '../pages';
 import {Checkout} from '../pages/index'
 import '../style/App.scss'
 import { UserProvider } from '../context/UserContext';
@@ -41,7 +41,11 @@ class App extends React.Component {
               exact
               component={Checkout}
             />
-            
+             <Route
+              path="/order-success"
+              exact
+              component={OrderCompleted}
+            />
             
           </Switch>
         </Router>

@@ -4,7 +4,6 @@ import api from '../api'
 
 import {
   getFromStorage,
-  setInStorage,
   removeFromStorage,
 } from "../utils/storage";
 

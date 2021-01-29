@@ -11,7 +11,7 @@ import LoadingAnimation from '../../components/LoadingAnimation';
 import { Link } from 'react-router-dom'
 
 
-class Cart extends Component {
+class OrderCompleted extends Component {
     static contextType = CartContext;
     constructor(props) {
         super(props);
@@ -69,27 +69,6 @@ class Cart extends Component {
         //then take storeID from cart to link to
     }
 
-
-    handleSubmit = async () => {
-        // this.setState({ isLoading: true })
-
-        // const { firstName, email, password } = this.state;
-
-        // const payload = {
-        //     name: firstName,
-        //     email: email,
-        //     password: password,
-        // }
-
-        // await api.registerUser(payload).then((res) => {
-        //     console.log(res);
-
-        // }, (err) => {
-        //     console.log(err)
-        // })
-
-
-    }
 
 
 
@@ -234,4 +213,4 @@ class Cart extends Component {
     }
 }
 
-export default Cart
+export default OrderCompleted

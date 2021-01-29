@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Logo, JoinModal, LoginModal, Links, UserDashboard, CartNavBar } from './index'
+import { Logo, JoinModal, LoginModal, UserDashboard, CartNavBar } from './index'
 import { Link } from 'react-router-dom'
 
 // import Links from './Links'

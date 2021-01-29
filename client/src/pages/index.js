@@ -11,6 +11,7 @@ import Orders from './UserDash/Orders'
 
 import Cart from './CustomerDash/Cart'
 import Checkout from './CustomerDash/Checkout'
+import OrderCompleted from './CustomerDash/OrderCompleted'
 
 
-export { CreateStore, Landing, Products, AddProduct, EditProduct, Store, Storefront, Cart, Checkout, Orders }
+export { CreateStore, Landing, Products, AddProduct, EditProduct, Store, Storefront, Cart, Checkout, Orders, OrderCompleted }

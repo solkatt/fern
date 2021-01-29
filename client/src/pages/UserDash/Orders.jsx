@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import api from '../../api'
 import '../../style/pages/Orders.scss'
 import '../../style/pages/PageLayout.scss'
-import { Link } from 'react-router-dom'
 import UserContext from '../../context/UserContext';
 import LoadingAnimation from '../../components/LoadingAnimation'
 

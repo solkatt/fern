@@ -1,12 +1,7 @@
 import React from "react";
 // import { Redirect } from "react-router-dom";
 import api from '../api'
-
-import {
-  getFromStorage,
-  setInStorage,
-  removeFromStorage,
-} from "../utils/storage";
+;
 
 const CartContext = React.createContext();
 
@@ -58,7 +53,7 @@ export class CartProvider extends React.Component {
     }
 
     if (alreadyInCart) {
-      alert('already in cart')
+  
       const existingItem = cloneShoppingCart.find(
         (element) => element.product === product
       );
@@ -71,7 +66,7 @@ export class CartProvider extends React.Component {
 
     this.setState({ shoppingCart: cloneShoppingCart });
     localStorage.setItem("cart", JSON.stringify(cloneShoppingCart));
-    alert("Item added to cart");
+   
   };
 
 

@@ -1,2 +1,43 @@
 @import '../Variables.scss';
 
+
+
+.edit-product-container {
+
+    background: $fern-black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+
+    .edit-product-form {
+        // width: 100%;
+        // background: red;
+        margin-top: 2rem;
+        height: 520px;
+        width: 26rem;
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        align-items: center;
+        // border: 2px solid black;
+
+        input {}
+
+        button {
+            font-size: 2rem;
+
+            border: 2px solid $fern-yellow;
+            background: none;
+            color: $fern-yellow;
+
+            &:hover {
+                background: $fern-yellow;
+                color: $fern-black;
+            }
+        }
+    }
+}

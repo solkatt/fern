@@ -57,9 +57,9 @@ class EditProduct extends Component {
 
         this.setState(prevState => {
             let product = { ...prevState.product };  // creating copy of state variable jasper
-            product[field]  = value;                     // update the name property, assign a new value                 
+            product[field] = value;                     // update the name property, assign a new value                 
             return { product };                                 // return new object jasper object
-          })
+        })
 
 
 
@@ -95,7 +95,7 @@ class EditProduct extends Component {
         }, (err) => {
             return console.log(err)
 
-            
+
         })
 
 
@@ -105,12 +105,12 @@ class EditProduct extends Component {
     onUpdateProduct = async (productID) => {
 
 
-        const {name, description, image, price, stock_quantity, storeID, categories } = this.state.product
+        const { name, description, images, price, stock_quantity, storeID, categories } = this.state.product
 
         const payload = {
             name: name,
             description: description,
-            image: image,
+            images: images,
             price: price,
             stock_quantity: stock_quantity,
             storeID: storeID,
@@ -118,7 +118,7 @@ class EditProduct extends Component {
         }
 
 
-       // img, if no new image then used previous
+        // img, if no new image then used previous
 
         await api.updateProduct(productID, payload).then((res) => {
 
@@ -148,30 +148,36 @@ class EditProduct extends Component {
                 <div className="page-content">
 
 
-                    <div className="product-grid">
+                    <div className="edit-product-container">
                         {/* <h1>{product}</h1> */}
 
 
-                        <div key={product._id} className="product-card">
-{/* 
+                        <div key={product._id} className="edit-product-container">
+                            {/* 
                             <h3>{product.name}</h3>
                             <p>{product.description}</p>
                             <h5>{product.price}</h5>
                             <h5>{product.stock_quantity}</h5>
                             <h5>{product.categories}</h5>
                             <h5>{product.image}</h5> */}
+                            <div className='edit-product-form'>
+                           
+                            <h5>{product.images}</h5>
 
-                            <input name="name" type="text" defaultValue={product.name} onChange={this.handleInputChange} />
-                            <input name="description" type="text" defaultValue={product.description} onChange={this.handleInputChange} />
-                            {/* Todo: Inser KR after price */}
-                            <input name="price" type="number" defaultValue={product.price} onChange={this.handleInputChange} />
+                                <p className='edit-product-field'>Name</p>
+                                <input name="name" className='common-input' type="text" defaultValue={product.name} onChange={this.handleInputChange} />
+                                <input name="description" className='common-input' type="text" defaultValue={product.description} onChange={this.handleInputChange} />
+                                {/* Todo: Inser KR after price */}
+                                <input name="price" className='common-input' type="number" defaultValue={product.price} onChange={this.handleInputChange} />
+                                <input name="stock_quantity" className='common-input' type="number" defaultValue={product.stock_quantity} onChange={this.handleInputChange} />
 
 
-                            <div className="btns">
-                                <button onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
-                                <button onClick={() => this.showProduct(product._id)}>Show this.state.product</button>
-                                <button onClick={() => this.onUpdateProduct(product._id)}>Update Product</button>
+                                <div className="btns">
+                                    <button className='common-button' onClick={() => this.onDeleteProduct(product._id)}>Delete</button>
+                                    <button className='common-input' onClick={() => this.showProduct(product._id)}>Show this.state.product</button>
+                                    <button className='common-button' onClick={() => this.onUpdateProduct(product._id)}>Update Product</button>
 
+                                </div>
                             </div>
                         </div>
 

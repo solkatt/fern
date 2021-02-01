@@ -3,7 +3,7 @@ import api from '../api'
 import '../style/LoginModal.scss'
 import '../style/Common.scss'
 
-import { GrFormClose} from 'react-icons/gr';
+import { FaWindowClose} from 'react-icons/fa';
 import UserContext from '../context/UserContext';
 
 
@@ -87,7 +87,7 @@ class LoginModal extends Component {
             <>
                 <div className="modal" onClick={this.onClickOutside}>
                     <div className="login-modal">
-                    <GrFormClose className="close pointer" onClick={this.onCloseModal}/>
+                    <FaWindowClose className="close pointer hide-desktop" onClick={this.onCloseModal} />
                         <div className='login-form'>
                         <h1 className='login-title'>LOG IN</h1>
                         <input name="email" type="email" placeholder="Email"  onChange={this.handleInputChange}></input>

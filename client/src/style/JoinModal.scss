@@ -11,9 +11,12 @@
         width: 400px;
         height: 500px;
     
-
-
-
+        @media (max-width: $breakpoint-tablet) {
+            width: 90%;
+            height: 90%;
+           }
+   
+     
         .join-form {
             background: none;
 
@@ -22,6 +25,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+
+            
        
 
             .join-title {
@@ -30,6 +35,11 @@
                 margin-bottom: 3rem;
  
                 color: $fern-yellow;
+
+                @media (max-width: $breakpoint-tablet) {
+                    margin-bottom: 1rem;
+
+                   }
             }
 
             input {
@@ -42,6 +52,11 @@
                 margin-bottom: 1rem;
                 font-family: $h2-font;
                 font-size: 1.4rem;
+
+                @media (max-width: $breakpoint-tablet) {
+                    width: 80%;
+                   }
+           
             }
 
             .join-button {
@@ -60,6 +75,12 @@
                 border: 2px solid $fern-yellow;
                 background: none;
                 color: $fern-yellow;
+
+
+                @media (max-width: $breakpoint-tablet) {
+                    width: 80%;
+                    height: 3rem;
+                   }
     
                 &:hover {
                     background: $fern-yellow;

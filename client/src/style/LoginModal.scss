@@ -9,6 +9,12 @@
     width: 400px;
     height: 500px;
 
+    @media (max-width: $breakpoint-tablet) {
+        width: 90%;
+        height: 90%;
+       }
+
+
 
 
 
@@ -28,6 +34,12 @@
             margin-bottom: 3rem;
 
             color: $fern-yellow;
+
+            @media (max-width: $breakpoint-tablet) {
+                margin-bottom: 1rem;
+                text-align: center;
+
+               }
         }
 
         input {
@@ -40,6 +52,11 @@
             margin-bottom: 1rem;
             font-family: $h2-font;
             font-size: 1.4rem;
+
+
+            @media (max-width: $breakpoint-tablet) {
+                width: 80%;
+               }
         }
 
         .login-button {
@@ -58,6 +75,12 @@
             border: 2px solid $fern-yellow;
             background: none;
             color: $fern-yellow;
+
+
+            @media (max-width: $breakpoint-tablet) {
+                width: 80%;
+                height: 3rem;
+               }
 
             &:hover {
                 background: $fern-yellow;

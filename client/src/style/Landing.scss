@@ -13,6 +13,15 @@
     justify-content: space-between;
     // align-items: center;
 
+
+    @media (max-width: $breakpoint-tablet) {
+        justify-content: center;
+        align-content: center;
+        box-sizing: border-box;
+        padding: 2rem;
+    }
+
+
     .fern-intro {
         
         margin-left: 6rem;
@@ -20,11 +29,41 @@
         display: flex;
         flex-direction: column;
         // border: 1px solid white;
+        z-index: 2;
+
+
+        @media (max-width: $breakpoint-tablet) {
+        margin-left: 0;
+        margin-top: 0; 
+
+        justify-content: center;
+        
+        }
+
+
+                
+     
+
+        // @media (max-width: $breakpoint-phone) {
+      
+        // }
+
+
+
+
+
         h1 {
             font-family: $title-font;
             font-size: $title-jumbo;
             color: $fern-yellow;
             margin-bottom: -2rem;
+
+
+                           
+        @media (max-width: $breakpoint-phone) {
+           font-size: 7rem;
+        }
+
 
         }
     
@@ -33,6 +72,11 @@
             color: $fern-white;
             font-size: $h2-big;
             font-weight: 300;
+
+            @media (max-width: $breakpoint-phone) {
+                font-size: 2rem;
+             }
+     
         }
 
         h3 {
@@ -48,7 +92,7 @@
             height: 50px;
             border: 3px solid $fern-yellow;
             border-radius: 2.5rem;
-            background: $fern-black;
+            background:none;
             font-family: $title-font;
             font-size: $title-button;
             color: $fern-yellow;
@@ -62,6 +106,12 @@
                 transition: all .3s ease-in-out;
 
             }
+
+
+            @media (max-width: $breakpoint-tablet) {
+               align-self: center
+            }
+    
         }
 
 
@@ -72,18 +122,41 @@
     .fern-animation {
         // border: 1px solid $fern-yellow;
    
-
+        display: flex;
         align-self: flex-end;
         justify-self: flex-end;
         margin-bottom: 6rem;
+        z-index: 1;
+        height: 100%;
 
-   
+        
+        @media (max-width: $breakpoint-tablet) {
+            position: absolute;
+            bottom: 0;
+         
+        }
 
 
         .animation {
 
             height: 900px;
             width: 900px;
+
+
+              
+            @media (max-width: $breakpoint-tablet) {
+                width: 100%;
+                height: 100%;
+            }
+                
+
+        @media (max-width: $breakpoint-smallScreen) {
+            width: 100%;
+            height: auto;
+        }
+            
+            
+            
         }
        
 

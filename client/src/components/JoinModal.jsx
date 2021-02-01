@@ -97,7 +97,7 @@ class JoinModal extends Component {
             <>
                 <div className="modal" onClick={this.onClickOutside}>
                     <div className="join-modal">
-                        {/* <FaWindowClose className="close pointer" onClick={this.onCloseModal} /> */}
+                        <FaWindowClose className="close pointer hide-desktop" onClick={this.onCloseModal} />
                         <div className='join-form'>
                             <h1 className='join-title'>JOIN</h1>
 

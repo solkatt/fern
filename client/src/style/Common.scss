@@ -55,8 +55,22 @@
     justify-content: center;
 
 
+
+    @media (max-width: $breakpoint-tablet) {
+    background: $fern-black;
+       }
+
+
 }
 
+.hide-desktop {
+    display: none;
+
+    
+    @media (max-width: $breakpoint-tablet) {
+        display: block;    
+    }
+}
 
 
 ////////// INPUTS

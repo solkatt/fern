@@ -73,6 +73,17 @@
 }
 
 
+.hide-phone {
+    
+    display: block;    
+    
+    @media (max-width: $breakpoint-phone) {
+        display: none;
+    }
+
+}
+
+
 ////////// INPUTS
 
 
@@ -175,6 +186,9 @@
 
 
 }
+
+
+
 
 
 

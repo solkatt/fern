@@ -1,12 +1,41 @@
-.nav-link {
+@import './Variables.scss';
 
-    color: white;
-    text-decoration: none; /* no underline */
+.menu {
+// text-decoration: none;
 
 
 
-    a &:active {
+    @media (max-width: $breakpoint-tablet) {
+        height: 90vh;
+        width: 100vw;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+ 
+      background: $fern-black;
+      left: 0;
+     box-sizing: border-box;
+     margin-top: 2rem;
 
-        color: red;
+
+
+    }
+
+
+
+    .nav-link {
+
+        color: white;
+        text-decoration: none;
+        /* no underline */
+
+     
+
+        a &:active {
+
+            color: red;
+        }
     }
 }

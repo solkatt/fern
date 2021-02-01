@@ -14,8 +14,8 @@ class Landing extends Component {
                     <h1>FERN</h1>
                     <h2>Set up an online store easy as duck</h2>
                     <h2>or explore stores and buy shit</h2>
-                    <h3>Store with CMS & Payment solutions and a bunch of other bonkers stuff </h3>
-                    <h3> Do as {513} fern stores and join now..</h3>
+                    <h3 className='hide-phone'>Store with CMS & Payment solutions and a bunch of other bonkers stuff </h3>
+                    <h3 className='hide-phone'> Do as {513} fern stores and join now..</h3>
 
                     <button className="cta-join">JOIN</button>
                 </div>
